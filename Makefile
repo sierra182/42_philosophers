@@ -2,7 +2,7 @@ NAME = philosophers
 HDR_DIR = includes
 SRC_DIR = sources
 CC = cc
-THREAD = -pthread -fsanitize=thread
+#THREAD = -pthread -fsanitize=thread
 THREAD = -pthread -fsanitize=address
 
 CFLAGS = -g -I$(HDR_DIR) $(THREAD) #-Wall -Wextra -Werror
