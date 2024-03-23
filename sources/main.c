@@ -6,7 +6,14 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 10:42:46 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/23 10:42:47 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/23 11:16:22 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+
+int	main(int argc, char *argv[])
+{
+	printf("hello world!\n");
+	return (0);
+}

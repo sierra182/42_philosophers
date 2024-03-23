@@ -6,6 +6,7 @@ CFLAGS = -I$(HDR_DIR) -g -pthread #-Wall -Wextra -Werror
 LDFLAGS = -pthread
 SRC = $(SRC_DIR)/main.c
 HDR = $(HDR_DIR)
+OBJ = $(SRC:.c=.o)
 
 .PHONY: all clean fclean re intro l newline backline emoticon
 
