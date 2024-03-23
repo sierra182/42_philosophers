@@ -6,9 +6,11 @@ CC = cc
 THREAD =
 CFLAGS = -g -I$(HDR_DIR) $(THREAD) #-Wall -Wextra -Werror
 LDFLAGS = $(THREAD) 
-SRC = $(SRC_DIR)/main.c
 HDR = $(HDR_DIR)
 OBJ = $(SRC:.c=.o)
+
+SRC = $(SRC_DIR)/main.c \
+$(SRC_DIR)/check_argv.c
 
 .PHONY: all clean fclean re intro l newline backline emoticon address
 
