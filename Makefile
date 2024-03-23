@@ -1,19 +1,24 @@
 NAME = philosophers
 HDR_DIR = includes
 SRC_DIR = sources
-CC = cc
-#THREAD = -pthread -fsanitize=thread
-THREAD = -pthread -fsanitize=address
 
+CC = cc
+THREAD =
 CFLAGS = -g -I$(HDR_DIR) $(THREAD) #-Wall -Wextra -Werror
 LDFLAGS = $(THREAD) 
 SRC = $(SRC_DIR)/main.c
 HDR = $(HDR_DIR)
 OBJ = $(SRC:.c=.o)
 
-.PHONY: all clean fclean re intro l newline backline emoticon
+.PHONY: all clean fclean re intro l newline backline emoticon address
 
 all: intro $(NAME) emoticon
+
+address:
+	@$(MAKE) -s l THREAD="-pthread -fsanitize=address"
+
+thread:
+	@$(MAKE) -s l THREAD="-pthread -fsanitize=thread"
 
 l: $(NAME)
 
