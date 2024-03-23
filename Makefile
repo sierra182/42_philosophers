@@ -2,8 +2,11 @@ NAME = philosophers
 HDR_DIR = includes
 SRC_DIR = sources
 CC = cc
-CFLAGS = -I$(HDR_DIR) -g -pthread #-Wall -Wextra -Werror
-LDFLAGS = -pthread
+THREAD = -pthread -fsanitize=thread
+THREAD = -pthread -fsanitize=address
+
+CFLAGS = -g -I$(HDR_DIR) $(THREAD) #-Wall -Wextra -Werror
+LDFLAGS = $(THREAD) 
 SRC = $(SRC_DIR)/main.c
 HDR = $(HDR_DIR)
 OBJ = $(SRC:.c=.o)
