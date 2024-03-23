@@ -2,18 +2,24 @@ NAME = philosophers
 HDR_DIR = includes
 SRC_DIR = sources
 CC = cc
-CFLAGS = -I$(HDR_DIR) -g #-Wall -Wextra -Werror
+CFLAGS = -I$(HDR_DIR) -g -pthread #-Wall -Wextra -Werror
+LDFLAGS = -pthread
 SRC = $(SRC_DIR)/main.c
-HDR = #$(HDR_DIR)
+HDR = $(HDR_DIR)
 
 .PHONY: all clean fclean re intro l newline backline emoticon
+
+all: intro $(NAME) emoticon
+
+l: $(NAME)
 
 $(SRC_DIR)/%.o : $(SRC_DIR)/%.c $(HDR)
 	@echo "\033[0;32m compiling $(NAME) object $<...\033[0m" 🚀
 	@$(CC) $(CFLAGS) $< -c -o $@
 
-$(NAME) : $(OBJ)
-	@$(CC) $(OBJ) -o $@
+$(NAME) : $(OBJ) 
+	@echo "\n\033[0;32m linking $(NAME) objects...\033[0m 🚀\n\n 💗 💎 💎 💗\n"
+	@$(CC) $(OBJ) $(LDFLAGS) -o $@
 
 emoticon:
 	@echo "\n 💗 😀 😃 😍\n"
@@ -44,7 +50,7 @@ intro:
 		sleep .4; \
 	done
 	@sleep .4
-	@cat mfile_design	
+	@cat docs/mfile_design	
 
 clean:
 	@echo "\n cleanning $(NAME) objects 🧻"
