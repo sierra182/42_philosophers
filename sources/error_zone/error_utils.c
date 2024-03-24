@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/23 10:42:46 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/24 10:33:51 by seblin           ###   ########.fr       */
+/*   Created: 2024/03/24 11:34:39 by seblin            #+#    #+#             */
+/*   Updated: 2024/03/24 11:35:46 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <pthread.h>
-
-int	check_argv(int argc, char *argv[]);
-void *routine(void *data)
+int	ft_isspace(int c)
 {
-	printf("je suis le nouveau tread!\n");
-}	
+	return ((c >= 9 && c <= 13) || c == 32);
+}
 
-int	main(int argc, char *argv[])
+int	ft_isdigit(int c)
 {
-	pthread_t tid;
-	
-	if (check_argv(argc, argv))
+	if (c >= '0' && c <= '9')
 		return (1);
-	printf("hello world!\n");
-	pthread_create(&tid, NULL, routine, NULL);
-	pthread_join(tid, NULL);
-	
 	return (0);
+}
+
+int is_digit_arg(char *arg)
+{
+	while (*arg)	
+		if (!ft_isdigit(*arg++))
+			return (0);
+	return (1);
 }
