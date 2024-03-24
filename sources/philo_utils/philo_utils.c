@@ -1,14 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_land.c                                       :+:      :+:    :+:   */
+/*   philo_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:39:49 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/24 11:54:05 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/24 14:14:43 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "philo_utils.h"
 
 int	ft_strlen(const char *s)
 {
@@ -51,4 +53,17 @@ int	ft_atoi(const char *nptr)
 	while (ft_isdigit(*nptr))
 		res = res * 10 + *nptr++ - 48;
 	return (res * sign);
+}
+
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	void	*ptr;
+
+	if (size && nmemb * size / size != nmemb)
+		return (NULL);
+	ptr = malloc(nmemb * size);
+	if (!ptr)
+		return (NULL);
+	ft_bzero(ptr, nmemb * size);
+	return (ptr);
 }
