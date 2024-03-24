@@ -1,16 +1,31 @@
 NAME = philosophers
+X_HDR_DIR = x_includes
 HDR_DIR = includes
 SRC_DIR = sources
-
 CC = cc
 THREAD =
-CFLAGS = -g -I$(HDR_DIR) $(THREAD) #-Wall -Wextra -Werror
-LDFLAGS = $(THREAD) 
-HDR = $(HDR_DIR)
-OBJ = $(SRC:.c=.o)
 
+CFLAGS = $(X_HDRFLAGS) $(HDRFLAGS) $(THREAD) -g #-Wall -Wextra -Werror
+LDFLAGS = $(THREAD)
+
+X_HDRFLAGS = -I$(X_HDR_DIR)/error_zone \
+	-I$(X_HDR_DIR)/philo_utils
+
+X_HDR = $(X_HDR_DIR)/error_zone/x_error_utils.h \
+	$(X_HDR_DIR)/philo_utils/x_philo_utils.h
+
+HDRFLAGS = -I$(HDR_DIR)/error_zone \
+	-I$(HDR_DIR)/philo_utils
+
+HDR = $(HDR_DIR)/error_zone/error_utils.h \
+	$(HDR_DIR)/error_zone/check_argv.h \
+	$(HDR_DIR)/philo_utils/philo_utils.h
+
+OBJ = $(SRC:.c=.o)
 SRC = $(SRC_DIR)/main.c \
-$(SRC_DIR)/check_argv.c
+	$(SRC_DIR)/error_zone/check_argv.c \
+	$(SRC_DIR)/error_zone/error_utils.c \
+	$(SRC_DIR)/philo_utils/philo_utils.c \
 
 .PHONY: all clean fclean re intro l newline backline emoticon address
 
@@ -24,7 +39,7 @@ thread:
 
 l: $(NAME)
 
-$(SRC_DIR)/%.o : $(SRC_DIR)/%.c $(HDR)
+$(SRC_DIR)/%.o : $(SRC_DIR)/%.c $(HDR) $(X_HDR)
 	@echo "\033[0;32m compiling $(NAME) object $<...\033[0m" 🚀
 	@$(CC) $(CFLAGS) $< -c -o $@
 

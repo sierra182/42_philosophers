@@ -1,33 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   x_error_utils.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/23 10:42:46 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/24 12:31:42 by seblin           ###   ########.fr       */
+/*   Created: 2024/03/24 11:59:16 by seblin            #+#    #+#             */
+/*   Updated: 2024/03/24 13:20:46 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <pthread.h>
-int	check_argv(int argc, char *argv[]);
+#ifndef X_ERROR_UTILS_H
+# define X_ERROR_UTILS_H
 
-void *routine(void *data)
-{
-	printf("je suis le nouveau tread!\n");
-}	
+void	display_error(char *str);
+int		is_digit_arg(char *arg);
+int		ft_isoverflow(char *str);
 
-int	main(int argc, char *argv[])
-{
-	pthread_t tid;
-	
-	if (check_argv(argc, argv))
-		return (1);
-	printf("hello world!\n");
-	pthread_create(&tid, NULL, routine, NULL);
-	pthread_join(tid, NULL);
-	
-	return (0);
-}
+#endif
