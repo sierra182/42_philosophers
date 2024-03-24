@@ -19,13 +19,15 @@ HDRFLAGS = -I$(HDR_DIR)/error_zone \
 
 HDR = $(HDR_DIR)/error_zone/error_utils.h \
 	$(HDR_DIR)/error_zone/check_argv.h \
-	$(HDR_DIR)/philo_utils/philo_utils.h
+	$(HDR_DIR)/philo_utils/philo_utils.h \
+	$(HDR_DIR)/philo_utils/ft_calloc.h
 
 OBJ = $(SRC:.c=.o)
 SRC = $(SRC_DIR)/main.c \
 	$(SRC_DIR)/error_zone/check_argv.c \
 	$(SRC_DIR)/error_zone/error_utils.c \
 	$(SRC_DIR)/philo_utils/philo_utils.c \
+	$(SRC_DIR)/philo_utils/ft_calloc.c \
 
 .PHONY: all clean fclean re intro l newline backline emoticon address
 

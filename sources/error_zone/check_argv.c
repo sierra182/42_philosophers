@@ -6,19 +6,19 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 14:52:09 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/24 13:22:26 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/24 15:21:31 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "check_argv.h"
 
-int	is_philo_error(char *n_philo)
+static int	is_philo_error(char *n_philo)
 {
 	return (!is_digit_arg(n_philo) || ft_isoverflow(n_philo)
 		|| ft_atoi(n_philo) <= 0);
 }
 
-int	is_arg_error(char *arg)
+static int	is_arg_error(char *arg)
 {
 	return (!is_digit_arg(arg) || ft_isoverflow(arg)
 		|| ft_atoi(arg) < 0);

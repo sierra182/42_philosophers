@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 11:39:49 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/24 14:14:43 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/24 15:18:01 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,4 @@ int	ft_atoi(const char *nptr)
 	while (ft_isdigit(*nptr))
 		res = res * 10 + *nptr++ - 48;
 	return (res * sign);
-}
-
-void	*ft_calloc(size_t nmemb, size_t size)
-{
-	void	*ptr;
-
-	if (size && nmemb * size / size != nmemb)
-		return (NULL);
-	ptr = malloc(nmemb * size);
-	if (!ptr)
-		return (NULL);
-	ft_bzero(ptr, nmemb * size);
-	return (ptr);
 }

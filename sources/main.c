@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 10:42:46 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/24 14:23:25 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/24 17:19:57 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,61 @@
 #include <pthread.h>
 #include "x_philo_struct.h"
 #include "x_philo_utils.h"
+#include <stdlib.h>
+void	*ft_calloc(size_t nmemb, size_t size);
+int		check_argv(int argc, char *argv[]);
 
-int	check_argv(int argc, char *argv[]);
 
-void *routine(void *data)
+
+void	*shared_microphone(void *lock)
+{	
+	pthread_mutex_lock(lock);
+	printf("je suis le nouveau tread! tid: %lu\n", pthread_self());
+	pthread_mutex_unlock(lock);
+}
+
+void	fill_tids_array(t_data *data, pthread_t *tids, pthread_mutex_t *lock)
 {
-	printf("je suis le nouveau tread!\n");
-}	
+	int i;
+	
+	i = 0;
+	while (i < data->n_philo)
+	{	
+		pthread_create(&tids[i], NULL, shared_microphone, (void *) lock);
+		i++;
+	}
+}
 
-create_data_struct(char *argv[])
+pthread_t *create_tids_array(t_data *data)
+{
+	pthread_t	*tids;
+	
+	tids = NULL;
+	tids = (pthread_t *) malloc(sizeof(pthread_t) * (data->n_philo + 1));
+	return (tids);
+}
+
+pthread_t *create_threads(t_data *data)
+{	
+	pthread_mutex_t	lock;
+	pthread_t *tids;
+
+	tids = create_tids_array(data);
+	if (!tids)
+		return (NULL);
+	pthread_mutex_init(&lock, NULL);
+	fill_tids_array(data, tids, &lock);
+	return (tids);
+}
+
+t_data	*create_data_struct(char *argv[])
 {
 	t_data *data;
 	
+	data = NULL;
 	data = (t_data *) ft_calloc(1, sizeof(t_data));
+	if (!data)
+		return (NULL);
 	data->n_philo = ft_atoi(*++argv);
 	data->eat_time = ft_atoi(*++argv);
 	data->sleep_time = ft_atoi(*++argv);
@@ -36,17 +78,24 @@ create_data_struct(char *argv[])
 	return (data);
 }
 
+int	join_treads
+
 int	main(int argc, char *argv[])
 {
 	t_data *data;
-	pthread_t tid;
+	pthread_t *tids;
 	
 	if (check_argv(argc, argv))
 		return (1);
 	data = create_data_struct(argv);
+	if (!data)
+		return (1);
 	printf("hello world!\n");
-	pthread_create(&tid, NULL, routine, NULL);
-	pthread_join(tid, NULL);
+	tids = create_threads(data);
+	if (!tids)
+		return (1);
+	join_threads(tids);
+	//pthread_join(tid, NULL);
 
 	return (0);
 }
