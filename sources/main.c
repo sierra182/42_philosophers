@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 10:42:46 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/24 17:19:57 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/24 17:23:39 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,14 @@ t_data	*create_data_struct(char *argv[])
 	return (data);
 }
 
-int	join_treads
+int	join_treads(pthread_t *tids)
+{
+	while (*tids)
+	{
+		pthread_join(*tids, NULL);
+		tids++;
+	}
+}
 
 int	main(int argc, char *argv[])
 {
