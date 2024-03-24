@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 10:42:46 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/24 17:23:39 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/24 17:52:59 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 #include <stdlib.h>
 void	*ft_calloc(size_t nmemb, size_t size);
 int		check_argv(int argc, char *argv[]);
-
-
 
 void	*shared_microphone(void *lock)
 {	
@@ -44,7 +42,7 @@ pthread_t *create_tids_array(t_data *data)
 	pthread_t	*tids;
 	
 	tids = NULL;
-	tids = (pthread_t *) malloc(sizeof(pthread_t) * (data->n_philo + 1));
+	tids = (pthread_t *) ft_calloc(data->n_philo, sizeof(pthread_t));
 	return (tids);
 }
 
@@ -78,12 +76,15 @@ t_data	*create_data_struct(char *argv[])
 	return (data);
 }
 
-int	join_treads(pthread_t *tids)
+void	join_threads(t_data *data, pthread_t *tids)
 {
-	while (*tids)
+	int	i;
+
+	i = 0;
+	while (i < data->n_philo)
 	{
-		pthread_join(*tids, NULL);
-		tids++;
+		pthread_join(tids[i], NULL);
+		i++;
 	}
 }
 
@@ -101,8 +102,6 @@ int	main(int argc, char *argv[])
 	tids = create_threads(data);
 	if (!tids)
 		return (1);
-	join_threads(tids);
-	//pthread_join(tid, NULL);
-
+	join_threads(data, tids);
 	return (0);
 }
