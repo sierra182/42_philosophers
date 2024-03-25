@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 10:42:46 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/25 16:02:37 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/25 16:56:02 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,18 @@ void	*shared_microphone(void *lock)
 	pthread_mutex_unlock(lock);
 }
 
+void	join_threads(t_data *data, pthread_t *tids)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->n_philo)
+	{
+		pthread_join(tids[i], NULL);
+		i++;
+	}
+}
+
 void	fill_tids_array(t_data *data, pthread_t *tids, pthread_mutex_t *lock)
 {
 	int i;
@@ -37,20 +49,29 @@ void	fill_tids_array(t_data *data, pthread_t *tids, pthread_mutex_t *lock)
 	}
 }
 
-pthread_t *create_tids_array(t_data *data)
+
+void	create_philos(t_data *data)
 {
-	pthread_t	*tids;
-	
-	tids = NULL;
-	tids = (pthread_t *) ft_calloc(data->n_philo, sizeof(pthread_t));
-	return (tids);
+	t_philo	*philos;
+	int	i;
+
+	philos = (t_philo *) ft_calloc(data->n_philo, sizeof(t_philo));
+	i = 0;
+	while (i < data->n_philo)
+	{
+		philos[i].id = i;
+		philos[i].lft_fork = 
+		i++;
+	}	
 }
+
+
 
 pthread_t *create_threads(t_data *data, pthread_mutex_t	*lock)
 {		
 	pthread_t *tids;
 
-	tids = create_tids_array(data);
+	tids = (pthread_t *) ft_calloc(data->n_philo, sizeof(pthread_t));
 	if (!tids)
 		return (NULL);
 	pthread_mutex_init(lock, NULL);
@@ -75,30 +96,18 @@ t_data	*create_data_struct(char *argv[])
 	return (data);
 }
 
-void	join_threads(t_data *data, pthread_t *tids)
-{
-	int	i;
-
-	i = 0;
-	while (i < data->n_philo)
-	{
-		pthread_join(tids[i], NULL);
-		i++;
-	}
-}
-
 int	main(int argc, char *argv[])
 {
 	t_data *data;
 	pthread_t *tids;
 	pthread_mutex_t	lock;
 
+	printf("hello world!\n");
 	if (check_argv(argc, argv))
 		return (1);
 	data = create_data_struct(argv);
 	if (!data)
 		return (1);
-	printf("hello world!\n");
 	tids = create_threads(data, &lock);
 	if (!tids)
 		return (1);

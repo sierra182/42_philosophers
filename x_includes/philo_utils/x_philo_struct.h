@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:57:26 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/24 14:08:06 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/25 16:59:18 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,16 @@ typedef struct s_data
 	int	think_time;
 	int	n_cycle;
 }	t_data;
+
+typedef struct s_fork {
+    pthread_mutex_t mutex;
+}	t_fork;
+
+typedef struct s_philo
+{
+	int		id;
+	t_fork	lft_fork;
+	t_fork	rght_fork;
+}	t_philo;
 
 #endif
