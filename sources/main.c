@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 10:42:46 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/25 19:28:46 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/25 21:13:34 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "x_philo_struct.h"
 #include "x_philo_utils.h"
 #include <stdlib.h>
+
 void	*ft_calloc(size_t nmemb, size_t size);
 int		check_argv(int argc, char *argv[]);
 
@@ -63,7 +64,7 @@ void	init_forks(t_data *data, t_fork *forks)
 
 	i = 0;
 	while (i < data->n_philo)	
-		pthread_mutex_init(&forks[i++], NULL);	
+		pthread_mutex_init(&forks[i++].mutex, NULL);	
 }
 
 void	create_philos(t_data *data)
@@ -77,7 +78,10 @@ void	create_philos(t_data *data)
 		return (NULL);
 	forks = (t_fork *) ft_calloc(data->n_philo, sizeof(t_fork));
 	if (!forks)
+	{
+		free (philos);
 		return (NULL);
+	}
 	init_forks(data, forks);		
 	fill_philos(data, philos, forks);	
 }
@@ -122,7 +126,7 @@ int	main(int argc, char *argv[])
 		return (1);
 	data = create_data_struct(argv);
 	if (!data)
-		return (1);
+		return (1);    					//data
 	tids = create_threads(data, &lock);
 	if (!tids)
 		return (1);

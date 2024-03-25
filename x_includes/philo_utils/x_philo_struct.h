@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:57:26 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/25 17:33:23 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/25 21:42:41 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,13 @@ typedef struct s_philo
 	t_fork	*lft_fork;
 	t_fork	*rght_fork;
 }	t_philo;
+
+typedef struct s_exit
+{
+	t_data		*data;
+	t_philo		*philos;
+	t_fork		*forks;
+	pthread_t	*tids;
+}	t_exit;
 
 #endif
