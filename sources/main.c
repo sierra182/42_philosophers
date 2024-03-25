@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 10:42:46 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/25 17:40:29 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/25 19:28:46 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,8 @@ void	join_threads(t_data *data, pthread_t *tids)
 	int	i;
 
 	i = 0;
-	while (i < data->n_philo)
-	{
-		pthread_join(tids[i], NULL);
-		i++;
-	}
+	while (i < data->n_philo)	
+		pthread_join(tids[i++], NULL);	
 }
 
 void	fill_tids_array(t_data *data, pthread_t *tids, pthread_mutex_t *lock)
@@ -42,33 +39,47 @@ void	fill_tids_array(t_data *data, pthread_t *tids, pthread_mutex_t *lock)
 	int i;
 	
 	i = 0;
+	while (i < data->n_philo)		
+		pthread_create(&tids[i++], NULL, shared_microphone, (void *) lock);	
+}
+
+void	fill_philos(t_data *data, t_philo *philos, t_fork *forks)
+{
+	int	i;
+	
+	i = 0;
 	while (i < data->n_philo)
-	{	
-		pthread_create(&tids[i], NULL, shared_microphone, (void *) lock);
+	{			
+		philos[i].id = i + 1;
+		philos[i].lft_fork = &forks[i];
+		philos[i].rght_fork = &forks[(i + 1) % data->n_philo];
 		i++;
 	}
 }
 
-void	create_philo(t_data *data, t_philo *philo, int id)
+void	init_forks(t_data *data, t_fork *forks)
 {
-	philo->id = id;
-	philo->lft_fork = (t_fork *)
+	int	i;
+
+	i = 0;
+	while (i < data->n_philo)	
+		pthread_mutex_init(&forks[i++], NULL);	
 }
 
 void	create_philos(t_data *data)
 {
 	t_philo	*philos;
+	t_fork	*forks;
 	int	i;
 
-	philos = (t_philo *) ft_calloc(data->n_philo, sizeof(t_philo));
+	philos = (t_philo *) ft_calloc(data->n_philo, sizeof(t_philo));	
 	if (!philos)
 		return (NULL);
-	i = 0;
-	while (i < data->n_philo)
-	{
-		create_philo(&philos[i]);
-		i++;
-	}	
+	forks = (t_fork *) ft_calloc(data->n_philo, sizeof(t_fork));
+	if (!forks)
+		return (NULL);
+	init_forks(data, forks);		
+	fill_philos(data, philos, forks);	
 }
 
 pthread_t *create_threads(t_data *data, pthread_mutex_t	*lock)
