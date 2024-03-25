@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:57:26 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/25 21:42:41 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/25 22:05:16 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,13 @@ typedef struct s_exit
 	t_fork		*forks;
 	pthread_t	*tids;
 }	t_exit;
+
+typedef enum e_exit_flag
+{
+	DAT,
+	PHI,
+	FRK,
+	TID,
+}	t_exit_enum;
 
 #endif
