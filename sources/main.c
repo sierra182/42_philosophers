@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 10:42:46 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/25 16:56:02 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/25 17:40:29 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,11 @@ void	fill_tids_array(t_data *data, pthread_t *tids, pthread_mutex_t *lock)
 	}
 }
 
+void	create_philo(t_data *data, t_philo *philo, int id)
+{
+	philo->id = id;
+	philo->lft_fork = (t_fork *)
+}
 
 void	create_philos(t_data *data)
 {
@@ -56,16 +61,15 @@ void	create_philos(t_data *data)
 	int	i;
 
 	philos = (t_philo *) ft_calloc(data->n_philo, sizeof(t_philo));
+	if (!philos)
+		return (NULL);
 	i = 0;
 	while (i < data->n_philo)
 	{
-		philos[i].id = i;
-		philos[i].lft_fork = 
+		create_philo(&philos[i]);
 		i++;
 	}	
 }
-
-
 
 pthread_t *create_threads(t_data *data, pthread_mutex_t	*lock)
 {		
