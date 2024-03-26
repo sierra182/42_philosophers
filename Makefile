@@ -26,6 +26,7 @@ OBJ = $(SRC:.c=.o)
 SRC = $(SRC_DIR)/main.c \
 	$(SRC_DIR)/error_zone/check_argv.c \
 	$(SRC_DIR)/error_zone/error_utils.c \
+	$(SRC_DIR)/exit_area/exit.c \
 	$(SRC_DIR)/philo_utils/philo_utils.c \
 	$(SRC_DIR)/philo_utils/ft_calloc.c \
 

@@ -6,12 +6,14 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:57:26 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/25 22:05:16 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/26 09:57:13 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef X_PHILO_STRUCT_H
 # define X_PHILO_STRUCT_H
+
+#include <pthread.h>
 
 typedef struct s_data
 {
@@ -43,10 +45,12 @@ typedef struct s_exit
 
 typedef enum e_exit_flag
 {
+	STT,
 	DAT,
 	PHI,
 	FRK,
 	TID,
+	END
 }	t_exit_enum;
 
 #endif

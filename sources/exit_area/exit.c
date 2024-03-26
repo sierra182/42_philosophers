@@ -6,26 +6,19 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 21:45:28 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/25 22:43:22 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/26 09:57:57 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "x_philo_struct.h"
+#include "stdlib.h"
 
-t_exit	*get_and_free_exit_struct(int flag)
+t_exit	*get_exit_struct(void)
 {
-	static t_exit exit;
+	static t_exit	exit;
 	
-	if (!exit)
-		exit = (t_exit *) ft_calloc(1, sizeof(t_exit));	
-	if (flag)
-	{
-		free(exit);
-		exit = NULL;	
-	}
-	return (exit);
+	return (&exit);
 }
-
 void	store_and_free_data(t_exit *exit, void *data)
 {
 	if (exit && data)
@@ -37,11 +30,38 @@ void	store_and_free_data(t_exit *exit, void *data)
 	}
 }
 
-void	update_exit_struct(void *ptr, t_exit_enum var_id)
+void (**get_store_and_free(void))(t_exit *, void *)
 {
-	t_exit 		exit;
-	t_exit_enum exit_enum;
-	
-	exit = get_and_free_exit_struct(0);	
-	store_and_free[var_id](exit, ptr);
+	static void (*store_and_free[END])(t_exit *, void *);
+		
+	if (!store_and_free[DAT])
+	{
+		store_and_free[DAT] = store_and_free_data;		
+	}		
+	return (store_and_free);
+}
+
+void	update_exit_struct(void *ptr, t_exit_enum ex_en)
+{
+	void 	(**store_and_free)(t_exit *, void *);
+	t_exit 	*exit;
+		
+	exit = get_exit_struct();
+	store_and_free = get_store_and_free();
+	if (store_and_free[ex_en])
+		store_and_free[ex_en](exit, ptr);
+}
+
+void	free_exit_struct(void)
+{
+	void 	(**store_and_free)(t_exit *, void *);
+	t_exit_enum ex_en;	
+	t_exit 		*exit;
+
+	ex_en = STT;
+	exit = get_exit_struct();
+	store_and_free = get_store_and_free();
+	while (++ex_en < END)
+		if (store_and_free[ex_en])
+			store_and_free[ex_en](exit, NULL);
 }

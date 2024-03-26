@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 10:42:46 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/25 21:13:34 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/26 10:00:07 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,12 @@ void	create_philos(t_data *data)
 
 	philos = (t_philo *) ft_calloc(data->n_philo, sizeof(t_philo));	
 	if (!philos)
-		return (NULL);
+		return; // (NULL);
 	forks = (t_fork *) ft_calloc(data->n_philo, sizeof(t_fork));
 	if (!forks)
 	{
 		free (philos);
-		return (NULL);
+		return; // (NULL);
 	}
 	init_forks(data, forks);		
 	fill_philos(data, philos, forks);	
@@ -114,6 +114,8 @@ t_data	*create_data_struct(char *argv[])
 		data->n_cycle = ft_atoi(*argv);
 	return (data);
 }
+void	update_exit_struct(void *ptr, t_exit_enum ex_en);
+void	free_exit_struct(void);
 
 int	main(int argc, char *argv[])
 {
@@ -127,6 +129,9 @@ int	main(int argc, char *argv[])
 	data = create_data_struct(argv);
 	if (!data)
 		return (1);    					//data
+	update_exit_struct((void *) data, DAT);
+	free_exit_struct();
+	
 	tids = create_threads(data, &lock);
 	if (!tids)
 		return (1);
