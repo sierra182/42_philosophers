@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 21:45:28 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/26 09:57:57 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/26 13:38:27 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,12 @@ t_exit	*get_exit_struct(void)
 	return (&exit);
 }
 void	store_and_free_data(t_exit *exit, void *data)
-{
+{	
 	if (exit && data)
 		exit->data = (t_data *) data;
 	else if (exit)
 	{
+		pthread_mutex_destroy(&exit->data->microphone_mutex);		
 		free(exit->data);
 		exit->data = NULL;
 	}
@@ -41,7 +42,7 @@ void (**get_store_and_free(void))(t_exit *, void *)
 	return (store_and_free);
 }
 
-void	update_exit_struct(void *ptr, t_exit_enum ex_en)
+void	add_exit_struct(void *ptr, t_exit_enum ex_en)
 {
 	void 	(**store_and_free)(t_exit *, void *);
 	t_exit 	*exit;
@@ -52,7 +53,7 @@ void	update_exit_struct(void *ptr, t_exit_enum ex_en)
 		store_and_free[ex_en](exit, ptr);
 }
 
-void	free_exit_struct(void)
+void	flush_exit_struct(void)
 {
 	void 	(**store_and_free)(t_exit *, void *);
 	t_exit_enum ex_en;	

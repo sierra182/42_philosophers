@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 10:42:46 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/26 10:00:07 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/26 13:14:45 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,10 +112,11 @@ t_data	*create_data_struct(char *argv[])
 	data->think_time = ft_atoi(*++argv);
 	if (*++argv)
 		data->n_cycle = ft_atoi(*argv);
+	pthread_mutex_init(&data->microphone_mutex, NULL);
 	return (data);
 }
-void	update_exit_struct(void *ptr, t_exit_enum ex_en);
-void	free_exit_struct(void);
+void	add_exit_struct(void *ptr, t_exit_enum ex_en);
+void	flush_exit_struct(void);
 
 int	main(int argc, char *argv[])
 {
@@ -129,8 +130,8 @@ int	main(int argc, char *argv[])
 	data = create_data_struct(argv);
 	if (!data)
 		return (1);    					//data
-	update_exit_struct((void *) data, DAT);
-	free_exit_struct();
+	add_exit_struct((void *) data, DAT);
+	flush_exit_struct();
 	
 	tids = create_threads(data, &lock);
 	if (!tids)
