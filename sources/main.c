@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 10:42:46 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/27 17:40:35 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/27 18:03:12 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,27 @@ void	join_threads(t_data *data, pthread_t *tids)
 		pthread_join(tids[i++], NULL);	
 }
 
-void	eat(t_philo *philo)
+void	philo_think(t_philo *philo)
+{
+	shared_microphone(philo, "is thinking\n");	
+}
+
+void	philo_sleep(t_philo *philo)
+{
+	shared_microphone(philo, "is sleeping\n");
+	usleep(philo->data->sleep_time * 1000);	
+}
+
+void	philo_eat(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->lft_fork->mutex);
 	shared_microphone(philo, "has taken a fork\n");
+	pthread_mutex_lock(&philo->rght_fork->mutex);
+	shared_microphone(philo, "has taken a fork\n");
+	shared_microphone(philo, "is eating\n");
+	usleep(philo->data->eat_time * 1000);	
 	pthread_mutex_unlock(&philo->lft_fork->mutex);
+	pthread_mutex_unlock(&philo->rght_fork->mutex);
 }
 
 void	*philo_routine(void *arg)
@@ -84,7 +100,9 @@ void	*philo_routine(void *arg)
 	t_philo *philo;
 	
 	philo = (t_philo *) arg;	
-	eat(philo);
+	philo_eat(philo);
+	philo_sleep(philo);
+	philo_think(philo);
 }
 
 void	init_philos(t_data *data, t_philo *philos, t_fork *forks)
@@ -159,9 +177,9 @@ t_data	*create_data_struct(char *argv[])
 	if (!data)
 		return (NULL);	
 	data->n_philo = ft_atoi(*++argv);
+	data->death_time = ft_atoi(*++argv);
 	data->eat_time = ft_atoi(*++argv);
 	data->sleep_time = ft_atoi(*++argv);
-	data->think_time = ft_atoi(*++argv);
 	if (*++argv)
 		data->n_cycle = ft_atoi(*argv);	
 	if (gettimeofday(&(data->start_time), NULL))	

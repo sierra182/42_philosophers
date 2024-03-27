@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:57:26 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/27 15:58:57 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/27 17:54:26 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 typedef struct s_data
 {
 	int				n_philo;
+	int				death_time;
 	int				eat_time;
 	int				sleep_time;
-	int				think_time;
 	int				n_cycle;
 	struct timeval	start_time;
 	pthread_mutex_t microphone_mutex;		
