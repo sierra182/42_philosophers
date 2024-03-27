@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 10:42:46 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/27 14:36:49 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/27 17:02:03 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,44 @@ void	*ft_calloc(size_t nmemb, size_t size);
 int		check_argv(int argc, char *argv[]);
 
 #include <sys/time.h>
-void	build_output(int id, char *str)
+#include <unistd.h>
+
+
+
+long	get_time(t_philo *philo)
 {
-	struct timeval time_v;
-	if (gettimeofday(&time_v, NULL))
-		
+	struct timeval	start_time;
+	struct timeval	actual_time;
+	long			delta_sec;
+	long 			delta_microsec;
+	
+	usleep(1000);
+	start_time = philo->data->start_time;
+	if (!gettimeofday(&actual_time, NULL))
+	{
+		delta_sec = start_time.tv_sec - actual_time.tv_sec;
+		delta_microsec = start_time.tv_usec - actual_time.tv_usec;		
+		return (delta_sec * 1000 + delta_microsec / 1000);
+	}
 	else
-		return ; //err
+		return (-1);
 }
 
-void	*shared_microphone(pthread_mutex_t *mutex, char *str)
+void	*shared_microphone(t_philo *philo, char *str)
 {	
-	pthread_mutex_lock(mutex);
+	long	time;
+	pthread_mutex_t *mutex;
+	
+	mutex = &philo->data->microphone_mutex;
+	pthread_mutex_lock(mutex);	
+	time = get_time(philo);
+	if (time < 0)
+		return (NULL);
+	printf("%ld ", time);
+	printf("%d ", philo->id);
 	printf("%s", str);
 	pthread_mutex_unlock(mutex);
 }
-
-
 
 void	join_threads(t_data *data, pthread_t *tids)
 {
@@ -47,20 +68,20 @@ void	join_threads(t_data *data, pthread_t *tids)
 		pthread_join(tids[i++], NULL);	
 }
 
-void	eat(t_philo *philos)
+void	eat(t_philo *philo)
 {
-	pthread_mutex_lock(philos->lft_fork);
-	shared_microphone(&philos->data->microphone_mutex, "X has taken a fork");
-	pthread_mutex_unlock(philos->lft_fork);
-	philos->lft_fork
+	pthread_mutex_lock(&philo->lft_fork->mutex);
+	shared_microphone(philo, "has taken a fork\n");
+	pthread_mutex_unlock(&philo->lft_fork->mutex);
 }
 
 void	*philo_routine(void *arg)
 {
-	t_philo *philos;
+	t_philo *philo;
 	
-	philos = (t_philo *) arg;
-	eat(philos);
+	philo = (t_philo *) arg;
+	sleep(2);
+	eat(philo);
 }
 
 void	init_philos(t_data *data, t_philo *philos, t_fork *forks)
@@ -112,7 +133,7 @@ void	fill_tids_array(t_data *data, pthread_t *tids, t_philo *philos)
 	
 	i = 0;
 	while (i < data->n_philo)		
-		pthread_create(&tids[i++], NULL, philo_routine, (void *) philos);	
+		pthread_create(&tids[i], NULL, philo_routine, (void *) philos);	
 }
 
 pthread_t *create_threads(t_data *data, t_philo *philos)
@@ -139,12 +160,15 @@ t_data	*create_data_struct(char *argv[])
 	data->sleep_time = ft_atoi(*++argv);
 	data->think_time = ft_atoi(*++argv);
 	if (*++argv)
-		data->n_cycle = ft_atoi(*argv);
+		data->n_cycle = ft_atoi(*argv);	
+	if (gettimeofday(&(data->start_time), NULL))	
+		return (free(data), NULL);
+	//printf("%ld\n", data->start_time.tv_sec);
+	// sleep(2);
+	// printf("%ld\n", data->start_time.tv_sec);
+	// exit(1);
 	if (pthread_mutex_init(&data->microphone_mutex, NULL))
-	{
-		free(data);	
-		return (NULL);
-	}
+		return (free(data), NULL);
 	return (data);
 }
 void	add_exit_struct(void *ptr, t_exit_enum ex_en);
@@ -170,7 +194,7 @@ int	main(int argc, char *argv[])
 	if (!tids)
 		return (1);
 	join_threads(data, tids);
-	free(tids);	
+	free(tids);
 	flush_exit_struct();
 	return (0);
 }

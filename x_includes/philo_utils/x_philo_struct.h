@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:57:26 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/27 13:45:46 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/27 15:58:57 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define X_PHILO_STRUCT_H
 
 #include <pthread.h>
+#include <sys/time.h>
 
 typedef struct s_data
 {
@@ -22,6 +23,7 @@ typedef struct s_data
 	int				sleep_time;
 	int				think_time;
 	int				n_cycle;
+	struct timeval	start_time;
 	pthread_mutex_t microphone_mutex;		
 }	t_data;
 
