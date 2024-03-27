@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 10:42:46 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/27 17:02:03 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/27 17:40:35 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,17 @@ long	get_time(t_philo *philo)
 	struct timeval	actual_time;
 	long			delta_sec;
 	long 			delta_microsec;
-	
-	usleep(1000);
+
 	start_time = philo->data->start_time;
 	if (!gettimeofday(&actual_time, NULL))
 	{
-		delta_sec = start_time.tv_sec - actual_time.tv_sec;
-		delta_microsec = start_time.tv_usec - actual_time.tv_usec;		
+		delta_sec = actual_time.tv_sec - start_time.tv_sec;
+		delta_microsec = actual_time.tv_usec - start_time.tv_usec;
+		if (delta_microsec < 0)
+		{
+			delta_sec--;
+			delta_microsec += 1000000;
+		}
 		return (delta_sec * 1000 + delta_microsec / 1000);
 	}
 	else
@@ -79,8 +83,7 @@ void	*philo_routine(void *arg)
 {
 	t_philo *philo;
 	
-	philo = (t_philo *) arg;
-	sleep(2);
+	philo = (t_philo *) arg;	
 	eat(philo);
 }
 
@@ -133,7 +136,7 @@ void	fill_tids_array(t_data *data, pthread_t *tids, t_philo *philos)
 	
 	i = 0;
 	while (i < data->n_philo)		
-		pthread_create(&tids[i], NULL, philo_routine, (void *) philos);	
+		pthread_create(&tids[i], NULL, philo_routine, (void *) &philos[i++]);	
 }
 
 pthread_t *create_threads(t_data *data, t_philo *philos)
