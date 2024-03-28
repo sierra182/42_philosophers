@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 10:42:46 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/28 15:11:22 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/28 16:58:41 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,12 @@ void	*say_on_shared_microphone(t_philo *philo, char *str)
 	pthread_mutex_t *mutex;
 	
 	mutex = &philo->data->microphone_mutex;
-	pthread_mutex_lock(mutex);	
+	pthread_mutex_lock(mutex);
+	if (philo->data->end_needed)
+	{
+		pthread_mutex_unlock(mutex);	
+		return (NULL);
+	}
 	time = get_time_since_start(philo);
 	if (time < 0)
 		return (NULL);
@@ -63,35 +68,6 @@ void	*say_on_shared_microphone(t_philo *philo, char *str)
 	printf("%d ", philo->id);
 	printf("%s", str);
 	pthread_mutex_unlock(mutex);
-}
-
-
-
-void	philo_think(t_philo *philo)
-{
-	say_on_shared_microphone(philo, "is thinking\n");	
-}
-
-void	philo_sleep(t_philo *philo)
-{
-	say_on_shared_microphone(philo, "is sleeping\n");
-	usleep(philo->data->sleep_time * 1000);	
-}
-
-void	even_philo_get_forks(t_philo *philo)
-{
-	pthread_mutex_lock(&philo->rght_fork->mutex);
-	say_on_shared_microphone(philo, "has taken a fork\n");
-	pthread_mutex_lock(&philo->lft_fork->mutex);
-	say_on_shared_microphone(philo, "has taken a fork\n");
-}
-
-void	odd_philo_get_forks(t_philo *philo)
-{
-	pthread_mutex_lock(&philo->lft_fork->mutex);
-	say_on_shared_microphone(philo, "has taken a fork\n");
-	pthread_mutex_lock(&philo->rght_fork->mutex);
-	say_on_shared_microphone(philo, "has taken a fork\n");
 }
 
 int	iam_actually_dead(t_philo *philo)
@@ -103,11 +79,100 @@ int	iam_actually_dead(t_philo *philo)
 	{
 		delta_last_meal = get_delta_time(&philo->last_meal, &actual_time);
 		if (delta_last_meal >= philo->data->death_time)
+		{
+			philo->is_dead++;	
 			return (1);
+		}
 		return (0);
 	}		
 	else
 		return (-1);
+}
+
+void	philo_think(t_philo *philo)
+{
+	say_on_shared_microphone(philo, "is thinking\n");
+}
+
+void	philo_sleep(t_philo *philo)
+{
+	if (say_on_shared_microphone(philo, "is sleeping\n"))
+		return ;
+	usleep(philo->data->sleep_time * 1000);	
+}
+
+int	even_philo_get_forks(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->rght_fork->mutex);
+	if (philo->data->end_needed)
+	{
+		pthread_mutex_unlock(&philo->rght_fork->mutex);	
+		return (1);
+	}
+	if (iam_actually_dead(philo))
+	{
+		pthread_mutex_unlock(&philo->rght_fork->mutex);
+		return (say_on_shared_microphone(philo, "died\n"), 1);
+	}
+	if (say_on_shared_microphone(philo, "has taken a fork\n"))
+	{
+		pthread_mutex_unlock(&philo->rght_fork->mutex);
+		return (1);
+	}
+	pthread_mutex_lock(&philo->lft_fork->mutex);
+	if (philo->data->end_needed)
+	{
+		pthread_mutex_unlock(&philo->lft_fork->mutex);
+		pthread_mutex_unlock(&philo->rght_fork->mutex);	
+		return (1);
+	}
+	if (iam_actually_dead(philo))
+	{
+		pthread_mutex_unlock(&philo->lft_fork->mutex);
+		pthread_mutex_unlock(&philo->rght_fork->mutex);
+		return (say_on_shared_microphone(philo, "died\n"), 1);
+	}
+	if (say_on_shared_microphone(philo, "has taken a fork\n"))
+	{
+		pthread_mutex_unlock(&philo->lft_fork->mutex);
+		pthread_mutex_unlock(&philo->rght_fork->mutex);
+		return (1);
+	}
+}
+
+int	odd_philo_get_forks(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->lft_fork->mutex);	
+	if (philo->data->end_needed)
+	{
+		pthread_mutex_unlock(&philo->lft_fork->mutex);	
+		return (1);
+	}
+	if (iam_actually_dead(philo))
+	{
+		pthread_mutex_unlock(&philo->lft_fork->mutex);
+		return (say_on_shared_microphone(philo, "died\n"), 1);
+	}
+	say_on_shared_microphone(philo, "has taken a fork\n");
+	pthread_mutex_lock(&philo->rght_fork->mutex);
+	if (philo->data->end_needed)
+	{
+		pthread_mutex_unlock(&philo->lft_fork->mutex);
+		pthread_mutex_unlock(&philo->rght_fork->mutex);	
+		return (1);
+	}
+	if (iam_actually_dead(philo))
+	{
+		pthread_mutex_unlock(&philo->lft_fork->mutex);
+		pthread_mutex_unlock(&philo->rght_fork->mutex);
+		return (say_on_shared_microphone(philo, "died\n"), 1);
+	}
+	if (say_on_shared_microphone(philo, "has taken a fork\n"))
+	{
+		pthread_mutex_unlock(&philo->lft_fork->mutex);
+		pthread_mutex_unlock(&philo->rght_fork->mutex);
+		return (1);
+	}
 }
 
 void	update_last_meal(t_philo *philo)
@@ -122,10 +187,15 @@ int	is_odd(t_philo *philo)
 
 int	philo_eat(t_philo *philo)
 {	
-	if (is_odd(philo))	
-		odd_philo_get_forks(philo);
-	else
-		even_philo_get_forks(philo);
+	if (is_odd(philo))
+	{		
+		if (odd_philo_get_forks(philo))
+		{				
+			return (1);
+		}
+	}
+	else if	(even_philo_get_forks(philo))
+		return (1);
 	update_last_meal(philo);
 	if (iam_actually_dead(philo))
 		return (say_on_shared_microphone(philo, "died\n"), 1);		
@@ -257,7 +327,8 @@ void	check_death_notice(t_data *data, t_philo *philos)
 		{			
 			if (philos[i++].is_dead)
 			{
-				data->end_needed = 1;		
+				data->end_needed = 1;
+				printf("some is dead!\n");	
 				return ;
 			}
 		}
