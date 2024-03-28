@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:57:26 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/27 17:54:26 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/28 12:05:55 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,11 @@ typedef struct s_fork {
 
 typedef struct s_philo
 {
-	int		id;
-	t_fork	*lft_fork;
-	t_fork	*rght_fork;
-	t_data	*data;
+	int				id;
+	t_fork			*lft_fork;
+	t_fork			*rght_fork;
+	struct timeval	last_meal;
+	t_data			*data;
 }	t_philo;
 
 typedef struct s_exit
@@ -44,7 +45,7 @@ typedef struct s_exit
 	t_data			*data;
 	t_philo			*philos;
 	t_fork			*forks;
-	pthread_t		*tids;
+	pthread_t		*tids;	
 	pthread_mutex_t	exit_mutex;
 }	t_exit;
 
