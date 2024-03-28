@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 10:42:46 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/28 13:04:40 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/28 15:11:22 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ long	get_time_since_start(t_philo *philo)
 		return (-1);
 }
 
-void	*shared_microphone(t_philo *philo, char *str)
+void	*say_on_shared_microphone(t_philo *philo, char *str)
 {	
 	long	time;
 	pthread_mutex_t *mutex;
@@ -65,40 +65,33 @@ void	*shared_microphone(t_philo *philo, char *str)
 	pthread_mutex_unlock(mutex);
 }
 
-void	join_threads(t_data *data, pthread_t *tids)
-{
-	int	i;
 
-	i = 0;
-	while (i < data->n_philo)	
-		pthread_join(tids[i++], NULL);	
-}
 
 void	philo_think(t_philo *philo)
 {
-	shared_microphone(philo, "is thinking\n");	
+	say_on_shared_microphone(philo, "is thinking\n");	
 }
 
 void	philo_sleep(t_philo *philo)
 {
-	shared_microphone(philo, "is sleeping\n");
+	say_on_shared_microphone(philo, "is sleeping\n");
 	usleep(philo->data->sleep_time * 1000);	
 }
 
 void	even_philo_get_forks(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->rght_fork->mutex);
-	shared_microphone(philo, "has taken a fork\n");
+	say_on_shared_microphone(philo, "has taken a fork\n");
 	pthread_mutex_lock(&philo->lft_fork->mutex);
-	shared_microphone(philo, "has taken a fork\n");
+	say_on_shared_microphone(philo, "has taken a fork\n");
 }
 
 void	odd_philo_get_forks(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->lft_fork->mutex);
-	shared_microphone(philo, "has taken a fork\n");
+	say_on_shared_microphone(philo, "has taken a fork\n");
 	pthread_mutex_lock(&philo->rght_fork->mutex);
-	shared_microphone(philo, "has taken a fork\n");
+	say_on_shared_microphone(philo, "has taken a fork\n");
 }
 
 int	iam_actually_dead(t_philo *philo)
@@ -143,16 +136,22 @@ int	philo_eat(t_philo *philo)
 	return (0);	
 }
 
-int	*philo_routine(void *arg)
+void	*philo_routine(void *arg)
 {
 	t_philo *philo;
 	
 	philo = (t_philo *) arg;
 	while (1)
-	{		
+	{	
+		if (philo->data->end_needed)
+			break;
 		if (philo_eat(philo))
-			return (1);
+			return (NULL);
+		if (philo->data->end_needed)
+			break;
 		philo_sleep(philo);
+		if (philo->data->end_needed)
+			break;
 		philo_think(philo);
 	}
 }
@@ -201,23 +200,17 @@ t_philo	*create_philos(t_data *data)
 	return (philos);
 }
 
-void	fill_tids_array(t_data *data, pthread_t *tids, t_philo *philos)
-{
-	int i;
-	
-	i = 0;
-	while (i < data->n_philo)		
-		pthread_create(&tids[i], NULL, philo_routine, (void *) &philos[i++]);	
-}
-
 pthread_t *create_threads(t_data *data, t_philo *philos)
 {		
 	pthread_t *tids;
-
+	int i;
+	
 	tids = (pthread_t *) ft_calloc(data->n_philo, sizeof(pthread_t));
 	if (!tids)
-		return (NULL);	
-	fill_tids_array(data, tids, philos);
+		return (NULL);
+	i = 0;
+	while (i < data->n_philo)		
+		pthread_create(&tids[i], NULL, philo_routine, (void *) &philos[i++]);	
 	return (tids);
 }
 
@@ -244,13 +237,39 @@ t_data	*create_data_struct(char *argv[])
 void	add_exit_struct(void *ptr, t_exit_enum ex_en);
 void	flush_exit_struct(void);
 
+void	join_threads(t_data *data, pthread_t *tids)
+{
+	int		i;	
+	
+	i = 0;
+	while (i < data->n_philo)		
+		pthread_join(tids[i++], NULL);	
+}
+
+void	check_death_notice(t_data *data, t_philo *philos)
+{
+	int	i;
+
+	while (1)
+	{		
+		i = 0;
+		while (i < data->n_philo)
+		{			
+			if (philos[i++].is_dead)
+			{
+				data->end_needed = 1;		
+				return ;
+			}
+		}
+	}
+}
+
 int	main(int argc, char *argv[])
 {
 	t_data *data;
 	pthread_t *tids;
 	t_philo	*philos;
-	
-	printf("hello world!\n");
+
 	if (check_argv(argc, argv))
 		return (1);
 	data = create_data_struct(argv);
@@ -259,10 +278,11 @@ int	main(int argc, char *argv[])
 	add_exit_struct((void *) data, DAT);
 	philos = create_philos(data);
 	if (!philos)
-		return (1);// err
+		return (1);
 	tids = create_threads(data, philos);
 	if (!tids)
 		return (1);
+	check_death_notice(data, philos);
 	join_threads(data, tids);
 	free(tids);
 	flush_exit_struct();
