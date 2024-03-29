@@ -9,6 +9,7 @@
 		"stdio.h": "c",
 		"setup.h": "c",
 		"routine.h": "c",
-		"mortuary.h": "c"
+		"mortuary.h": "c",
+		"main.h": "c"
 	}
 }

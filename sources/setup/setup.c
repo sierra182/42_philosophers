@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 10:16:26 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/29 17:35:37 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/29 20:48:16 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ static void	init_lastmeal_philos(t_data *data, t_philo *philos)
 
 	i = 0;
 	while (i < data->n_philo)			
-		philos[i++].last_meal = data->start_time;
-	
+		philos[i++].last_meal = data->start_time;	
 }
 t_philo	*create_philos(t_data *data)
 {
@@ -55,7 +54,7 @@ t_philo	*create_philos(t_data *data)
 	forks = (t_fork *) ft_calloc(data->n_philo, sizeof(t_fork));
 	if (!forks)
 	{
-		free(philos);
+		//free(philos);
 		return (NULL);
 	}
 	init_forks(data, forks);
@@ -72,7 +71,7 @@ int	start_timer(t_data *data, t_philo *philos)
 	if (init_start_time(data))
 		return (1);
 	init_lastmeal_philos(data, philos);
-	data->is_ready++;
+	data->is_ready = 1;
 	return (0);
 }
 
@@ -106,6 +105,6 @@ t_data	*create_data_struct(char *argv[])
 	if (*++argv)
 		data->n_cycle = ft_atoi(*argv);	
 	if (pthread_mutex_init(&data->microphone_mutex, NULL))
-		return (free(data), NULL);
+		return (NULL);//return (free(data), NULL);
 	return (data);
 }

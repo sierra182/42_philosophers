@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:40:10 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/29 14:30:18 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/29 21:42:57 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@
 # include "unistd.h"
 
 int		iam_actually_dead(t_philo *philo);
-void	*say_on_shared_microphone(t_philo *philo, char *str);
+void	*take_mic(t_philo *philo, char *str);
 
 #endif
