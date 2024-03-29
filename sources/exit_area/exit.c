@@ -6,12 +6,11 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 21:45:28 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/26 13:38:27 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/29 12:45:15 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "x_philo_struct.h"
-#include "stdlib.h"
+#include "exit.h"
 
 t_exit	*get_exit_struct(void)
 {

@@ -6,21 +6,11 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 10:42:46 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/29 11:44:45 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/29 12:33:10 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <pthread.h>
-#include "x_philo_struct.h"
-#include "x_philo_utils.h"
-#include <stdlib.h>
-
-void	*ft_calloc(size_t nmemb, size_t size);
-int		check_argv(int argc, char *argv[]);
-
-#include <sys/time.h>
-#include <unistd.h>
+#include "main.h"
 
 void	*say_on_shared_microphone(t_philo *philo, char *str)
 {	
@@ -43,8 +33,7 @@ void	*say_on_shared_microphone(t_philo *philo, char *str)
 	pthread_mutex_unlock(mutex);
 }
 
-void	add_exit_struct(void *ptr, t_exit_enum ex_en);
-void	flush_exit_struct(void);
+
 
 void	join_threads(t_data *data, pthread_t *tids)
 {
