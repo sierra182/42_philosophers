@@ -45,7 +45,8 @@ HDR = \
 
 OBJ = $(SRC:.c=.o)
 
-SRC = $(SRC_DIR)/main.c \
+SRC = \
+	$(SRC_DIR)/main.c \
 	$(SRC_DIR)/exit_area/exit.c \
 	$(SRC_DIR)/mortuary/mortuary.c \
 	$(SRC_DIR)/philo_utils/ft_calloc.c \

@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:57:26 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/29 14:20:50 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/29 14:41:17 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,12 @@ typedef struct s_data
 	int				n_cycle;
 	int				end_needed;
 	struct timeval	start_time;
-	pthread_mutex_t microphone_mutex;		
+	pthread_mutex_t	microphone_mutex;
 }	t_data;
 
-typedef struct s_fork {
-    pthread_mutex_t mutex;
+typedef struct s_fork
+{
+	pthread_mutex_t	mutex;
 }	t_fork;
 
 typedef struct s_philo
@@ -48,7 +49,7 @@ typedef struct s_exit
 	t_data			*data;
 	t_philo			*philos;
 	t_fork			*forks;
-	pthread_t		*tids;	
+	pthread_t		*tids;
 	pthread_mutex_t	exit_mutex;
 }	t_exit;
 

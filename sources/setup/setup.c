@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 10:16:26 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/29 13:50:50 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/29 14:48:37 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@ static void	init_forks(t_data *data, t_fork *forks)
 	int	i;
 
 	i = 0;
-	while (i < data->n_philo)	
-		pthread_mutex_init(&forks[i++].mutex, NULL);	
+	while (i < data->n_philo)
+		pthread_mutex_init(&forks[i++].mutex, NULL);
 }
 
 static void	init_philos(t_data *data, t_philo *philos, t_fork *forks)
 {
 	int	i;
-	
+
 	i = 0;
 	while (i < data->n_philo)
-	{			
+	{
 		philos[i].id = i + 1;
 		philos[i].lft_fork = &forks[i];
 		philos[i].rght_fork = &forks[(i + 1) % data->n_philo];
@@ -42,7 +42,7 @@ t_philo	*create_philos(t_data *data)
 	t_philo	*philos;
 	t_fork	*forks;
 
-	philos = (t_philo *) ft_calloc(data->n_philo, sizeof(t_philo));	
+	philos = (t_philo *) ft_calloc(data->n_philo, sizeof(t_philo));
 	if (!philos)
 		return (NULL);
 	forks = (t_fork *) ft_calloc(data->n_philo, sizeof(t_fork));
@@ -56,36 +56,36 @@ t_philo	*create_philos(t_data *data)
 	return (philos);
 }
 
-pthread_t *create_threads(t_data *data, t_philo *philos)
-{		
-	pthread_t *tids;
-	int i;
-	
+pthread_t	*create_threads(t_data *data, t_philo *philos)
+{
+	pthread_t	*tids;
+	int			i;
+
 	tids = (pthread_t *) ft_calloc(data->n_philo, sizeof(pthread_t));
 	if (!tids)
 		return (NULL);
 	i = 0;
-	while (i < data->n_philo)		
-		pthread_create(&tids[i], NULL, philo_routine, (void *) &philos[i++]);	
+	while (i < data->n_philo)
+		pthread_create(&tids[i], NULL, philo_routine, (void *) &philos[i++]);
 	return (tids);
 }
 
 t_data	*create_data_struct(char *argv[])
 {
-	t_data *data;
-	
+	t_data	*data;
+
 	data = NULL;
 	data = (t_data *) ft_calloc(1, sizeof(t_data));
 	if (!data)
-		return (NULL);	
+		return (NULL);
 	data->n_philo = ft_atoi(*++argv);
 	data->death_time = ft_atoi(*++argv);
 	data->eat_time = ft_atoi(*++argv);
 	data->sleep_time = ft_atoi(*++argv);
 	if (*++argv)
-		data->n_cycle = ft_atoi(*argv);	
-	if (gettimeofday(&(data->start_time), NULL))	
-		return (free(data), NULL);	
+		data->n_cycle = ft_atoi(*argv);
+	if (gettimeofday(&(data->start_time), NULL))
+		return (free(data), NULL);
 	if (pthread_mutex_init(&data->microphone_mutex, NULL))
 		return (free(data), NULL);
 	return (data);

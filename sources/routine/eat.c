@@ -6,18 +6,18 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:17:45 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/29 13:09:03 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/29 15:03:10 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "eat.h"
 
-int	even_philo_get_forks(t_philo *philo)
+static int	even_philo_get_forks(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->rght_fork->mutex);
 	if (philo->data->end_needed)
 	{
-		pthread_mutex_unlock(&philo->rght_fork->mutex);	
+		pthread_mutex_unlock(&philo->rght_fork->mutex);
 		return (1);
 	}
 	if (iam_actually_dead(philo))
@@ -34,7 +34,7 @@ int	even_philo_get_forks(t_philo *philo)
 	if (philo->data->end_needed)
 	{
 		pthread_mutex_unlock(&philo->lft_fork->mutex);
-		pthread_mutex_unlock(&philo->rght_fork->mutex);	
+		pthread_mutex_unlock(&philo->rght_fork->mutex);
 		return (1);
 	}
 	if (iam_actually_dead(philo))
@@ -51,12 +51,12 @@ int	even_philo_get_forks(t_philo *philo)
 	}
 }
 
-int	odd_philo_get_forks(t_philo *philo)
+static int	odd_philo_get_forks(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->lft_fork->mutex);	
+	pthread_mutex_lock(&philo->lft_fork->mutex);
 	if (philo->data->end_needed)
 	{
-		pthread_mutex_unlock(&philo->lft_fork->mutex);	
+		pthread_mutex_unlock(&philo->lft_fork->mutex);
 		return (1);
 	}
 	if (iam_actually_dead(philo))
@@ -69,7 +69,7 @@ int	odd_philo_get_forks(t_philo *philo)
 	if (philo->data->end_needed)
 	{
 		pthread_mutex_unlock(&philo->lft_fork->mutex);
-		pthread_mutex_unlock(&philo->rght_fork->mutex);	
+		pthread_mutex_unlock(&philo->rght_fork->mutex);
 		return (1);
 	}
 	if (iam_actually_dead(philo))
@@ -86,33 +86,33 @@ int	odd_philo_get_forks(t_philo *philo)
 	}
 }
 
-void	update_last_meal(t_philo *philo)
+static void	update_last_meal(t_philo *philo)
 {
-	gettimeofday(&philo->last_meal, NULL);	
+	gettimeofday(&philo->last_meal, NULL);
 }
 
-int	is_odd(t_philo *philo)
+static int	is_odd(t_philo *philo)
 {
 	return (philo->id % 2);
 }
 
 int	philo_eat(t_philo *philo)
-{	
+{
 	if (is_odd(philo))
-	{		
+	{
 		if (odd_philo_get_forks(philo))
-		{				
+		{
 			return (1);
 		}
 	}
-	else if	(even_philo_get_forks(philo))
+	else if (even_philo_get_forks(philo))
 		return (1);
 	update_last_meal(philo);
 	if (iam_actually_dead(philo))
-		return (say_on_shared_microphone(philo, "died\n"), 1);		
+		return (say_on_shared_microphone(philo, "died\n"), 1);
 	say_on_shared_microphone(philo, "is eating\n");
-	usleep(philo->data->eat_time * 1000);		
+	usleep(philo->data->eat_time * 1000);
 	pthread_mutex_unlock(&philo->lft_fork->mutex);
 	pthread_mutex_unlock(&philo->rght_fork->mutex);
-	return (0);	
+	return (0);
 }
