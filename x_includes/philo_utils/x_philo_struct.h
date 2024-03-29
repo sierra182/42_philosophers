@@ -6,15 +6,16 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:57:26 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/28 14:58:52 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/29 13:40:45 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef X_PHILO_STRUCT_H
 # define X_PHILO_STRUCT_H
 
-#include <pthread.h>
-#include <sys/time.h>
+# include <stdio.h>
+# include <pthread.h>
+# include <sys/time.h>
 
 typedef struct s_data
 {

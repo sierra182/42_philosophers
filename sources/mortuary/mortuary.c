@@ -6,9 +6,11 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:40:47 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/29 11:41:11 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/29 13:08:15 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "mortuary.h"
 
 void	check_death_notice(t_data *data, t_philo *philos)
 {

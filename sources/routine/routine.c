@@ -6,23 +6,23 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 10:37:50 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/29 12:18:16 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/29 13:48:44 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	philo_think(t_philo *philo)
+#include "routine.h"
+
+static void	philo_think(t_philo *philo)
 {
 	say_on_shared_microphone(philo, "is thinking\n");
 }
 
-void	philo_sleep(t_philo *philo)
+static void	philo_sleep(t_philo *philo)
 {
 	if (say_on_shared_microphone(philo, "is sleeping\n"))
 		return ;
 	usleep(philo->data->sleep_time * 1000);	
 }
-
-
 
 void	*philo_routine(void *arg)
 {

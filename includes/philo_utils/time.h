@@ -6,12 +6,13 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:38:44 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/29 12:40:01 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/29 13:39:26 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TIME_H
 # define TIME_H
 
+# include "x_philo_struct.h"
 
 #endif

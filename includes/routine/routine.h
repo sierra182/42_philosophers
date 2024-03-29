@@ -6,13 +6,13 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:41:37 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/29 12:41:54 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/29 13:48:16 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ROUTINE_H
 # define ROUTINE_H
 
-
+# include "x_philo_struct.h"
 
 #endif

@@ -6,9 +6,11 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:17:45 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/29 12:20:46 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/29 13:09:03 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "eat.h"
 
 int	even_philo_get_forks(t_philo *philo)
 {

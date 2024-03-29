@@ -6,11 +6,13 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 10:16:26 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/29 10:35:25 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/29 13:50:50 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	init_forks(t_data *data, t_fork *forks)
+#include "setup.h"
+
+static void	init_forks(t_data *data, t_fork *forks)
 {
 	int	i;
 
@@ -19,7 +21,7 @@ void	init_forks(t_data *data, t_fork *forks)
 		pthread_mutex_init(&forks[i++].mutex, NULL);	
 }
 
-void	init_philos(t_data *data, t_philo *philos, t_fork *forks)
+static void	init_philos(t_data *data, t_philo *philos, t_fork *forks)
 {
 	int	i;
 	
@@ -49,7 +51,7 @@ t_philo	*create_philos(t_data *data)
 		free(philos);
 		return (NULL);
 	}
-	init_forks(data, forks); //err
+	init_forks(data, forks);
 	init_philos(data, philos, forks);
 	return (philos);
 }

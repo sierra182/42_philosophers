@@ -6,9 +6,11 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:42:12 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/29 11:43:16 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/29 13:08:42 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "time.h"
 
 long	get_delta_time(struct timeval *time_a, struct timeval *time_b)
 {
