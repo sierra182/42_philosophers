@@ -6,19 +6,19 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 21:45:28 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/29 12:45:15 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/29 14:12:22 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exit.h"
 
-t_exit	*get_exit_struct(void)
+static t_exit	*get_exit_struct(void)
 {
 	static t_exit	exit;
 	
 	return (&exit);
 }
-void	store_and_free_data(t_exit *exit, void *data)
+static void	store_and_free_data(t_exit *exit, void *data)
 {	
 	if (exit && data)
 		exit->data = (t_data *) data;
@@ -30,7 +30,7 @@ void	store_and_free_data(t_exit *exit, void *data)
 	}
 }
 
-void (**get_store_and_free(void))(t_exit *, void *)
+static void (**get_store_and_free(void))(t_exit *, void *)
 {
 	static void (*store_and_free[END])(t_exit *, void *);
 		

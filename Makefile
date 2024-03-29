@@ -8,13 +8,21 @@ THREAD =
 CFLAGS = $(X_HDRFLAGS) $(HDRFLAGS) $(THREAD) -g #-Wall -Wextra -Werror
 LDFLAGS = $(THREAD)
 
-X_HDRFLAGS = -I$(X_HDR_DIR)/error_zone \
-	-I$(X_HDR_DIR)/philo_utils
+X_HDRFLAGS = \
+	-I$(X_HDR_DIR)/exit_area \
+	-I$(X_HDR_DIR)/philo_utils \
+	-I$(X_HDR_DIR)/setup \
+	-I$(X_HDR_DIR)/setup/error_zone
 
-X_HDR =	$(X_HDR_DIR)/error_zone/x_error_utils.h \
-	$(X_HDR_DIR)/philo_utils/x_philo_utils.h
+X_HDR =	\
+	$(X_HDR_DIR)/exit_area/x_exit.h \
+	$(X_HDR_DIR)/philo_utils/x_philo_struct.h \
+	$(X_HDR_DIR)/philo_utils/x_philo_utils.h \
+	$(X_HDR_DIR)/setup/x_setup.h \
+	$(X_HDR_DIR)/setup/error_zone/x_error_utils.h 
 
-HDRFLAGS = -I$(HDR_DIR) \
+HDRFLAGS = \
+	-I$(HDR_DIR) \
 	-I$(HDR_DIR)/exit_area \
 	-I$(HDR_DIR)/mortuary \
 	-I$(HDR_DIR)/philo_utils \
@@ -22,7 +30,8 @@ HDRFLAGS = -I$(HDR_DIR) \
 	-I$(HDR_DIR)/setup \
 	-I$(HDR_DIR)/setup/error_zone
 
-HDR = $(HDR_DIR)/main.h \
+HDR = \
+	$(HDR_DIR)/main.h \
 	$(HDR_DIR)/exit_area/exit.h \
 	$(HDR_DIR)/mortuary/mortuary.h \
 	$(HDR_DIR)/philo_utils/ft_calloc.h \

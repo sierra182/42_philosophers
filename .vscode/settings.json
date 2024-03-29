@@ -8,6 +8,7 @@
 		"string_view": "c",
 		"stdio.h": "c",
 		"setup.h": "c",
-		"routine.h": "c"
+		"routine.h": "c",
+		"mortuary.h": "c"
 	}
 }

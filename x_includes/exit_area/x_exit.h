@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   eat.h                                              :+:      :+:    :+:   */
+/*   x_exit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/29 12:40:10 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/29 14:30:18 by seblin           ###   ########.fr       */
+/*   Created: 2024/03/29 14:10:54 by seblin            #+#    #+#             */
+/*   Updated: 2024/03/29 14:13:09 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EAT_H
-# define EAT_H
+#ifndef X_EXIT_H
+# define X_EXIT_H
 
 # include "x_philo_struct.h"
-# include "unistd.h"
 
-int		iam_actually_dead(t_philo *philo);
-void	*say_on_shared_microphone(t_philo *philo, char *str);
+void	add_exit_struct(void *ptr, t_exit_enum ex_en);
+void	flush_exit_struct(void);
 
 #endif
