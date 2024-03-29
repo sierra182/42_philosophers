@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 10:42:46 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/29 15:04:21 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/29 16:19:38 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	main(int argc, char *argv[])
 	tids = create_threads(data, philos);
 	if (!tids)
 		return (1);
+	
 	check_death_notice(data, philos);
 	join_threads(data, tids);
 	free(tids);

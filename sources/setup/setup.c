@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 10:16:26 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/29 14:48:37 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/29 17:35:37 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,19 @@ static void	init_philos(t_data *data, t_philo *philos, t_fork *forks)
 		philos[i].id = i + 1;
 		philos[i].lft_fork = &forks[i];
 		philos[i].rght_fork = &forks[(i + 1) % data->n_philo];
-		philos[i].data = data;
-		philos[i].last_meal = data->start_time;
+		philos[i].data = data;		
 		i++;
 	}
 }
+static void	init_lastmeal_philos(t_data *data, t_philo *philos)
+{
+	int	i;
 
+	i = 0;
+	while (i < data->n_philo)			
+		philos[i++].last_meal = data->start_time;
+	
+}
 t_philo	*create_philos(t_data *data)
 {
 	t_philo	*philos;
@@ -55,18 +62,33 @@ t_philo	*create_philos(t_data *data)
 	init_philos(data, philos, forks);
 	return (philos);
 }
+static int	init_start_time(t_data *data)
+{
+	return (gettimeofday(&data->start_time, NULL));
+}
+
+int	start_timer(t_data *data, t_philo *philos)
+{
+	if (init_start_time(data))
+		return (1);
+	init_lastmeal_philos(data, philos);
+	data->is_ready++;
+	return (0);
+}
 
 pthread_t	*create_threads(t_data *data, t_philo *philos)
-{
-	pthread_t	*tids;
-	int			i;
-
+{	
+	pthread_t		*tids;
+	int				i;
+	
 	tids = (pthread_t *) ft_calloc(data->n_philo, sizeof(pthread_t));
 	if (!tids)
-		return (NULL);
+		return (NULL);	
 	i = 0;
 	while (i < data->n_philo)
 		pthread_create(&tids[i], NULL, philo_routine, (void *) &philos[i++]);
+	if (start_timer(data, philos))
+		return (NULL);
 	return (tids);
 }
 
@@ -74,7 +96,6 @@ t_data	*create_data_struct(char *argv[])
 {
 	t_data	*data;
 
-	data = NULL;
 	data = (t_data *) ft_calloc(1, sizeof(t_data));
 	if (!data)
 		return (NULL);
@@ -83,9 +104,7 @@ t_data	*create_data_struct(char *argv[])
 	data->eat_time = ft_atoi(*++argv);
 	data->sleep_time = ft_atoi(*++argv);
 	if (*++argv)
-		data->n_cycle = ft_atoi(*argv);
-	if (gettimeofday(&(data->start_time), NULL))
-		return (free(data), NULL);
+		data->n_cycle = ft_atoi(*argv);	
 	if (pthread_mutex_init(&data->microphone_mutex, NULL))
 		return (free(data), NULL);
 	return (data);

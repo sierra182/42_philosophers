@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:57:26 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/29 14:41:17 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/29 17:25:52 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_data
 	int				sleep_time;
 	int				n_cycle;
 	int				end_needed;
+	int				is_ready;
 	struct timeval	start_time;
 	pthread_mutex_t	microphone_mutex;
 }	t_data;
