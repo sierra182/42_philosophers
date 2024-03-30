@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 10:37:50 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/30 11:40:56 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/30 12:37:19 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,28 @@ static void	philo_sleep(t_philo *philo)
 	usleep(philo->data->sleep_time * 1000);
 }
 
-is_ready_to_start_dinning()
-{
+int	is_ready_to_start_dinning(t_philo *philo)
+{	
+	pthread_mutex_t	*mutex;
+	int				is_ready;
 	
+	mutex = &philo->data->is_ready_mutex;
+	pthread_mutex_lock(mutex);
+	is_ready = philo->data->is_ready;
+	pthread_mutex_unlock(mutex);
+	return (is_ready);	
+}
+
+int	is_end_needed(t_philo *philo)
+{
+	pthread_mutex_t	*mutex;
+	int				is_end_needed;
+	
+	mutex = &philo->data->end_needed_mutex;
+	pthread_mutex_lock(mutex);
+	is_end_needed = philo->data->end_needed;
+	pthread_mutex_unlock(mutex);
+	return (is_end_needed);
 }
 
 void	*philo_routine(void *arg)
@@ -34,18 +53,18 @@ void	*philo_routine(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *) arg;
-	while (!philo->data->is_ready)
+	while (!is_ready_to_start_dinning(philo))
 		;
 	while (1)
 	{
-		if (philo->data->end_needed)
+		if (is_end_needed(philo))
 			break ;
 		if (philo_eat(philo))
 			break ;
-		if (philo->data->end_needed)
+		if (is_end_needed(philo))
 			break ;
 		philo_sleep(philo);
-		if (philo->data->end_needed)
+		if (is_end_needed(philo))
 			break ;
 		philo_think(philo);
 	}

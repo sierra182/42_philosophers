@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 10:42:46 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/30 11:21:27 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/30 12:46:46 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	take_mic(t_philo *philo, char *str)
 	printf("%d ", philo->id);
 	printf("%s", str);
 	pthread_mutex_unlock(mutex);
-	if (philo->data->end_needed)	
+	if (is_end_needed(philo))	
 		return (1);
 	return (0);
 }
@@ -70,7 +70,6 @@ int	main(int argc, char *argv[])
 	if (!tids)
 		return (1);
 	mortician(data, philos);	
-	join_threads(data, tids);
-	flush_exit_struct();
-	return (0);
+	join_threads(data, tids);	
+	return (flush_exit_struct(), 0);
 }

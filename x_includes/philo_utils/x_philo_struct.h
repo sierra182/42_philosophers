@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:57:26 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/30 11:32:12 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/30 12:31:41 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@ typedef struct s_data
 	int				eat_time;
 	int				sleep_time;
 	int				n_cycle;
-	int				end_needed;
 	int				is_ready;
+	int				end_needed;
 	struct timeval	start_time;
 	pthread_mutex_t	is_ready_mutex;
+	pthread_mutex_t	end_needed_mutex;
 	pthread_mutex_t	microphone_mutex;
 }	t_data;
 

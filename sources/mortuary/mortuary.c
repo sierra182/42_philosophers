@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:40:47 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/29 21:42:57 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/30 12:44:06 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,16 @@ int	is_actually_dead(t_philo *philo)
 		return (-1);
 }
 
+static void	rise_end_needed(t_data *data)
+{
+	pthread_mutex_t	*mutex;
+		
+	mutex = &data->end_needed_mutex;
+	pthread_mutex_lock(mutex);
+	data->end_needed = 1;
+	pthread_mutex_unlock(mutex);	
+}	
+
 void	mortician(t_data *data, t_philo *philos)
 {
 	int	i;
@@ -39,7 +49,7 @@ void	mortician(t_data *data, t_philo *philos)
 		{
 			if (is_actually_dead(&philos[i]))
 			{
-				data->end_needed = 1;			
+				rise_end_needed(data);	
 				take_mic(&philos[i], "died\n");			
 				return ;
 			}

@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:17:45 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/30 10:07:41 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/30 12:47:48 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 static int	even_philo_get_forks(t_philo *philo)
 {	
 	pthread_mutex_lock(&philo->rght_fork->mutex);
-	if (philo->data->end_needed || take_mic(philo, "has taken a fork\n"))
+	if (is_end_needed(philo) || take_mic(philo, "has taken a fork\n"))
 	{
 		pthread_mutex_unlock(&philo->rght_fork->mutex);		
 		return (1);
 	}
 	pthread_mutex_lock(&philo->lft_fork->mutex);
-	if (philo->data->end_needed || take_mic(philo, "has taken a fork\n"))
+	if (is_end_needed(philo) || take_mic(philo, "has taken a fork\n"))
 	{
 		pthread_mutex_unlock(&philo->lft_fork->mutex);
 		pthread_mutex_unlock(&philo->rght_fork->mutex);
@@ -34,13 +34,13 @@ static int	odd_philo_get_forks(t_philo *philo)
 {
 	usleep(1000);
 	pthread_mutex_lock(&philo->lft_fork->mutex);
-	if (philo->data->end_needed || take_mic(philo, "has taken a fork\n"))
+	if (is_end_needed(philo) || take_mic(philo, "has taken a fork\n"))
 	{
 		pthread_mutex_unlock(&philo->lft_fork->mutex);		
 		return (1);
 	}	
 	pthread_mutex_lock(&philo->rght_fork->mutex);
-	if (philo->data->end_needed || take_mic(philo, "has taken a fork\n"))
+	if (is_end_needed(philo) || take_mic(philo, "has taken a fork\n"))
 	{
 		pthread_mutex_unlock(&philo->lft_fork->mutex);
 		pthread_mutex_unlock(&philo->rght_fork->mutex);		
