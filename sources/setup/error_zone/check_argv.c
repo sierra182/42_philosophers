@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 14:52:09 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/30 18:18:10 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/30 19:21:22 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	check_argv(int argc, char *argv[])
 	if (argc <= 4 || argc > 6)
 		return (display_error("Arg number must be four or five.\n"), 1);
 	if (is_philo_error(*++argv))
-		return (display_error("Philosophers number is not valid.\n"), 1);	
+		return (display_error("Philosophers number is not valid.\n"), 1);
 	i = 1;
 	while (argv[i])
 	{
@@ -39,7 +39,7 @@ int	check_argv(int argc, char *argv[])
 			return (display_error("Arg is not valid.\n"), 1);
 		i++;
 	}
-	if (argv[4] && *argv[4] == '0')	
-		return (1);	
+	if (argv[4] && *argv[4] == '0')
+		return (1);
 	return (0);
 }

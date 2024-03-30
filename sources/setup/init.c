@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 18:52:33 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/30 18:54:54 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/30 19:23:47 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,12 @@ int	init_philos(t_data *data, t_philo *philos, t_fork *forks)
 	}
 	return (0);
 }
+
 void	init_lastmeal_philos(t_data *data, t_philo *philos)
 {
 	int	i;
 
 	i = 0;
-	while (i < data->n_philo)			
-		philos[i++].last_meal = data->start_time;	
+	while (i < data->n_philo)
+		philos[i++].last_meal = data->start_time;
 }

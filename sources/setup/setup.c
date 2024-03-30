@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 10:16:26 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/30 18:52:55 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/30 19:22:55 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_philo	*create_philos(t_data *data)
 	t_fork	*forks;
 
 	forks = (t_fork *) ft_calloc(data->n_philo, sizeof(t_fork));
-	if (!forks)		
+	if (!forks)
 		return (NULL);
 	if (init_forks(data, forks))
 		return (free(forks), NULL);
@@ -47,16 +47,16 @@ int	start_timer(t_data *data, t_philo *philos)
 }
 
 pthread_t	*create_threads(t_data *data, t_philo *philos)
-{	
+{
 	pthread_t	*tids;
 	int			i;
-	
+
 	tids = (pthread_t *) ft_calloc(data->n_philo, sizeof(pthread_t));
 	if (!tids)
 		return (NULL);
 	add_exit_struct((void *) tids, TID);
 	i = -1;
-	while (++i < data->n_philo)	
+	while (++i < data->n_philo)
 		if (pthread_create(&tids[i], NULL, philo_routine, (void *) &philos[i]))
 			return (NULL);
 	if (start_timer(data, philos))
@@ -74,16 +74,16 @@ t_data	*create_data_struct(char *argv[])
 	data->n_philo = ft_atoi(*++argv);
 	data->death_time = ft_atoi(*++argv);
 	data->eat_time = ft_atoi(*++argv);
-	data->sleep_time = ft_atoi(*++argv);	
+	data->sleep_time = ft_atoi(*++argv);
 	if (*++argv)
-		data->max_meals = ft_atoi(*argv);	
+		data->max_meals = ft_atoi(*argv);
 	if (pthread_mutex_init(&data->microphone_mutex, NULL))
 		return (free(data), (NULL));
 	if (pthread_mutex_init(&data->is_ready_mutex, NULL))
 		return (pthread_mutex_destroy(&data->microphone_mutex),
 			free(data), (NULL));
 	if (pthread_mutex_init(&data->end_needed_mutex, NULL))
-		return (pthread_mutex_destroy(&data->microphone_mutex), 
+		return (pthread_mutex_destroy(&data->microphone_mutex),
 			pthread_mutex_destroy(&data->is_ready_mutex), free(data), (NULL));
 	add_exit_struct((void *) data, DAT);
 	return (data);

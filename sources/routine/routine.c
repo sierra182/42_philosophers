@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 10:37:50 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/30 18:51:01 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/30 19:17:00 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,39 +19,40 @@ static void	philo_sleep(t_philo *philo)
 	usleep(philo->data->sleep_time * 1000);
 }
 
-int	is_ready_to_start_dinning(t_philo *philo)
-{	
+static int	is_ready_to_start_dinning(t_philo *philo)
+{
 	pthread_mutex_t	*mutex;
 	int				is_ready;
-	
+
 	mutex = &philo->data->is_ready_mutex;
 	pthread_mutex_lock(mutex);
 	is_ready = philo->data->is_ready;
 	pthread_mutex_unlock(mutex);
-	return (is_ready);	
+	return (is_ready);
 }
 
 int	is_end_needed(t_philo *philo)
 {
 	pthread_mutex_t	*mutex;
 	int				is_end_needed;
-	
+
 	mutex = &philo->data->end_needed_mutex;
 	pthread_mutex_lock(mutex);
 	is_end_needed = philo->data->end_needed;
 	pthread_mutex_unlock(mutex);
 	return (is_end_needed);
 }
-int	is_satiated(t_philo *philo)
+
+static int	is_satiated(t_philo *philo)
 {
 	pthread_mutex_t	*mutex;
 	int				is_satiated;
-	
+
 	mutex = &philo->is_satiated_mutex;
 	is_satiated = philo->data->max_meals
 		&& philo->n_meal >= philo->data->max_meals;
 	if (is_satiated)
-	{		
+	{
 		pthread_mutex_lock(mutex);
 		philo->is_satiated = 1;
 		pthread_mutex_unlock(mutex);
