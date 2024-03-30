@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 10:42:46 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/30 10:46:43 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/30 11:13:31 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,12 @@ int	main(int argc, char *argv[])
 	data = create_data_struct(argv);
 	if (!data)
 		return (1);
-	add_exit_struct((void *) data, DAT);
 	philos = create_philos(data);
 	if (!philos)
 		return (1);
 	tids = create_threads(data, philos);
 	if (!tids)
 		return (1);
-	add_exit_struct((void *) tids, TID);
 	mortician(data, philos);
 	//sleep(1);
 	join_threads(data, tids);
