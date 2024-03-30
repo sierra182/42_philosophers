@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 10:37:50 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/30 17:36:38 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/30 18:13:28 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	is_satiated(t_philo *philo)
 	int				is_satiated;
 	
 	mutex = &philo->is_satiated_mutex;
-	is_satiated = philo->data->max_meals >= 0
+	is_satiated = philo->data->max_meals
 		&& philo->n_meal >= philo->data->max_meals;
 	if (is_satiated)
 	{		

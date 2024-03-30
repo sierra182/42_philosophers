@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 10:42:46 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/30 17:46:13 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/30 18:11:48 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	main(int argc, char *argv[])
 	t_philo		*philos;
 
 	if (check_argv(argc, argv))
-		return (1);	
+		return (1);
 	data = create_data_struct(argv);
 	if (!data)
 		return (1);
