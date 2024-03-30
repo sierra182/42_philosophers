@@ -6,16 +6,11 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 10:37:50 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/30 18:13:28 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/30 18:51:01 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "routine.h"
-
-static void	philo_think(t_philo *philo)
-{
-	take_mic(philo, "is thinking\n");
-}
 
 static void	philo_sleep(t_philo *philo)
 {
@@ -82,7 +77,7 @@ void	*philo_routine(void *arg)
 		philo_sleep(philo);
 		if (is_end_needed(philo))
 			break ;
-		philo_think(philo);
+		take_mic(philo, "is thinking\n");
 	}
 	return (NULL);
 }

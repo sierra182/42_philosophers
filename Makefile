@@ -19,6 +19,7 @@ X_HDR =	\
 	$(X_HDR_DIR)/exit_area/x_data_store.h \
 	$(X_HDR_DIR)/philo_utils/x_philo_struct.h \
 	$(X_HDR_DIR)/philo_utils/x_philo_utils.h \
+	$(X_HDR_DIR)/setup/x_init.h \
 	$(X_HDR_DIR)/setup/x_setup.h \
 	$(X_HDR_DIR)/setup/error_zone/x_error_utils.h 
 
@@ -41,6 +42,7 @@ HDR = \
 	$(HDR_DIR)/philo_utils/time.h \
 	$(HDR_DIR)/routine/eat.h \
 	$(HDR_DIR)/routine/routine.h \
+	$(HDR_DIR)/setup/init.h \
 	$(HDR_DIR)/setup/setup.h \
 	$(HDR_DIR)/setup/error_zone/check_argv.h \
 	$(HDR_DIR)/setup/error_zone/error_utils.h	
@@ -57,6 +59,7 @@ SRC = \
 	$(SRC_DIR)/philo_utils/time.c \
 	$(SRC_DIR)/routine/eat.c \
 	$(SRC_DIR)/routine/routine.c \
+	$(SRC_DIR)/setup/init.c \
 	$(SRC_DIR)/setup/setup.c \
 	$(SRC_DIR)/setup/error_zone/check_argv.c \
 	$(SRC_DIR)/setup/error_zone/error_utils.c

@@ -6,13 +6,13 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 14:13:50 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/24 14:15:06 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/30 18:57:56 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_UTILS_H
 # define PHILO_UTILS_H
 
-# include "stdlib.h"
+# include <stdlib.h>
 
 #endif
