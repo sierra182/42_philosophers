@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 21:45:28 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/30 15:09:08 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/30 15:55:39 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void	store_and_free_philos(t_exit *exit, void *philos)
 	{	
 		i = -1;
 		while (++i < exit->data->n_philo)		
-			pthread_mutex_destroy(&exit->philos[i].n_meal_mutex);			
+			pthread_mutex_destroy(&exit->philos[i].is_satiated_mutex);			
 		free(exit->philos);
 		exit->philos = NULL;
 	}

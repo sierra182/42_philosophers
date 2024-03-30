@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 10:16:26 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/30 15:19:33 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/30 15:56:01 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	init_philos(t_data *data, t_philo *philos, t_fork *forks)
 		philos[i].lft_fork = &forks[i];
 		philos[i].rght_fork = &forks[(i + 1) % data->n_philo];
 		philos[i].data = data;
-		if (pthread_mutex_init(&philos[i].n_meal_mutex, NULL))
+		if (pthread_mutex_init(&philos[i].is_satiated_mutex, NULL))
 			return (1);
 		i++;
 	}
