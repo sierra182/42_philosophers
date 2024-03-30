@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 10:37:50 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/29 21:42:57 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/30 10:02:51 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,17 @@ void	*philo_routine(void *arg)
 	while (!philo->data->is_ready)
 		;
 	while (1)
-	{//take_mic(philo, "im here\n");
+	{
 		if (philo->data->end_needed)
-			return (NULL);
+			break ;
 		if (philo_eat(philo))
-			return (NULL);
+			break ;
 		if (philo->data->end_needed)
-			return (NULL);
+			break ;
 		philo_sleep(philo);
 		if (philo->data->end_needed)
-			return (NULL);
+			break ;
 		philo_think(philo);
 	}
+	return (NULL);
 }

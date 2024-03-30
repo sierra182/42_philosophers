@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 10:16:26 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/29 20:48:16 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/30 09:59:50 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	init_philos(t_data *data, t_philo *philos, t_fork *forks)
 		philos[i].id = i + 1;
 		philos[i].lft_fork = &forks[i];
 		philos[i].rght_fork = &forks[(i + 1) % data->n_philo];
-		philos[i].data = data;		
+		philos[i].data = data;
 		i++;
 	}
 }
@@ -54,7 +54,7 @@ t_philo	*create_philos(t_data *data)
 	forks = (t_fork *) ft_calloc(data->n_philo, sizeof(t_fork));
 	if (!forks)
 	{
-		//free(philos);
+		free(philos);
 		return (NULL);
 	}
 	init_forks(data, forks);
@@ -77,15 +77,15 @@ int	start_timer(t_data *data, t_philo *philos)
 
 pthread_t	*create_threads(t_data *data, t_philo *philos)
 {	
-	pthread_t		*tids;
-	int				i;
+	pthread_t	*tids;
+	int			i;
 	
 	tids = (pthread_t *) ft_calloc(data->n_philo, sizeof(pthread_t));
 	if (!tids)
-		return (NULL);	
-	i = 0;
-	while (i < data->n_philo)
-		pthread_create(&tids[i], NULL, philo_routine, (void *) &philos[i++]);
+		return (NULL);
+	i = -1;
+	while (++i < data->n_philo)	
+		pthread_create(&tids[i], NULL, philo_routine, (void *) &philos[i]);	
 	if (start_timer(data, philos))
 		return (NULL);
 	return (tids);
@@ -105,6 +105,6 @@ t_data	*create_data_struct(char *argv[])
 	if (*++argv)
 		data->n_cycle = ft_atoi(*argv);	
 	if (pthread_mutex_init(&data->microphone_mutex, NULL))
-		return (NULL);//return (free(data), NULL);
+		return (free(data), NULL);
 	return (data);
 }

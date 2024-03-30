@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 10:42:46 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/29 21:57:03 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/30 10:11:33 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,16 @@ static void	join_threads(t_data *data, pthread_t *tids)
 	// 	pthread_join(tids[i++], NULL);
 
 	while (i < data->n_philo) 
-	{
-		int join_ret = pthread_join(tids[i], NULL);
-		if (join_ret != 0) 
+	{		
+		int join_ret = pthread_join(tids[i], NULL);	
+		if (join_ret != 0)
 		{
-			fprintf(stderr, "Erreur pthread_join: %s\n", strerror(join_ret));		
+			fprintf(stderr, "Erreur pthread_join: %s\n", strerror(join_ret));
 		}
     	i++;
 	}
 }
+
 #include <unistd.h>
 int	main(int argc, char *argv[])
 {
@@ -70,9 +71,9 @@ int	main(int argc, char *argv[])
 	if (!tids)
 		return (1);	
 	mortician(data, philos);
-	sleep(1);
+	//sleep(1);
 	join_threads(data, tids);
-	// free(tids);
-	// flush_exit_struct();
+	free(tids);
+	flush_exit_struct();
 	return (0);
 }
