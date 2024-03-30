@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:40:47 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/30 19:13:25 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/30 23:03:51 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ static int	is_throwing_up(t_philo *philo)
 
 void	mortician(t_data *data, t_philo *philos)
 {
-	int	i;
 	int	trowing_up;
+	int	i;
 
 	while (1)
 	{
