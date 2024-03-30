@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.h                                             :+:      :+:    :+:   */
+/*   data_store.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/29 12:35:46 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/30 18:44:50 by seblin           ###   ########.fr       */
+/*   Created: 2024/03/30 18:36:20 by seblin            #+#    #+#             */
+/*   Updated: 2024/03/30 18:45:03 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXIT_H
-# define EXIT_H
+#ifndef DATA_STORE_H
+# define DATA_STORE_H
 
 # include <stdlib.h>
 # include "x_philo_struct.h"
-# include "x_data_store.h"
 
 #endif

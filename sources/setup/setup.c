@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 10:16:26 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/30 18:13:13 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/30 18:29:31 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,6 @@ t_philo	*create_philos(t_data *data)
 	add_exit_struct((void *) philos, PHI);
 	return (philos);
 }
-static int	init_start_time(t_data *data)
-{
-	return (gettimeofday(&data->start_time, NULL));
-}
 
 int	start_timer(t_data *data, t_philo *philos)
 {
@@ -78,8 +74,8 @@ int	start_timer(t_data *data, t_philo *philos)
 
 	mutex = &data->is_ready_mutex;
 	pthread_mutex_lock(mutex);
-	if (init_start_time(data))
-		return (1);
+	if (gettimeofday(&data->start_time, NULL))
+		return (pthread_mutex_unlock(mutex), 1);
 	init_lastmeal_philos(data, philos);
 	data->is_ready = 1;
 	pthread_mutex_unlock(mutex);
@@ -97,7 +93,8 @@ pthread_t	*create_threads(t_data *data, t_philo *philos)
 	add_exit_struct((void *) tids, TID);
 	i = -1;
 	while (++i < data->n_philo)	
-		pthread_create(&tids[i], NULL, philo_routine, (void *) &philos[i]);	
+		if (pthread_create(&tids[i], NULL, philo_routine, (void *) &philos[i]))
+			return (NULL);
 	if (start_timer(data, philos))
 		return (NULL);
 	return (tids);

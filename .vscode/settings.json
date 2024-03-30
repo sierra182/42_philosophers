@@ -12,6 +12,7 @@
 		"mortuary.h": "c",
 		"main.h": "c",
 		"x_exit.h": "c",
-		"eat.h": "c"
+		"eat.h": "c",
+		"data_store.h": "c"
 	}
 }

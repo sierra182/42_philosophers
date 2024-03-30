@@ -16,6 +16,7 @@ X_HDRFLAGS = \
 
 X_HDR =	\
 	$(X_HDR_DIR)/exit_area/x_exit.h \
+	$(X_HDR_DIR)/exit_area/x_data_store.h \
 	$(X_HDR_DIR)/philo_utils/x_philo_struct.h \
 	$(X_HDR_DIR)/philo_utils/x_philo_utils.h \
 	$(X_HDR_DIR)/setup/x_setup.h \
@@ -33,6 +34,7 @@ HDRFLAGS = \
 HDR = \
 	$(HDR_DIR)/main.h \
 	$(HDR_DIR)/exit_area/exit.h \
+	$(HDR_DIR)/exit_area/data_store.h \
 	$(HDR_DIR)/mortuary/mortuary.h \
 	$(HDR_DIR)/philo_utils/ft_calloc.h \
 	$(HDR_DIR)/philo_utils/philo_utils.h \
@@ -48,6 +50,7 @@ OBJ = $(SRC:.c=.o)
 SRC = \
 	$(SRC_DIR)/main.c \
 	$(SRC_DIR)/exit_area/exit.c \
+	$(SRC_DIR)/exit_area/data_store.c \
 	$(SRC_DIR)/mortuary/mortuary.c \
 	$(SRC_DIR)/philo_utils/ft_calloc.c \
 	$(SRC_DIR)/philo_utils/philo_utils.c \
@@ -60,9 +63,7 @@ SRC = \
 
 .PHONY: all clean fclean re intro l newline backline emoticon address
 
-#all: intro $(NAME) emoticon
-
-all: $(NAME)
+all: intro $(NAME) emoticon
 
 address:
 	@$(MAKE) -s l THREAD="-pthread -fsanitize=address"
