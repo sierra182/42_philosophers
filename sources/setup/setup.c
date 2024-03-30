@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 10:16:26 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/30 09:59:50 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/30 11:08:54 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,14 @@ t_philo	*create_philos(t_data *data)
 	t_philo	*philos;
 	t_fork	*forks;
 
+	forks = (t_fork *) ft_calloc(data->n_philo, sizeof(t_fork));
+	if (!forks)		
+		return (NULL);
+	add_exit_struct((void *) forks, FRK);	
 	philos = (t_philo *) ft_calloc(data->n_philo, sizeof(t_philo));
 	if (!philos)
 		return (NULL);
-	forks = (t_fork *) ft_calloc(data->n_philo, sizeof(t_fork));
-	if (!forks)
-	{
-		free(philos);
-		return (NULL);
-	}
+	add_exit_struct((void *) philos, PHI);
 	init_forks(data, forks);
 	init_philos(data, philos, forks);
 	return (philos);

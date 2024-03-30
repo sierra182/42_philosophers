@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 21:45:28 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/29 18:38:11 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/30 11:02:03 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,45 @@ static t_exit	*get_exit_struct(void)
 static void	store_and_free_data(t_exit *exit, void *data)
 {
 	if (exit && data)
-		exit->data = (t_data *) data;
-	else if (exit)
+		exit->data = data;
+	else if (exit && exit->data)
 	{
 		pthread_mutex_destroy(&exit->data->microphone_mutex);
 		free(exit->data);
 		exit->data = NULL;
+	}
+}
+
+static void	store_and_free_tids(t_exit *exit, void *tids)
+{
+	if (exit && tids)
+		exit->tids = (pthread_t *) tids;
+	else if (exit && exit->tids)
+	{	
+		free(exit->tids);
+		exit->tids = NULL;
+	}
+}
+
+static void	store_and_free_forks(t_exit *exit, void *forks)
+{
+	if (exit && forks)
+		exit->forks = (t_fork *) forks;
+	else if (exit && exit->forks)
+	{	
+		free(exit->forks);
+		exit->forks = NULL;
+	}
+}
+
+static void	store_and_free_philos(t_exit *exit, void *philos)
+{
+	if (exit && philos)
+		exit->philos = (t_philo *) philos;
+	else if (exit && exit->philos)
+	{	
+		free(exit->philos);
+		exit->philos = NULL;
 	}
 }
 
@@ -37,6 +70,9 @@ static void	(**get_store_and_free(void))(t_exit *, void *)
 
 	if (!store_and_free[DAT])
 	{
+		store_and_free[FRK] = store_and_free_forks;
+		store_and_free[PHI] = store_and_free_philos;
+		store_and_free[TID] = store_and_free_tids;
 		store_and_free[DAT] = store_and_free_data;
 	}
 	return (store_and_free);

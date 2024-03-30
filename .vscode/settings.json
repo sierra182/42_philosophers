@@ -10,6 +10,7 @@
 		"setup.h": "c",
 		"routine.h": "c",
 		"mortuary.h": "c",
-		"main.h": "c"
+		"main.h": "c",
+		"x_exit.h": "c"
 	}
 }

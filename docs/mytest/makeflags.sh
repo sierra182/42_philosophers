@@ -1,6 +1,6 @@
 #! /bin/bash
 
-VALUES="5 60 60 60 5"
+VALUES="4 410 200 200"
 
 echo -e "\n\033[0;35m sanitize address:\033[0m" \
 && make fclean \
