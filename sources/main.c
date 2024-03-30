@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 10:42:46 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/30 13:25:39 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/30 17:46:13 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,12 @@ static void	join_threads(t_data *data, pthread_t *tids)
 	}
 }
 
+void	only_one_philosopher(t_data *data)
+{	
+	printf("%d 1 died\n", data->death_time);
+	flush_exit_struct();	
+}
+
 #include <unistd.h>
 int	main(int argc, char *argv[])
 {
@@ -59,10 +65,12 @@ int	main(int argc, char *argv[])
 	t_philo		*philos;
 
 	if (check_argv(argc, argv))
-		return (1);
+		return (1);	
 	data = create_data_struct(argv);
 	if (!data)
 		return (1);
+	if (data->n_philo == 1)
+		return (only_one_philosopher(data), 1);
 	philos = create_philos(data);
 	if (!philos)
 		return (1);
