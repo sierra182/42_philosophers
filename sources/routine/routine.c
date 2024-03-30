@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 10:37:50 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/30 14:20:11 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/30 15:21:34 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,10 @@ int	is_end_needed(t_philo *philo)
 	pthread_mutex_unlock(mutex);
 	return (is_end_needed);
 }
+// int	is_max_meal_over(t_philo *philo)
+// {
+// 	(philo->data->max_meals && philo->n_meal >= philo->data->max_meals)
+// }
 
 void	*philo_routine(void *arg)
 {
@@ -61,7 +65,7 @@ void	*philo_routine(void *arg)
 			break ;
 		if (philo_eat(philo))
 			break ;
-		if (is_end_needed(philo) || (philo->data->max_meals && philo->n_meal >= philo->data->max_meals))
+		if (is_end_needed(philo))
 			break ;
 		philo_sleep(philo);
 		if (is_end_needed(philo))

@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 21:45:28 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/30 12:23:07 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/30 15:09:08 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,15 @@ static void	store_and_free_tids(t_exit *exit, void *tids)
 
 static void	store_and_free_forks(t_exit *exit, void *forks)
 {
+	int	i;
+	
 	if (exit && forks)
 		exit->forks = (t_fork *) forks;
 	else if (exit && exit->forks)
 	{	
-			//pthread_mutex_destroy(&exit->data->is_ready_mutex);//! forks
+		i = -1;
+		while (++i < exit->data->n_philo)		
+			pthread_mutex_destroy(&exit->forks[i].mutex);		
 		free(exit->forks);
 		exit->forks = NULL;
 	}
@@ -58,10 +62,14 @@ static void	store_and_free_forks(t_exit *exit, void *forks)
 
 static void	store_and_free_philos(t_exit *exit, void *philos)
 {
+	int	i;
 	if (exit && philos)
 		exit->philos = (t_philo *) philos;
 	else if (exit && exit->philos)
 	{	
+		i = -1;
+		while (++i < exit->data->n_philo)		
+			pthread_mutex_destroy(&exit->philos[i].n_meal_mutex);			
 		free(exit->philos);
 		exit->philos = NULL;
 	}

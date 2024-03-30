@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:57:26 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/30 14:12:53 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/30 14:58:57 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_data
 	int				max_meals;
 	int				is_ready;
 	int				end_needed;
-	struct timeval	start_time;
+	struct timeval	start_time;	
 	pthread_mutex_t	is_ready_mutex;
 	pthread_mutex_t	end_needed_mutex;
 	pthread_mutex_t	microphone_mutex;
@@ -43,6 +43,7 @@ typedef struct s_philo
 	t_fork			*lft_fork;
 	t_fork			*rght_fork;
 	int				n_meal;
+	pthread_mutex_t	n_meal_mutex;
 	struct timeval	last_meal;
 	t_data			*data;
 }	t_philo;

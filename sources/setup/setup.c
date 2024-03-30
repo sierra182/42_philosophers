@@ -6,22 +6,24 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 10:16:26 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/30 14:12:44 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/30 15:19:33 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "setup.h"
 
-static void	init_forks(t_data *data, t_fork *forks)
+static int	init_forks(t_data *data, t_fork *forks)
 {
 	int	i;
 
 	i = 0;
 	while (i < data->n_philo)
-		pthread_mutex_init(&forks[i++].mutex, NULL);
+		if (pthread_mutex_init(&forks[i++].mutex, NULL))
+			return (1);
+	return (0);
 }
 
-static void	init_philos(t_data *data, t_philo *philos, t_fork *forks)
+static int	init_philos(t_data *data, t_philo *philos, t_fork *forks)
 {
 	int	i;
 
@@ -32,8 +34,11 @@ static void	init_philos(t_data *data, t_philo *philos, t_fork *forks)
 		philos[i].lft_fork = &forks[i];
 		philos[i].rght_fork = &forks[(i + 1) % data->n_philo];
 		philos[i].data = data;
+		if (pthread_mutex_init(&philos[i].n_meal_mutex, NULL))
+			return (1);
 		i++;
 	}
+	return (0);
 }
 static void	init_lastmeal_philos(t_data *data, t_philo *philos)
 {
@@ -51,13 +56,15 @@ t_philo	*create_philos(t_data *data)
 	forks = (t_fork *) ft_calloc(data->n_philo, sizeof(t_fork));
 	if (!forks)		
 		return (NULL);
-	add_exit_struct((void *) forks, FRK);	
+	if (init_forks(data, forks))
+		return (free(forks), NULL);
+	add_exit_struct((void *) forks, FRK);
 	philos = (t_philo *) ft_calloc(data->n_philo, sizeof(t_philo));
 	if (!philos)
 		return (NULL);
+	if (init_philos(data, philos, forks))
+		return (free(philos), NULL);
 	add_exit_struct((void *) philos, PHI);
-	init_forks(data, forks);
-	init_philos(data, philos, forks);
 	return (philos);
 }
 static int	init_start_time(t_data *data)
