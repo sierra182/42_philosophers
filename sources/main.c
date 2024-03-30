@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 10:42:46 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/30 12:46:46 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/30 13:25:39 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	main(int argc, char *argv[])
 		return (1);
 	tids = create_threads(data, philos);
 	if (!tids)
-		return (1);
+		return (1);	
 	mortician(data, philos);	
 	join_threads(data, tids);	
 	return (flush_exit_struct(), 0);
