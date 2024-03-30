@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 21:45:28 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/30 11:02:03 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/30 11:38:55 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static void	store_and_free_data(t_exit *exit, void *data)
 		exit->data = data;
 	else if (exit && exit->data)
 	{
+		pthread_mutex_destroy(&exit->data->is_ready_mutex);
 		pthread_mutex_destroy(&exit->data->microphone_mutex);
 		free(exit->data);
 		exit->data = NULL;
@@ -36,7 +37,7 @@ static void	store_and_free_tids(t_exit *exit, void *tids)
 	if (exit && tids)
 		exit->tids = (pthread_t *) tids;
 	else if (exit && exit->tids)
-	{	
+	{		
 		free(exit->tids);
 		exit->tids = NULL;
 	}
@@ -48,6 +49,7 @@ static void	store_and_free_forks(t_exit *exit, void *forks)
 		exit->forks = (t_fork *) forks;
 	else if (exit && exit->forks)
 	{	
+			//pthread_mutex_destroy(&exit->data->is_ready_mutex);//! forks
 		free(exit->forks);
 		exit->forks = NULL;
 	}

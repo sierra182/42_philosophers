@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 10:16:26 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/30 11:18:39 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/30 11:37:32 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,9 @@ int	start_timer(t_data *data, t_philo *philos)
 	if (init_start_time(data))
 		return (1);
 	init_lastmeal_philos(data, philos);
+	pthread_mutex_lock(&data->is_ready_mutex);
 	data->is_ready = 1;
+	pthread_mutex_unlock(&data->is_ready_mutex);
 	return (0);
 }
 
@@ -103,9 +105,11 @@ t_data	*create_data_struct(char *argv[])
 	data->eat_time = ft_atoi(*++argv);
 	data->sleep_time = ft_atoi(*++argv);
 	if (*++argv)
-		data->n_cycle = ft_atoi(*argv);	
+		data->n_cycle = ft_atoi(*argv);
 	if (pthread_mutex_init(&data->microphone_mutex, NULL))
 		return (free(data), (NULL));
+	if (pthread_mutex_init(&data->is_ready_mutex, NULL))
+		return (pthread_mutex_destroy(&data->microphone_mutex), free(data), (NULL));
 	add_exit_struct((void *) data, DAT);
 	return (data);
 }

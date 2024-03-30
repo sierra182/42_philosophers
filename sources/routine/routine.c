@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 10:37:50 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/30 10:02:51 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/30 11:40:56 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ static void	philo_sleep(t_philo *philo)
 	if (take_mic(philo, "is sleeping\n"))
 		return ;
 	usleep(philo->data->sleep_time * 1000);
+}
+
+is_ready_to_start_dinning()
+{
+	
 }
 
 void	*philo_routine(void *arg)
