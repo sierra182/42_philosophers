@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:57:26 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/30 12:31:41 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/30 14:12:53 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_data
 	int				death_time;
 	int				eat_time;
 	int				sleep_time;
-	int				n_cycle;
+	int				max_meals;
 	int				is_ready;
 	int				end_needed;
 	struct timeval	start_time;
@@ -42,6 +42,7 @@ typedef struct s_philo
 	int				id;
 	t_fork			*lft_fork;
 	t_fork			*rght_fork;
+	int				n_meal;
 	struct timeval	last_meal;
 	t_data			*data;
 }	t_philo;

@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 10:16:26 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/30 13:26:39 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/30 14:12:44 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ t_data	*create_data_struct(char *argv[])
 	data->eat_time = ft_atoi(*++argv);
 	data->sleep_time = ft_atoi(*++argv);
 	if (*++argv)
-		data->n_cycle = ft_atoi(*argv);
+		data->max_meals = ft_atoi(*argv);
 	if (pthread_mutex_init(&data->microphone_mutex, NULL))
 		return (free(data), (NULL));
 	if (pthread_mutex_init(&data->is_ready_mutex, NULL))

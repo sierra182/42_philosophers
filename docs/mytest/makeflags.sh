@@ -1,6 +1,6 @@
 #! /bin/bash
 #./philosophers 200 1 10 100 take fork after die
-VALUES="1 10 10 10"
+VALUES="4 310 200 100"
 
 echo -e "\n\033[0;35m sanitize address:\033[0m" \
 && make fclean \

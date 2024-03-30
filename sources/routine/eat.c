@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:17:45 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/30 12:47:48 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/30 14:10:19 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ static int	odd_philo_get_forks(t_philo *philo)
 static void	update_last_meal(t_philo *philo)
 {
 	gettimeofday(&philo->last_meal, NULL);
+	philo->n_meal++;
 }
 
 static int	is_odd(t_philo *philo)
@@ -75,7 +76,7 @@ int	philo_eat(t_philo *philo)
 		pthread_mutex_unlock(&philo->rght_fork->mutex);
 		return (1);
 	}
-	usleep(philo->data->eat_time * 1000);	
+	usleep(philo->data->eat_time * 1000);		
 	pthread_mutex_unlock(&philo->lft_fork->mutex);
 	pthread_mutex_unlock(&philo->rght_fork->mutex);
 	return (0);

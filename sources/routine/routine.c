@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 10:37:50 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/30 13:27:59 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/30 14:20:11 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	*philo_routine(void *arg)
 			break ;
 		if (philo_eat(philo))
 			break ;
-		if (is_end_needed(philo))
+		if (is_end_needed(philo) || (philo->data->max_meals && philo->n_meal >= philo->data->max_meals))
 			break ;
 		philo_sleep(philo);
 		if (is_end_needed(philo))
