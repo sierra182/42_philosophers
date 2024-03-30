@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 10:16:26 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/30 11:13:08 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/30 11:18:39 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ t_data	*create_data_struct(char *argv[])
 	data = (t_data *) ft_calloc(1, sizeof(t_data));
 	if (!data)
 		return (NULL);
-	add_exit_struct((void *) data, DAT);
 	data->n_philo = ft_atoi(*++argv);
 	data->death_time = ft_atoi(*++argv);
 	data->eat_time = ft_atoi(*++argv);
@@ -106,6 +105,7 @@ t_data	*create_data_struct(char *argv[])
 	if (*++argv)
 		data->n_cycle = ft_atoi(*argv);	
 	if (pthread_mutex_init(&data->microphone_mutex, NULL))
-		return (NULL);
+		return (free(data), (NULL));
+	add_exit_struct((void *) data, DAT);
 	return (data);
 }
