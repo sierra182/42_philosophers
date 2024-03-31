@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   eat.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:17:45 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/31 15:03:00 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/31 16:04:47 by svidot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,13 @@ int	philo_eat(t_philo *philo)
 	}
 	else if (even_philo_get_forks(philo))
 		return (1);
-	update_last_meal(philo);
 	if (take_mic(philo, "is eating\n"))
 	{
 		pthread_mutex_unlock(&philo->lft_fork->mutex);
 		pthread_mutex_unlock(&philo->rght_fork->mutex);
 		return (1);
 	}
+	update_last_meal(philo);
 	usleep(philo->data->eat_time * 1000);
 	pthread_mutex_unlock(&philo->lft_fork->mutex);
 	pthread_mutex_unlock(&philo->rght_fork->mutex);
