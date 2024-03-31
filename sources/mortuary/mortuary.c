@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:40:47 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/31 17:45:39 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/31 23:06:18 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,28 +52,28 @@ static int	is_throwing_up(t_philo *philo)
 
 void	mortician(t_data *data, t_philo *philos)
 {
-	int	trowing_up;
+	int	trowup_count;
+	int	is_throwup;
 	int	i;
 
 	while (1)
 	{
 		i = 0;
-		trowing_up = 0;
+		trowup_count = 0;
 		while (i < data->n_philo)
 		{
-			if (is_actually_dead(&philos[i])
-				&& !is_throwing_up(&philos[i]))
+			is_throwup = is_throwing_up(&philos[i]);
+			if (!is_throwup && is_actually_dead(&philos[i]))
 			{
 				rise_end_needed(data);
 				take_mic(&philos[i], "died\n");
 				return ;
 			}
-			else if (is_throwing_up(&philos[i]))
-				trowing_up++;
-			if (trowing_up >= data->n_philo)
+			else if (is_throwup)
+				trowup_count++;
+			if (trowup_count >= data->n_philo)
 				return ;
 			i++;
 		}
-		usleep(100);
 	}
 }
