@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:17:45 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/31 11:52:45 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/31 15:03:00 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static int	even_philo_get_forks(t_philo *philo)
 {
+	//usleep(1000);
 	pthread_mutex_lock(&philo->rght_fork->mutex);
 	if (is_end_needed(philo) || take_mic(philo, "has taken a fork\n"))
 	{
@@ -32,7 +33,7 @@ static int	even_philo_get_forks(t_philo *philo)
 
 static int	odd_philo_get_forks(t_philo *philo)
 {
-	usleep(1000);
+	//usleep(1000);
 	pthread_mutex_lock(&philo->lft_fork->mutex);
 	if (is_end_needed(philo) || take_mic(philo, "has taken a fork\n"))
 	{
@@ -69,13 +70,13 @@ int	philo_eat(t_philo *philo)
 	}
 	else if (even_philo_get_forks(philo))
 		return (1);
+	update_last_meal(philo);
 	if (take_mic(philo, "is eating\n"))
 	{
 		pthread_mutex_unlock(&philo->lft_fork->mutex);
 		pthread_mutex_unlock(&philo->rght_fork->mutex);
 		return (1);
 	}
-	update_last_meal(philo);
 	usleep(philo->data->eat_time * 1000);
 	pthread_mutex_unlock(&philo->lft_fork->mutex);
 	pthread_mutex_unlock(&philo->rght_fork->mutex);
