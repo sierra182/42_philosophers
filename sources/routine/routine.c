@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 10:37:50 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/30 19:17:00 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/31 12:34:19 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	*philo_routine(void *arg)
 
 	philo = (t_philo *) arg;
 	while (!is_ready_to_start_dinning(philo))
-		;
+		usleep(100);
 	while (1)
 	{
 		if (is_end_needed(philo))

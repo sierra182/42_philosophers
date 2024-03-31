@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:40:47 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/30 23:03:51 by seblin           ###   ########.fr       */
+/*   Updated: 2024/03/31 12:41:32 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,6 @@ void	mortician(t_data *data, t_philo *philos)
 			if (trowing_up >= data->n_philo)
 				return ;
 		}
+		usleep(100);
 	}
 }
