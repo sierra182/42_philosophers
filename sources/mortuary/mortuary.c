@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mortuary.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:40:47 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/31 16:16:02 by svidot           ###   ########.fr       */
+/*   Updated: 2024/03/31 17:45:39 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	mortician(t_data *data, t_philo *philos)
 				trowing_up++;
 			if (trowing_up >= data->n_philo)
 				return ;
+			i++;
 		}
 		usleep(100);
 	}
