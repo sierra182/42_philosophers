@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 10:16:26 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/01 15:36:42 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/01 17:25:42 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ t_data	*create_data_struct(char *argv[])
 		return (free(data), (NULL));
 	if (pthread_mutex_init(&data->is_ready_mutex, NULL))
 		return (pthread_mutex_destroy(&data->microphone_mutex),
-			free(data), (NULL));	
+			free(data), (NULL));
 	add_exit_struct((void *) data, DAT);
 	return (data);
 }

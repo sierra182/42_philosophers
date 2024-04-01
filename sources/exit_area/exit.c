@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 21:45:28 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/01 14:36:29 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/01 17:24:37 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ static t_exit	*get_exit_struct(void)
 
 	return (&exit);
 }
-
-
 
 static t_getsaf	*get_store_and_free(void)
 {
