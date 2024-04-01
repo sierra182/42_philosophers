@@ -1,6 +1,8 @@
 #! /bin/bash
 #./philosophers 200 1 10 100 take fork after die
-VALUES="4 310 200 100"
+# 4 310 200 100 2 bloc
+
+VALUES="4 200 200 100"
 
 echo -e "\n\033[0;35m sanitize address:\033[0m" \
 && make fclean \

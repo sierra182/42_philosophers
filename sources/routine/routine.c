@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 10:37:50 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/01 09:45:47 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/01 15:48:18 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ int	is_end_needed(t_philo *philo)
 	pthread_mutex_t	*mutex;
 	int				is_end_needed;
 
-	mutex = &philo->data->end_needed_mutex;
+	mutex = &philo->end_needed_mutex;
 	pthread_mutex_lock(mutex);
-	is_end_needed = philo->data->end_needed;
+	is_end_needed = philo->end_needed;
 	pthread_mutex_unlock(mutex);
 	return (is_end_needed);
 }

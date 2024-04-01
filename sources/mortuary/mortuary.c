@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:40:47 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/01 14:27:25 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/01 16:57:46 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,19 @@ int	is_actually_dead(t_philo *philo)
 		return (-1);
 }
 
-static void	rise_end_needed(t_data *data)
+static void	rise_end_needed(t_data *data, t_philo *philos)
 {
-	pthread_mutex_t	*mutex;
+	pthread_mutex_t	*mutex;	
+	int	i;
 
-	mutex = &data->end_needed_mutex;
-	pthread_mutex_lock(mutex);
-	data->end_needed = 1;
-	pthread_mutex_unlock(mutex);
+	i = -1;
+	while (++i < data->n_philo)
+	{
+		mutex = &philos[i].end_needed_mutex;
+		pthread_mutex_lock(mutex);
+		philos[i].end_needed = 1;
+		pthread_mutex_unlock(mutex);
+	}
 }
 
 static int	is_throwing_up(t_philo *philo)
@@ -69,7 +74,7 @@ void	mortician(t_data *data, t_philo *philos)
 			is_throwup = is_throwing_up(&philos[i]);
 			if (!is_throwup && is_actually_dead(&philos[i]))
 			{
-				rise_end_needed(data);
+				rise_end_needed(data, philos);
 				take_mic(&philos[i], "died\n");
 				return ;
 			}

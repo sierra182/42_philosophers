@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 18:52:33 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/01 14:33:23 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/01 16:32:06 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	init_philos(t_data *data, t_philo *philos, t_fork *forks)
 {
 	int	i;
 
-	i = 0;
-	while (i < data->n_philo)
+	i = -1;
+	while (++i < data->n_philo)
 	{
 		philos[i].id = i + 1;
 		philos[i].lft_fork = &forks[i];
@@ -38,7 +38,8 @@ int	init_philos(t_data *data, t_philo *philos, t_fork *forks)
 			return (1);
 		if (pthread_mutex_init(&philos[i].is_satiated_mutex, NULL))
 			return (1);
-		i++;
+		if (pthread_mutex_init(&philos[i].end_needed_mutex, NULL))
+			return (1);		
 	}
 	return (0);
 }
