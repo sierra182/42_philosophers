@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:40:47 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/01 17:22:07 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/01 18:28:19 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,14 @@ int	is_actually_dead(t_philo *philo)
 	long			delta_last_meal;
 
 	mutex = &philo->last_meal_mutex;
-	if (!gettimeofday(&actual_time, NULL))
-	{
-		pthread_mutex_lock(mutex);
-		delta_last_meal = get_delta_time(&philo->last_meal, &actual_time);
-		pthread_mutex_unlock(mutex);
-		if (delta_last_meal >= philo->data->death_time)
-			return (1);
-		return (0);
-	}
-	else
-		return (-1);
+	pthread_mutex_lock(mutex);
+	if (gettimeofday(&actual_time, NULL))
+		return (pthread_mutex_unlock(mutex), 1);
+	delta_last_meal = get_delta_time(&philo->last_meal, &actual_time);
+	pthread_mutex_unlock(mutex);
+	if (delta_last_meal >= philo->data->death_time)
+		return (1);
+	return (0);
 }
 
 static void	rise_end_needed(t_data *data, t_philo *philos)
@@ -84,5 +81,6 @@ void	mortician(t_data *data, t_philo *philos)
 				return ;
 			i++;
 		}
+		usleep(500);
 	}
 }
