@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:17:45 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/31 23:52:07 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/01 14:30:52 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,12 @@ static int	even_philo_get_forks(t_philo *philo)
 
 static void	update_last_meal(t_philo *philo)
 {
+	pthread_mutex_t	*mutex;
+	
+	mutex = &philo->last_meal_mutex;
+	pthread_mutex_lock(mutex);
 	gettimeofday(&philo->last_meal, NULL);
+	pthread_mutex_unlock(mutex);
 	philo->n_meal++;
 }
 

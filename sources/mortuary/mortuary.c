@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:40:47 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/31 23:06:18 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/01 14:27:25 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,16 @@
 
 int	is_actually_dead(t_philo *philo)
 {
+	pthread_mutex_t	*mutex;
 	struct timeval	actual_time;
 	long			delta_last_meal;
 
+	mutex = &philo->last_meal_mutex;	
 	if (!gettimeofday(&actual_time, NULL))
 	{
+		pthread_mutex_lock(mutex);
 		delta_last_meal = get_delta_time(&philo->last_meal, &actual_time);
+		pthread_mutex_unlock(mutex);
 		if (delta_last_meal >= philo->data->death_time)
 			return (1);
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:57:26 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/30 15:54:30 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/01 14:32:08 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_philo
 	int				n_meal;
 	struct timeval	last_meal;
 	int				is_satiated;
+	pthread_mutex_t	last_meal_mutex;
 	pthread_mutex_t	is_satiated_mutex;
 	t_data			*data;
 }	t_philo;
