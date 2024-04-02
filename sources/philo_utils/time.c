@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:42:12 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/29 17:27:38 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/02 14:09:48 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,6 @@ long	get_delta_time(struct timeval *time_a, struct timeval *time_b)
 
 	delta_sec = time_b->tv_sec - time_a->tv_sec;
 	delta_microsec = time_b->tv_usec - time_a->tv_usec;
-	if (delta_microsec < 0)
-	{
-		delta_sec--;
-		delta_microsec += 1000000;
-	}
 	return (delta_sec * 1000 + delta_microsec / 1000);
 }
 

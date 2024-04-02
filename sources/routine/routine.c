@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 10:37:50 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/02 11:24:39 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/02 13:18:45 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	*philo_routine(void *arg)
 		if (is_end_needed(philo))
 			break ;
 		take_mic(philo, "is thinking\n");
+		//usleep(100);
 	}
 	return (NULL);
 }
