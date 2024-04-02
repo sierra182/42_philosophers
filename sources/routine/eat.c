@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:17:45 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/02 11:22:11 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/02 11:28:29 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,16 @@ static int	odd_philo_get_forks(t_philo *philo)
 
 static int	even_philo_get_forks(t_philo *philo)
 {
-	//usleep(3000);
-	usleep(philo->data->eat_time / 2);
+	usleep(3000);
+	// usleep(philo->data->eat_time / 2);
 	pthread_mutex_lock(&philo->lft_fork->mutex);
 	if (is_end_needed(philo) || take_mic(philo, "has taken a fork\n"))
 	{
 		pthread_mutex_unlock(&philo->lft_fork->mutex);
 		return (1);
 	}	
-	//usleep(3000);
-	usleep(philo->data->eat_time / 2);
+	usleep(3000);
+	// usleep(philo->data->eat_time / 2);
 	pthread_mutex_lock(&philo->rght_fork->mutex);
 	if (is_end_needed(philo) || take_mic(philo, "has taken a fork\n"))
 	{
