@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 10:16:26 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/02 14:51:12 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/03 11:53:08 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,11 @@ pthread_t	*create_threads(t_data *data, t_philo *philos)
 		return (NULL);
 	add_exit_struct((void *) tids, TID);
 	i = -1;
-	if (start_timer(data, philos))
-		return (NULL);
 	while (++i < data->n_philo)
 		if (pthread_create(&tids[i], NULL, philo_routine, (void *) &philos[i]))
 			return (NULL);
+	if (start_timer(data, philos))
+		return (NULL);
 	return (tids);
 }
 

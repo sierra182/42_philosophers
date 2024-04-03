@@ -5,7 +5,7 @@ SRC_DIR = sources
 CC = cc
 THREAD =
 
-CFLAGS = $(X_HDRFLAGS) $(HDRFLAGS) $(THREAD) -g -Wall -Wextra -Werror
+CFLAGS = $(X_HDRFLAGS) $(HDRFLAGS) $(THREAD) -g #-Wall -Wextra -Werror
 LDFLAGS = $(THREAD)
 
 X_HDRFLAGS = \
@@ -66,7 +66,8 @@ SRC = \
 
 .PHONY: all clean fclean re intro l newline backline emoticon address
 
-all: intro $(NAME) emoticon
+#all: intro $(NAME) emoticon
+all: $(NAME)
 
 address:
 	@$(MAKE) -s l THREAD="-pthread -fsanitize=address"
