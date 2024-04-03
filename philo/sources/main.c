@@ -6,12 +6,12 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 10:42:46 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/03 22:18:40 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/03 22:24:28 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
-//
+
 int	death_mic(t_philo *philo, char *str)
 {
 	long			time;
