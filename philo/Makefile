@@ -66,7 +66,7 @@ SRC = \
 
 .PHONY: all clean fclean re intro l newline backline emoticon address
 
-all: intro $(NAME) emoticon
+all: intro $(NAME) 
 
 address:
 	@$(MAKE) -s l THREAD="-pthread -fsanitize=address"
@@ -74,7 +74,7 @@ address:
 thread:
 	@$(MAKE) -s l THREAD="-pthread -fsanitize=thread"
 
-l: $(NAME)
+l: emoticon $(NAME) 
 
 $(SRC_DIR)/%.o : $(SRC_DIR)/%.c $(HDR) $(X_HDR)
 	@echo "\033[0;32m compiling $(NAME) object $<...\033[0m" 🚀
