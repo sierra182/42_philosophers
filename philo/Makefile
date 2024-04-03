@@ -74,7 +74,7 @@ address:
 thread:
 	@$(MAKE) -s l THREAD="-pthread -fsanitize=thread"
 
-l: emoticon $(NAME) 
+l: emoticon $(NAME)
 
 $(SRC_DIR)/%.o : $(SRC_DIR)/%.c $(HDR) $(X_HDR)
 	@echo "\033[0;32m compiling $(NAME) object $<...\033[0m" 🚀
@@ -113,7 +113,8 @@ intro:
 		sleep .4; \
 	done
 	@sleep .4
-	@cat mfile_design	
+	@cat mfile_design
+	@$(MAKE) -s emoticon
 
 clean:
 	@echo "\n cleanning $(NAME) objects 🧻"
