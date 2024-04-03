@@ -6,11 +6,30 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 10:42:46 by seblin            #+#    #+#             */
-/*   Updated: 2024/03/31 23:50:27 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/03 21:31:38 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
+
+int	death_mic(t_philo *philo, char *str)
+{
+	long			time;
+	pthread_mutex_t	*mutex;
+
+	mutex = &philo->data->microphone_mutex;
+	pthread_mutex_lock(mutex);
+	time = get_time_since_start(philo);
+	if (time < 0)
+		return (pthread_mutex_unlock(mutex), 1);
+	printf("%ld ", time);
+	printf("%d ", philo->id);
+	printf("%s", str);
+	pthread_mutex_unlock(mutex);
+	if (is_end_needed(philo))
+		return (1);
+	return (0);
+}
 
 int	take_mic(t_philo *philo, char *str)
 {
@@ -19,6 +38,8 @@ int	take_mic(t_philo *philo, char *str)
 
 	mutex = &philo->data->microphone_mutex;
 	pthread_mutex_lock(mutex);
+	if (is_end_needed(philo))
+		return (pthread_mutex_unlock(mutex), 1);
 	time = get_time_since_start(philo);
 	if (time < 0)
 		return (pthread_mutex_unlock(mutex), 1);

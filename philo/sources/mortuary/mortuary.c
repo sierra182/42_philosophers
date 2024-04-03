@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:40:47 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/03 11:57:56 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/03 21:30:06 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	mortician(t_data *data, t_philo *philos)
 			if (!is_throwup && is_actually_dead(&philos[i]))
 			{
 				rise_end_needed(data, philos);
-				take_mic(&philos[i], "died\n");
+				death_mic(&philos[i], "died\n");
 				return ;
 			}
 			else if (is_throwup)
