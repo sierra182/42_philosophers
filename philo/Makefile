@@ -94,6 +94,7 @@ backline:
 	@echo "\033[A\033[A"
 
 intro:
+	@echo -e "\033[?25l"
 	clear
 	@sleep 1
 	@echo -n " Wake"
@@ -115,6 +116,8 @@ intro:
 	@sleep .4
 	@cat mfile_design
 	@$(MAKE) -s emoticon
+	@echo "\033[?25h"
+	@$(MAKE) -s backline
 
 clean:
 	@echo "\n cleanning $(NAME) objects 🧻"
