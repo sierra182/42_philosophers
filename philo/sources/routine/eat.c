@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:17:45 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/03 20:05:50 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/03 20:23:19 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ static int	even_philo_get_forks(t_philo *philo)
 		pthread_mutex_unlock(&philo->lft_fork->mutex);
 		return (1);
 	}
-	//usleep(1000);
 	pthread_mutex_lock(&philo->rght_fork->mutex);
 	if (is_end_needed(philo) || take_mic(philo, "has taken a fork\n"))
 	{
@@ -86,8 +85,15 @@ int	is_odd(t_philo *philo)
 
 int	philo_eat(t_philo *philo)
 {	
-	if (!is_hungry)
-		usleep(philo->data->eat_time/2);
+	// if (!is_hungry)
+	// {
+	// 	printf("YEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE\n");
+	// 	usleep(philo->data->eat_time/2);
+	// }
+	// else 
+	// {
+	// 	printf("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ\n");
+	// }
 	if (is_odd(philo))
 	{
 		if (odd_philo_get_forks(philo))
