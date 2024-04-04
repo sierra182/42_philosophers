@@ -6,7 +6,7 @@
 /*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 10:42:46 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/04 13:29:02 by svidot           ###   ########.fr       */
+/*   Updated: 2024/04/04 13:43:03 by svidot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,6 @@ int	take_mic(t_philo *philo, char *str)
 	return (0);
 }
 
-static void	join_threads(t_data *data, pthread_t *tids)
-{
-	int	i;
-
-	i = 0;
-	while (i < data->n_philo)
-		pthread_join(tids[i++], NULL);
-}
-
 void	only_one_philosopher(t_data *data)
 {
 	printf("%d 1 died\n", data->death_time);
@@ -82,10 +73,7 @@ int	main(int argc, char *argv[])
 	philos = create_philos(data);
 	if (!philos)
 		return (flush_exit_struct(), 1);
-	tids = create_threads(data, philos);
-	if (!tids)
-		return (flush_exit_struct(), 1);
-	mortician(data, philos);
-	join_threads(data, tids);
+	// create forks !! 	
+	// attendre fils!! et gestion de la mort ou la satiete // join_threads(data, tids);
 	return (flush_exit_struct(), 0);
 }
