@@ -3,7 +3,7 @@
 # 4 310 200 100 2 bloc
 # 4 800 200 200 3
 # 200 60 60 60 talk after die
-VALUES="4 310 200 100"
+VALUES="1 800 200 200 3"
 
 echo -e "\n\033[0;35m sanitize address:\033[0m" \
 && make fclean \
