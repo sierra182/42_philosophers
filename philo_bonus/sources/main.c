@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 10:42:46 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/03 22:34:32 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/04 13:29:02 by svidot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,7 @@ void	only_one_philosopher(t_data *data)
 
 int	main(int argc, char *argv[])
 {
-	t_data		*data;
-	pthread_t	*tids;
+	t_data		*data;	
 	t_philo		*philos;
 
 	if (check_argv(argc, argv))
