@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_calloc.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/05 11:37:55 by svidot            #+#    #+#             */
-/*   Updated: 2024/04/05 14:40:48 by svidot           ###   ########.fr       */
+/*   Created: 2024/03/24 15:24:32 by seblin            #+#    #+#             */
+/*   Updated: 2024/03/24 15:27:02 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#ifndef FT_CALLOC_H
+# define FT_CALLOC_H
 
-int	main(int argc, char *argv[])
-{
-	if (parsing(argc, argv))
-		return (1);
-	if (setup())
-		return (1);	
-	return (0);
-}
+# include <stddef.h>
+# include <stdlib.h>
+
+#endif

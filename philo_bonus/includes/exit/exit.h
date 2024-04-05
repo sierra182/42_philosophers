@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   exit.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/05 11:37:55 by svidot            #+#    #+#             */
-/*   Updated: 2024/04/05 14:40:48 by svidot           ###   ########.fr       */
+/*   Created: 2024/03/29 12:35:46 by seblin            #+#    #+#             */
+/*   Updated: 2024/04/05 15:07:11 by svidot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#ifndef EXIT_H
+# define EXIT_H
 
-int	main(int argc, char *argv[])
-{
-	if (parsing(argc, argv))
-		return (1);
-	if (setup())
-		return (1);	
-	return (0);
-}
+# include <stdlib.h>
+# include "x_philo_struct.h"
+
+typedef void	(*t_getsaf)(t_exit *, void *);
+void			store_and_free_data(t_exit *exit, void *data);
+
+#endif

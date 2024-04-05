@@ -9,13 +9,14 @@ CFLAGS = $(X_HDRFLAGS) $(HDRFLAGS) $(THREAD) -g #-Wall -Wextra -Werror
 LDFLAGS = $(THREAD)
 
 X_HDRFLAGS = \
-	# -I$(X_HDR_DIR)/exit_area \
+	-I$(X_HDR_DIR) \
 	# -I$(X_HDR_DIR)/philo_utils \
 	# -I$(X_HDR_DIR)/setup \
 	# -I$(X_HDR_DIR)/setup/error_zone
 
 X_HDR =	\
-	# $(X_HDR_DIR)/exit_area/x_exit.h \
+	$(X_HDR_DIR)/x_philo_struct.h \
+	$(X_HDR_DIR)/x_exit.h \
 	# $(X_HDR_DIR)/exit_area/x_data_store.h \
 	# $(X_HDR_DIR)/philo_utils/x_philo_struct.h \
 	# $(X_HDR_DIR)/philo_utils/x_philo_utils.h \
@@ -26,7 +27,8 @@ X_HDR =	\
 HDRFLAGS = \
 	-I$(HDR_DIR) \
 	-I$(HDR_DIR)/parsing \
-	# -I$(HDR_DIR)/exit_area \
+	-I$(HDR_DIR)/setup \
+	-I$(HDR_DIR)/exit \
 	# -I$(HDR_DIR)/mortuary \
 	# -I$(HDR_DIR)/philo_utils \
 	# -I$(HDR_DIR)/routine \
@@ -37,10 +39,11 @@ HDR = \
 	$(HDR_DIR)/main.h \
 	$(HDR_DIR)/parsing/parsing.h \
 	$(HDR_DIR)/parsing/parsing_utils.h \
-	# $(HDR_DIR)/exit_area/exit.h \
-	# $(HDR_DIR)/exit_area/data_store.h \
+	$(HDR_DIR)/setup/setup.h \
+	$(HDR_DIR)/setup/ft_calloc.h \
+	$(HDR_DIR)/exit/exit.h \
+	$(HDR_DIR)/exit/data_store.h \
 	# $(HDR_DIR)/mortuary/mortuary.h \
-	# $(HDR_DIR)/philo_utils/ft_calloc.h \
 	# $(HDR_DIR)/philo_utils/philo_utils.h \
 	# $(HDR_DIR)/philo_utils/time.h \
 	# $(HDR_DIR)/routine/eat.h \
@@ -56,10 +59,11 @@ SRC = \
 	$(SRC_DIR)/main.c \
 	$(SRC_DIR)/parsing/parsing.c \
 	$(SRC_DIR)/parsing/parsing_utils.c \
-	# $(SRC_DIR)/exit_area/exit.c \
-	# $(SRC_DIR)/exit_area/data_store.c \
+	$(SRC_DIR)/setup/setup.c \
+	$(SRC_DIR)/exit/exit.c \
+	$(SRC_DIR)/exit/data_store.c \
+	$(SRC_DIR)/setup/ft_calloc.c \
 	# $(SRC_DIR)/mortuary/mortuary.c \
-	# $(SRC_DIR)/philo_utils/ft_calloc.c \
 	# $(SRC_DIR)/philo_utils/philo_utils.c \
 	# $(SRC_DIR)/philo_utils/time.c \
 	# $(SRC_DIR)/routine/eat.c \

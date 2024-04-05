@@ -1,22 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   x_philo_struct.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/05 11:37:55 by svidot            #+#    #+#             */
-/*   Updated: 2024/04/05 14:40:48 by svidot           ###   ########.fr       */
+/*   Created: 2024/04/05 14:46:32 by svidot            #+#    #+#             */
+/*   Updated: 2024/04/05 15:18:30 by svidot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#ifndef X_PHILO_STRUCT_H
+# define X_PHILO_STRUCT_H
 
-int	main(int argc, char *argv[])
+# include <sys/time.h>
+
+typedef struct s_data
 {
-	if (parsing(argc, argv))
-		return (1);
-	if (setup())
-		return (1);	
-	return (0);
-}
+	int				n_philo;
+	int				death_time;
+	int				eat_time;
+	int				sleep_time;
+	int				max_meals;	
+	struct timeval	start_time;
+}	t_data;
+
+typedef struct s_exit
+{
+	t_data			*data;
+}	t_exit;
+
+typedef enum e_exit
+{
+	STT,	
+	DAT,
+	END
+}	t_exit_enum;
+
+#endif
