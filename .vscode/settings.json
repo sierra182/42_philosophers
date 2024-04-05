@@ -14,6 +14,8 @@
 		"x_exit.h": "c",
 		"eat.h": "c",
 		"data_store.h": "c",
-		"exit.h": "c"
+		"exit.h": "c",
+		"parsing_utils.h": "c",
+		"parsing.h": "c"
 	}
 }

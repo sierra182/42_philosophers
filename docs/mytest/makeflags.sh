@@ -1,4 +1,5 @@
-#! /bin/bash
+#!/bin/bash
+
 #./philosophers 200 1 10 100 take fork after die
 # 4 310 200 100 2 bloc
 # 4 800 200 200 3

@@ -25,6 +25,7 @@ X_HDR =	\
 
 HDRFLAGS = \
 	-I$(HDR_DIR) \
+	-I$(HDR_DIR)/parsing \
 	# -I$(HDR_DIR)/exit_area \
 	# -I$(HDR_DIR)/mortuary \
 	# -I$(HDR_DIR)/philo_utils \
@@ -34,6 +35,8 @@ HDRFLAGS = \
 
 HDR = \
 	$(HDR_DIR)/main.h \
+	$(HDR_DIR)/parsing/parsing.h \
+	$(HDR_DIR)/parsing/parsing_utils.h \
 	# $(HDR_DIR)/exit_area/exit.h \
 	# $(HDR_DIR)/exit_area/data_store.h \
 	# $(HDR_DIR)/mortuary/mortuary.h \
@@ -51,6 +54,8 @@ OBJ = $(SRC:.c=.o)
 
 SRC = \
 	$(SRC_DIR)/main.c \
+	$(SRC_DIR)/parsing/parsing.c \
+	$(SRC_DIR)/parsing/parsing_utils.c \
 	# $(SRC_DIR)/exit_area/exit.c \
 	# $(SRC_DIR)/exit_area/data_store.c \
 	# $(SRC_DIR)/mortuary/mortuary.c \

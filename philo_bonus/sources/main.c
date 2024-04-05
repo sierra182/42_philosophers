@@ -6,12 +6,15 @@
 /*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 11:37:55 by svidot            #+#    #+#             */
-/*   Updated: 2024/04/05 11:39:19 by svidot           ###   ########.fr       */
+/*   Updated: 2024/04/05 14:18:30 by svidot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(int argc, char *argv)
+#include "main.h"
+
+int	main(int argc, char *argv[])
 {
-	
+	if (parsing(argc, argv))
+		return (1);
 	return (0);
 }
