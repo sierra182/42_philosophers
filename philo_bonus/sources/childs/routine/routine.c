@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 10:37:50 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/05 21:40:21 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/05 22:36:30 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int	think()
 
 }
 
-int	philosopher_routine()
+int	philo_routine()
 {
 	eat();
 	sleep();

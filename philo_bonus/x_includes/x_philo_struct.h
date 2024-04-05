@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:46:32 by svidot            #+#    #+#             */
-/*   Updated: 2024/04/05 21:18:52 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/05 22:23:56 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_data
 	int				sleep_time;
 	int				max_meals;	
 	struct timeval	start_time;
-	sem_t			*mic_sem;
+	sem_t			*sem_mic;
 
 }	t_data;
 

@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 11:42:12 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/05 22:09:26 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/05 22:32:29 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ long	get_time_since_start(t_data *data)
 		return (-1);
 }
 
-long	get_time_since_last_meal(t_data *data)
+long	get_time_since_last_meal(t_philo *philo)
 {
 	struct timeval	start_time;
 	struct timeval	actual_time;
 
-	start_time = data->start_time;
+	start_time = philo->last_meal;
 	if (!gettimeofday(&actual_time, NULL))
 		return (get_delta_time(&start_time, &actual_time));
 	else

@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 16:19:18 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/05 21:40:37 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/05 22:39:34 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,39 +14,41 @@
 
 #include <fcntl.h>
 
-int	take_mic(t_data *data, char *str)
+int	take_mic(t_data *data, t_philo *philo, char *str)
 {	
 	long	time;
-
-	mutex = &philo->data->microphone_mutex;
+	sem_t	*sem_mic;
+	
+	sem_mic = &data->sem_mic;
 	sem_wait(sem_mic);
 	if (is_end_needed(philo))
 		return (sem_post(sem_mic), 1);
-	time = get_time_since_start(philo);
+	time = get_time_since_start(data);
 	if (time < 0)
 		return (sem_post(sem_mic), 1);
 	printf("%ld ", time);
 	printf("%d ", philo->id);
 	printf("%s", str);
-	sem_post(sem_mic);;
+	sem_post(sem_mic);
 	if (is_end_needed(philo))
 		return (1);
 	return (0);
 }
 
-int	take_death_mic(t_philo *philo, char *str)
+int	take_death_mic(t_data *data, t_philo *philo, char *str)
 {
 	long	time;
-
-	mutex = &philo->data->microphone_mutex;
+	sem_t	*sem_mic;
+	
+	sem_mic = &data->sem_mic;	
 	sem_wait(sem_mic);	
-	time = get_time_since_start(philo);
+	time = get_time_since_start(data);
 	if (time < 0)
 		return (sem_post(sem_mic), 1);
 	printf("%ld ", time);
 	printf("%d ", philo->id);
 	printf("%s", str);
-	sem_post(sem_mic);;
+	sem_post(sem_mic);
 	if (is_end_needed(philo))
 		return (1);
 	return (0);
@@ -69,7 +71,7 @@ int	make_childs(t_data *data)
 			return (1);
 		if (!pid)
 		{				
-			philosopher_routine();		
+			philo_routine(data, philo);		
 			return (0);
 		}
 		else
