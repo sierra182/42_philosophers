@@ -1,4 +1,4 @@
-NAME = philosophers_bonus
+NAME = philo_bonus
 X_HDR_DIR = x_includes
 HDR_DIR = includes
 SRC_DIR = sources
