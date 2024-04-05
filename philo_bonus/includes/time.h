@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   time.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/05 11:37:55 by svidot            #+#    #+#             */
-/*   Updated: 2024/04/05 21:51:05 by seblin           ###   ########.fr       */
+/*   Created: 2024/04/05 22:04:26 by seblin            #+#    #+#             */
+/*   Updated: 2024/04/05 22:11:54 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#ifndef TIME_H
+# define TIME_H
 
-int	main(int argc, char *argv[])
-{
-	t_data	*data;
-	
-	if (parsing(argc, argv))
-		return (1);
-	if (setup(argv, &data))
-		return (1);	
-	if (make_childs(data))
-		return (1);
-	if (mortician(data))
-		return (1);
-	return (0);
-}
+# include "x_philo_struct.h"
+
+#endif

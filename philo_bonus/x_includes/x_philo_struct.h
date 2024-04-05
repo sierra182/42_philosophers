@@ -6,13 +6,14 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:46:32 by svidot            #+#    #+#             */
-/*   Updated: 2024/04/05 19:50:08 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/05 21:18:52 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef X_PHILO_STRUCT_H
 # define X_PHILO_STRUCT_H
 
+# include <semaphore.h>
 # include <sys/time.h>
 # include <stdio.h>
 
@@ -24,7 +25,23 @@ typedef struct s_data
 	int				sleep_time;
 	int				max_meals;	
 	struct timeval	start_time;
+	sem_t			*mic_sem;
+
 }	t_data;
+
+typedef struct s_philo
+{
+	int				id;
+	int				n_meal;
+	int				end_needed;
+	int				is_satiated;
+	struct timeval	last_meal;
+	pthread_mutex_t	last_meal_mutex;
+	pthread_mutex_t	is_satiated_mutex;
+	pthread_mutex_t	end_needed_mutex;
+
+	t_data			*data;
+}	t_philo;
 
 typedef struct s_exit
 {

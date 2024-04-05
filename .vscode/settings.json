@@ -16,6 +16,7 @@
 		"data_store.h": "c",
 		"exit.h": "c",
 		"parsing_utils.h": "c",
-		"parsing.h": "c"
+		"parsing.h": "c",
+		"time.h": "c"
 	}
 }
