@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:41:21 by svidot            #+#    #+#             */
-/*   Updated: 2024/04/05 15:45:06 by svidot           ###   ########.fr       */
+/*   Updated: 2024/04/05 15:56:27 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_data	*create_data_struct(char *argv[])
 	return (data);
 }
 
-int setup()
+int	setup(void)
 {
 	return (0);
 }
