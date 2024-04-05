@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   x_philo_struct.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:46:32 by svidot            #+#    #+#             */
-/*   Updated: 2024/04/05 15:18:30 by svidot           ###   ########.fr       */
+/*   Updated: 2024/04/05 16:48:47 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define X_PHILO_STRUCT_H
 
 # include <sys/time.h>
+# include <stdio.h>
 
 typedef struct s_data
 {

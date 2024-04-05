@@ -1,23 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   setup.h                                            :+:      :+:    :+:   */
+/*   childs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/05 14:41:39 by svidot            #+#    #+#             */
-/*   Updated: 2024/04/05 16:39:55 by seblin           ###   ########.fr       */
+/*   Created: 2024/04/05 16:19:18 by seblin            #+#    #+#             */
+/*   Updated: 2024/04/05 17:02:59 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SETUP_H
-# define SETUP_H
+#include "childs.h"
 
-# include <stdlib.h>
-# include "x_philo_struct.h"
-# include "x_exit.h"
+int	make_childs(t_data *data)
+{
+	int	i;
+	pid_t pid;
 
-void	*ft_calloc(size_t nmemb, size_t size);
-int		ft_atoi(const char *nptr);
-
-#endif
+	i = -1;
+	while (++i < data->n_philo)
+	{
+		pid = fork();
+		if (pid < 0)
+			return (1);
+		if (!pid)
+		{		
+			printf("iam the philosopher :%d\n", i);
+			return (0);
+		}
+		else
+		{
+			
+		}
+	}
+	return (0);
+}
