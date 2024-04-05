@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 21:45:28 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/01 17:24:37 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/05 15:45:22 by svidot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ static t_getsaf	*get_store_and_free(void)
 
 	if (!store_and_free[DAT])
 	{
-		store_and_free[FRK] = store_and_free_forks;
-		store_and_free[PHI] = store_and_free_philos;
-		store_and_free[TID] = store_and_free_tids;
+		// store_and_free[FRK] = store_and_free_forks;
+		// store_and_free[PHI] = store_and_free_philos;
+		// store_and_free[TID] = store_and_free_tids;
 		store_and_free[DAT] = store_and_free_data;
 	}
 	return (store_and_free);

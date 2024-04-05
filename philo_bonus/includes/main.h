@@ -6,7 +6,7 @@
 /*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:28:57 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/05 13:51:31 by svidot           ###   ########.fr       */
+/*   Updated: 2024/04/05 15:43:01 by svidot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 # define MAIN_H
 
 int	parsing(int argc, char *argv[]);
+int setup();
 
 #endif

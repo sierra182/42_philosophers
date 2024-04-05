@@ -6,7 +6,7 @@
 /*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:41:21 by svidot            #+#    #+#             */
-/*   Updated: 2024/04/05 15:00:01 by svidot           ###   ########.fr       */
+/*   Updated: 2024/04/05 15:45:06 by svidot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,9 @@ t_data	*create_data_struct(char *argv[])
 		data->max_meals = ft_atoi(*argv);
 	add_exit_struct((void *) data, DAT);
 	return (data);
+}
+
+int setup()
+{
+	return (0);
 }
