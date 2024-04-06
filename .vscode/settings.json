@@ -17,6 +17,9 @@
 		"exit.h": "c",
 		"parsing_utils.h": "c",
 		"parsing.h": "c",
-		"time.h": "c"
+		"time.h": "c",
+		"fcntl.h": "c",
+		"x_init.h": "c",
+		"childs.h": "c"
 	}
 }
