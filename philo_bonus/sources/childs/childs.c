@@ -6,11 +6,23 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 16:19:18 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/06 15:07:13 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/06 16:31:42 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "childs.h"
+
+int	is_end_needed(t_philo *philo)
+{
+	sem_t	*sem_end_needed;
+	int		is_end_needed;
+
+	sem_end_needed = philo->sem_end_needed;
+	sem_wait(sem_end_needed);
+	is_end_needed = philo->end_needed;
+	sem_post(sem_end_needed);
+	return (is_end_needed);
+}
 
 int	take_mic(t_data *data, t_philo *philo, char *str)
 {	
@@ -19,8 +31,8 @@ int	take_mic(t_data *data, t_philo *philo, char *str)
 	
 	sem_mic = data->sem_mic;
 	sem_wait(sem_mic);
-	// if (is_end_needed(philo))
-	// 	return (sem_post(sem_mic), 1);
+	if (is_end_needed(philo))
+		return (sem_post(sem_mic), 1);
 	time = get_time_since_start(data);
 	if (time < 0)
 		return (sem_post(sem_mic), 1);
@@ -28,29 +40,11 @@ int	take_mic(t_data *data, t_philo *philo, char *str)
 	printf("%d ", philo->id);
 	printf("%s", str);
 	sem_post(sem_mic);
-	// if (is_end_needed(philo))
-	// 	return (1);
+	if (is_end_needed(philo))
+		return (1);
 	return (0);
 }
 
-// int	take_death_mic(t_data *data, t_philo *philo, char *str)
-// {
-// 	long	time;
-// 	sem_t	*sem_mic;
-	
-// 	sem_mic = data->sem_mic;	
-// 	sem_wait(sem_mic);	
-// 	time = get_time_since_start(data);
-// 	if (time < 0)
-// 		return (sem_post(sem_mic), 1);
-// 	printf("%ld ", time);
-// 	printf("%d ", philo->id);
-// 	printf("%s", str);
-// 	sem_post(sem_mic);
-// 	// if (is_end_needed(philo))
-// 	// 	return (1);
-// 	return (0);
-// }
 static void	init_lastmeal_philos(t_data *data, t_philo *philos)
 {
 	int	i;
@@ -84,11 +78,7 @@ int	make_childs(t_data *data, t_philo *philos)
 		{				
 			philo_routine(data, &philos[i]);		
 			return (0);
-		}
-		else
-		{
-			
-		}
+		}	
 	}
 //	if (waitpid())
 //	sem_close(sem_forks);

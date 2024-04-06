@@ -40,6 +40,7 @@ HDRFLAGS = \
 HDR = \
 	$(HDR_DIR)/main.h \
 	$(HDR_DIR)/time.h \
+	$(HDR_DIR)/mortician.h \
 	$(HDR_DIR)/parsing/parsing.h \
 	$(HDR_DIR)/parsing/parsing_utils.h \
 	$(HDR_DIR)/setup/setup.h \
@@ -63,6 +64,7 @@ OBJ = $(SRC:.c=.o)
 SRC = \
 	$(SRC_DIR)/main.c \
 	$(SRC_DIR)/time.c \
+	$(SRC_DIR)/mortician.c \
 	$(SRC_DIR)/parsing/parsing.c \
 	$(SRC_DIR)/parsing/parsing_utils.c \
 	$(SRC_DIR)/setup/setup.c \

@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mortician.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/05 11:37:55 by svidot            #+#    #+#             */
-/*   Updated: 2024/04/06 16:02:59 by seblin           ###   ########.fr       */
+/*   Created: 2024/04/06 16:00:14 by seblin            #+#    #+#             */
+/*   Updated: 2024/04/06 16:35:47 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#ifndef MORTICIAN_H
+# define MORTICIAN_H
 
-int	main(int argc, char *argv[])
-{
-	t_data	*data;
-	t_philo	*philos;
-	
-	if (parsing(argc, argv))
-		return (1);
-	if (setup(argv, &data, &philos))
-		return (1);	
-	if (make_childs(data, philos))
-		return (1);
-	if (mortician(data, philos))
-		return (1);
-	return (0);
-}
+# include <unistd.h>
+# include "x_philo_struct.h"
+
+long	get_time_since_start(t_data *data);
+long	get_time_since_last_meal(t_philo *philo);
+
+#endif
