@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:41:21 by svidot            #+#    #+#             */
-/*   Updated: 2024/04/06 11:36:23 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/06 14:38:45 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,14 @@ static int	create_data_struct(char *argv[], t_data **data)
 	(*data)->sleep_time = ft_atoi(*++argv);
 	if (*++argv)
 		(*data)->max_meals = ft_atoi(*argv);
-	(*data)->sem_mic
-		= sem_open("/sem_mic", O_CREAT, 0644, 1);
-	if ((*data)->sem_mic == SEM_FAILED)
-		return (1);
+	sem_unlink("/sem_mic");
+	(*data)->sem_mic 
+		= sem_open("/sem_mic", O_CREAT, 0666, 1);
+	if ((*data)->sem_mic == SEM_FAILED)	
+		return (1);	
+	sem_unlink("/sem_forks");
 	(*data)->sem_forks
-		= sem_open("/sem_forks", O_CREAT, 0644, (*data)->n_philo);
+		= sem_open("/sem_forks", O_CREAT, 0666, (*data)->n_philo);
 	if ((*data)->sem_forks == SEM_FAILED)
 		return (1);
 	return (0);
