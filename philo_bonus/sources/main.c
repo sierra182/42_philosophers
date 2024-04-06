@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 11:37:55 by svidot            #+#    #+#             */
-/*   Updated: 2024/04/05 21:51:05 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/06 11:22:34 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,15 @@
 int	main(int argc, char *argv[])
 {
 	t_data	*data;
+	t_philo	*philos;
 	
 	if (parsing(argc, argv))
 		return (1);
-	if (setup(argv, &data))
+	if (setup(argv, &data, &philos))
 		return (1);	
 	if (make_childs(data))
 		return (1);
-	if (mortician(data))
-		return (1);
+	// if (mortician(data))
+	// 	return (1);
 	return (0);
 }

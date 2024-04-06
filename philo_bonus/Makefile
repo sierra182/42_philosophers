@@ -29,7 +29,8 @@ HDRFLAGS = \
 	-I$(HDR_DIR)/parsing \
 	-I$(HDR_DIR)/setup \
 	-I$(HDR_DIR)/exit \
-	#-I$(HDR_DIR)/childs \
+	-I$(HDR_DIR)/childs \
+	-I$(HDR_DIR)/childs/routine \
 	# -I$(HDR_DIR)/mortuary \
 	# -I$(HDR_DIR)/philo_utils \
 	# -I$(HDR_DIR)/routine \
@@ -46,6 +47,7 @@ HDR = \
 	$(HDR_DIR)/exit/exit.h \
 	$(HDR_DIR)/exit/data_store.h \
 	$(HDR_DIR)/childs/childs.h \
+	$(HDR_DIR)/childs/routine/routine.h \
 	# $(HDR_DIR)/mortuary/mortuary.h \
 	# $(HDR_DIR)/philo_utils/philo_utils.h \
 	# $(HDR_DIR)/philo_utils/time.h \
@@ -68,6 +70,7 @@ SRC = \
 	$(SRC_DIR)/exit/data_store.c \
 	$(SRC_DIR)/setup/ft_calloc.c \
 	$(SRC_DIR)/childs/childs.c \
+	$(SRC_DIR)/childs/routine/routine.c \
 	# $(SRC_DIR)/mortuary/mortuary.c \
 	# $(SRC_DIR)/philo_utils/philo_utils.c \
 	# $(SRC_DIR)/philo_utils/time.c \
