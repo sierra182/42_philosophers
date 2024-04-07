@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:46:32 by svidot            #+#    #+#             */
-/*   Updated: 2024/04/06 10:56:58 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/07 20:59:20 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ typedef struct s_data
 	struct timeval	start_time;
 	sem_t			*sem_mic;
 	sem_t			*sem_forks;
+	sem_t			*sem_death;
+	sem_t			*sem_death_notice;	
 }	t_data;
 
 typedef struct s_philo

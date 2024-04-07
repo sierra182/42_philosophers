@@ -23,9 +23,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="1.3962815"
-     inkscape:cx="515.29725"
-     inkscape:cy="352.72258"
+     inkscape:zoom="2.1787854"
+     inkscape:cx="530.57085"
+     inkscape:cy="347.67078"
      inkscape:window-width="1366"
      inkscape:window-height="745"
      inkscape:window-x="-8"
@@ -478,7 +478,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.33333px;line-height:1.25;font-family:'BankGothic Lt BT';-inkscape-font-specification:'BankGothic Lt BT';white-space:pre;shape-inside:url(#rect5);display:inline"><tspan
          x="310.28906"
          y="401.48633"
-         id="tspan4">ROUTINE</tspan></text>
+         id="tspan1">ROUTINE</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.34062791,0,0,0.34062791,28.016488,-54.045933)"
@@ -486,7 +486,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.33333px;line-height:1.25;font-family:'BankGothic Lt BT';-inkscape-font-specification:'BankGothic Lt BT';white-space:pre;shape-inside:url(#rect6-5);display:inline"><tspan
          x="362.0332"
          y="413.48242"
-         id="tspan5">PHILO</tspan></text>
+         id="tspan2">PHILO</tspan></text>
     <g
        id="g8-0"
        transform="translate(28.225365,2.9029488)">
@@ -669,7 +669,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.33333px;line-height:1.25;font-family:'BankGothic Lt BT';-inkscape-font-specification:'BankGothic Lt BT';white-space:pre;shape-inside:url(#rect11);display:inline"><tspan
          x="569.01172"
          y="331.83789"
-         id="tspan7">LAST_MEAL</tspan></text>
+         id="tspan3">LAST_MEAL</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.1;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:0.4, 0.4;stroke-dashoffset:0;stroke-opacity:1"
        d="m 154.22324,94.88529 0.0168,-6.213816"
@@ -725,7 +725,7 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;line-height:1.25;font-family:'BankGothic Lt BT';-inkscape-font-specification:'BankGothic Lt BT';white-space:pre;shape-inside:url(#rect15);display:inline"><tspan
            x="366.52344"
            y="353.67776"
-           id="tspan8">WAIT</tspan></text>
+           id="tspan4">WAIT</tspan></text>
     </g>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.16;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
@@ -752,7 +752,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8px;line-height:1.25;font-family:'BankGothic Lt BT';-inkscape-font-specification:'BankGothic Lt BT';white-space:pre;shape-inside:url(#rect18);display:inline"><tspan
          x="571.16016"
          y="393.82031"
-         id="tspan9">IS_END</tspan></text>
+         id="tspan5">IS_END</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.1606937,0,0,0.1606937,24.902692,32.853992)"
@@ -760,7 +760,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8px;line-height:1.25;font-family:'BankGothic Lt BT';-inkscape-font-specification:'BankGothic Lt BT';white-space:pre;shape-inside:url(#rect18-1);display:inline"><tspan
          x="571.16016"
          y="393.82031"
-         id="tspan10">IS_END</tspan></text>
+         id="tspan6">IS_END</tspan></text>
     <path
        sodipodi:type="star"
        style="fill:#ca4e30;fill-opacity:1;stroke:#f50830;stroke-width:0.1;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;stroke-opacity:1"
@@ -888,7 +888,7 @@
          style="font-size:13.3238px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect17);display:inline;fill:#070701;fill-opacity:1"><tspan
            x="338.79688"
            y="455.41344"
-           id="tspan11">EXIT</tspan></text>
+           id="tspan7">EXIT</tspan></text>
     </g>
     <g
        id="g20-0"
@@ -908,7 +908,7 @@
          style="font-size:13.3238px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect17-7);display:inline;fill:#070701;fill-opacity:1"><tspan
            x="338.79688"
            y="455.41344"
-           id="tspan12">EXIT</tspan></text>
+           id="tspan8">EXIT</tspan></text>
     </g>
     <g
        id="g20-0-7"
@@ -928,7 +928,7 @@
          style="font-size:13.3238px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect17-7-7);display:inline;fill:#070701;fill-opacity:1"><tspan
            x="338.79688"
            y="455.41344"
-           id="tspan13">EXIT</tspan></text>
+           id="tspan9">EXIT</tspan></text>
     </g>
     <g
        id="g20-0-4"
@@ -948,7 +948,7 @@
          style="font-size:13.3238px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect17-7-1);display:inline;fill:#070701;fill-opacity:1"><tspan
            x="338.79688"
            y="455.41344"
-           id="tspan14">EXIT</tspan></text>
+           id="tspan10">EXIT</tspan></text>
     </g>
     <path
        style="opacity:0.559809;fill:none;fill-opacity:0.815686;stroke:#ea0f0f;stroke-width:0.1;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
@@ -972,7 +972,7 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.33333px;line-height:1.25;font-family:'BankGothic Lt BT';-inkscape-font-specification:'BankGothic Lt BT';white-space:pre;shape-inside:url(#rect21);display:inline"><tspan
            x="600.34375"
            y="370.6914"
-           id="tspan15">is_sat</tspan></text>
+           id="tspan11">is_sat</tspan></text>
     </g>
     <g
        id="g22"
@@ -1024,16 +1024,16 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.33333px;line-height:1.25;font-family:'BankGothic Lt BT';-inkscape-font-specification:'BankGothic Lt BT';white-space:pre;shape-inside:url(#rect22-4-4);display:inline;stroke:#efe3e3;stroke-width:1.00284;stroke-dasharray:none;stroke-opacity:1"><tspan
            x="613.30859"
            y="357.78906"
-           id="tspan16">THK</tspan></text>
+           id="tspan12">THK</tspan></text>
     </g>
     <text
        xml:space="preserve"
        transform="matrix(0.09772282,0,0,0.09772282,103.26646,57.602216)"
        id="text22-9-6-08"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.33333px;line-height:1.25;font-family:'BankGothic Lt BT';-inkscape-font-specification:'BankGothic Lt BT';white-space:pre;shape-inside:url(#rect22-4-4-5);display:inline;stroke:#ffffff;stroke-width:1.00284;stroke-dasharray:none;stroke-opacity:1"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.33333px;line-height:1.25;font-family:'BankGothic Lt BT';-inkscape-font-specification:'BankGothic Lt BT';white-space:pre;shape-inside:url(#rect22-4-4-5);display:inline;stroke:#ffffff;stroke-width:1.00284;stroke-dasharray:none;stroke-opacity:1;fill:#efe3e3;fill-opacity:1"><tspan
          x="613.30859"
          y="357.78906"
-         id="tspan17">EAT</tspan></text>
+         id="tspan13">EAT</tspan></text>
     <g
        id="g24"
        transform="translate(0.29468305,-0.46217131)">
@@ -1062,7 +1062,7 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.33333px;line-height:1.25;font-family:'BankGothic Lt BT';-inkscape-font-specification:'BankGothic Lt BT';white-space:pre;shape-inside:url(#rect22-4-4-7);display:inline;stroke:#efe3e3;stroke-width:1.00284;stroke-dasharray:none;stroke-opacity:1"><tspan
            x="613.30859"
            y="357.78906"
-           id="tspan18">SLEEP</tspan></text>
+           id="tspan14">SLEEP</tspan></text>
     </g>
     <circle
        style="opacity:1;fill:#c10000;fill-opacity:1;stroke:#7fb67d;stroke-width:0.298;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
@@ -1132,7 +1132,7 @@
        style="font-size:5.33333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect27);display:inline"><tspan
          x="481.45703"
          y="337.11914"
-         id="tspan19">+</tspan></text>
+         id="tspan15">+</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,-4.3899313,9.879111)"
@@ -1140,7 +1140,7 @@
        style="font-size:5.33333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect27-3);display:inline"><tspan
          x="481.45703"
          y="337.11914"
-         id="tspan20">+</tspan></text>
+         id="tspan16">+</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,14.593599,5.8802617)"
@@ -1148,7 +1148,7 @@
        style="font-size:5.33333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect27-4);display:inline"><tspan
          x="481.45703"
          y="337.11914"
-         id="tspan21">+</tspan></text>
+         id="tspan17">+</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.2037363,0,0,0.2037363,26.5414,23.060565)"
@@ -1156,7 +1156,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.6667px;line-height:1.25;font-family:'BankGothic Lt BT';-inkscape-font-specification:'BankGothic Lt BT';white-space:pre;shape-inside:url(#rect28);display:inline"><tspan
          x="408.68164"
          y="303.41605"
-         id="tspan22">FORK</tspan></text>
+         id="tspan18">FORK</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.1;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
        d="m 118.43213,84.808896 27.00252,4e-6"
@@ -1169,11 +1169,11 @@
        style="font-size:5.33333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect29-1);display:inline"><tspan
          x="495.96094"
          y="400.05468"
-         id="tspan23">1
+         id="tspan19">1
 </tspan><tspan
          x="495.96094"
          y="406.72134"
-         id="tspan24">
+         id="tspan20">
 </tspan></text>
     <text
        xml:space="preserve"
@@ -1182,11 +1182,11 @@
        style="font-size:5.33333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect29-1-2);display:inline"><tspan
          x="495.96094"
          y="400.05468"
-         id="tspan25">1
+         id="tspan21">1
 </tspan><tspan
          x="495.96094"
          y="406.72134"
-         id="tspan27">
+         id="tspan22">
 </tspan></text>
     <text
        xml:space="preserve"
@@ -1195,7 +1195,7 @@
        style="font-size:5.33333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect29-9);display:inline;fill:#ffffff"><tspan
          x="495.96094"
          y="400.05468"
-         id="tspan28">0
+         id="tspan23">0
 </tspan></text>
     <text
        xml:space="preserve"
@@ -1204,7 +1204,7 @@
        style="font-size:5.33333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect29-9-7);display:inline;fill:#ffffff"><tspan
          x="495.96094"
          y="400.05468"
-         id="tspan29">0
+         id="tspan24">0
 </tspan></text>
     <text
        xml:space="preserve"
@@ -1213,7 +1213,7 @@
        style="font-size:5.33333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect29-9-7-9);display:inline;fill:#ffffff"><tspan
          x="495.96094"
          y="400.05468"
-         id="tspan30">0
+         id="tspan25">0
 </tspan></text>
     <text
        xml:space="preserve"
@@ -1222,7 +1222,7 @@
        style="font-size:5.33333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect29-9-9);display:inline;fill:#ffffff"><tspan
          x="495.96094"
          y="400.05468"
-         id="tspan31">0
+         id="tspan27">0
 </tspan></text>
     <path
        style="fill:none;stroke:#ca4e30;stroke-width:0.1;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:0.815686"
@@ -1236,7 +1236,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.33333px;line-height:1.25;font-family:'BankGothic Lt BT';-inkscape-font-specification:'BankGothic Lt BT';white-space:pre;shape-inside:url(#rect6);display:inline"><tspan
          x="362.0332"
          y="413.48242"
-         id="tspan32">MORTICIAN</tspan></text>
+         id="tspan28">MORTICIAN</tspan></text>
     <g
        id="g29-4"
        transform="translate(-15.078328,-0.31347666)">
@@ -1255,7 +1255,7 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.33333px;line-height:1.25;font-family:'BankGothic Lt BT';-inkscape-font-specification:'BankGothic Lt BT';white-space:pre;shape-inside:url(#rect21-1);display:inline"><tspan
            x="600.34375"
            y="370.6914"
-           id="tspan33">is_DEAD</tspan></text>
+           id="tspan29">is_DEAD</tspan></text>
     </g>
     <text
        xml:space="preserve"
@@ -1264,7 +1264,7 @@
        style="font-size:5.33333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect27-4-3);display:inline"><tspan
          x="481.45703"
          y="337.11914"
-         id="tspan34">+</tspan></text>
+         id="tspan30">+</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,27.293598,5.4527798)"
@@ -1272,7 +1272,7 @@
        style="font-size:5.33333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect27-4-3-1);display:inline"><tspan
          x="481.45703"
          y="337.11914"
-         id="tspan35">+</tspan></text>
+         id="tspan31">+</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.13678673,0,0,0.13678673,82.418054,52.015972)"
@@ -1280,7 +1280,7 @@
        style="font-size:5.33333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect29-9-7-2);display:inline;fill:#ffffff"><tspan
          x="495.96094"
          y="400.05468"
-         id="tspan36">0
+         id="tspan32">0
 </tspan></text>
     <path
        sodipodi:type="star"

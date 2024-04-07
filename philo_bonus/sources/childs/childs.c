@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 16:19:18 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/06 16:39:03 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/07 21:58:10 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,10 @@ int	make_childs(t_data *data, t_philo *philos)
 			return (1);
 		if (!pid)
 		{				
-			if (philo_routine(data, &philos[i]))
+			if (create_threads(data, &philos[i]))
 				return (1);		
 			return (0);
 		}	
 	}
-//	if (waitpid())
-//	sem_close(sem_forks);
-//	sem_unlink("/sem_forks");
 	return (0);
 }
