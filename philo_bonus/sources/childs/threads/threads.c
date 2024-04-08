@@ -6,72 +6,25 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 21:58:56 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/08 11:47:27 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/08 14:51:17 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <pthread.h>
-#include "x_philo_struct.h"
-# include <stdlib.h>
-# include <unistd.h>
+#include "threads.h"
 
-long	get_time_since_start(t_data *data);
-static int	take_death_mic(t_data *data, t_philo *philo, char *str)
+int	is_end_needed(t_philo *philo)
 {
-	long	time;
-	sem_t	*sem_mic;
-	
-	sem_mic = data->sem_mic;	
-	sem_wait(sem_mic);	
-	time = get_time_since_start(data);
-	if (time < 0)
-		return (sem_post(sem_mic), 1);
-	printf("%ld ", time);
-	printf("%d ", philo->id);
-	printf("%s", str);
-	sem_post(sem_mic);
-	return (0);
-}
-long	get_time_since_last_meal(t_philo *philo);
+	sem_t	*sem_end_needed;
+	int		is_end_needed;
 
-int	is_actually_dead(t_data *data, t_philo *philo)
-{
-	sem_t			*sem_last_meal;
-	long			delta_last_meal;
-	struct timeval	actual_time;
-
-	sem_last_meal = philo->sem_last_meal;
-	sem_wait(sem_last_meal);	
-	delta_last_meal = get_time_since_last_meal(philo);
-	if (delta_last_meal < 0)
-		return (1);
-	sem_post(sem_last_meal);
-	if (delta_last_meal >= data->death_time)
-		return (1);
-	return (0);
+	sem_end_needed = philo->sem_end_needed;
+	sem_wait(sem_end_needed);
+	is_end_needed = philo->end_needed;
+	sem_post(sem_end_needed);
+	return (is_end_needed);
 }
 
-void	*mortician_routine(void *ptr)
-{	
-	sem_t	*sem_death;
-	t_data	*data;
-	t_philo	*philo;
-	
-	data = (t_data *) ((void **) ptr)[0];
-	philo = (t_philo *) ((void **) ptr)[1];
-	sem_death = data->sem_death;
-	while (1)
-	{	
-		if (is_actually_dead(data, philo))
-		{
-			take_death_mic(data, philo, "died\n");
-			sem_post(sem_death);
-			exit(0);	
-		}
-		//usleep(500);
-	}
-}
-void	*is_end_routine(void *ptr)
+static void	*is_end_routine(void *ptr)
 {
 	t_data	*data;
 	sem_t	*sem_death_notice;
@@ -81,7 +34,29 @@ void	*is_end_routine(void *ptr)
 	sem_wait(sem_death_notice);
 	exit(0);
 }
-void	*philo_routine(void *ptr);
+
+
+int	take_mic(t_data *data, t_philo *philo, char *str)
+{	
+	long	time;
+	sem_t	*sem_mic;
+	
+	sem_mic = data->sem_mic;
+	sem_wait(sem_mic);
+	if (is_end_needed(philo))
+		return (sem_post(sem_mic), 1);
+	time = get_time_since_start(data);
+	if (time < 0)
+		return (sem_post(sem_mic), 1);
+	printf("%ld ", time);
+	printf("%d ", philo->id);
+	printf("%s", str);
+	sem_post(sem_mic);
+	if (is_end_needed(philo))
+		return (1);
+	return (0);
+}
+
 int	create_threads(t_data *data, t_philo *philo)
 {
 	pthread_t	tid_philo;

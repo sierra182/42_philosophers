@@ -30,7 +30,8 @@ HDRFLAGS = \
 	-I$(HDR_DIR)/setup \
 	-I$(HDR_DIR)/exit \
 	-I$(HDR_DIR)/childs \
-	-I$(HDR_DIR)/childs/routine \
+	-I$(HDR_DIR)/childs/threads \
+	-I$(HDR_DIR)/childs/threads/routines \
 	# -I$(HDR_DIR)/mortuary \
 	# -I$(HDR_DIR)/philo_utils \
 	# -I$(HDR_DIR)/routine \
@@ -40,7 +41,7 @@ HDRFLAGS = \
 HDR = \
 	$(HDR_DIR)/main.h \
 	$(HDR_DIR)/time.h \
-	$(HDR_DIR)/mortician.h \
+	$(HDR_DIR)/death_noticer.h \
 	$(HDR_DIR)/parsing/parsing.h \
 	$(HDR_DIR)/parsing/parsing_utils.h \
 	$(HDR_DIR)/setup/setup.h \
@@ -48,7 +49,9 @@ HDR = \
 	$(HDR_DIR)/exit/exit.h \
 	$(HDR_DIR)/exit/data_store.h \
 	$(HDR_DIR)/childs/childs.h \
-	$(HDR_DIR)/childs/routine/routine.h \
+	$(HDR_DIR)/childs/threads/threads.h \
+	$(HDR_DIR)/childs/threads/routines/mortician.h \
+	$(HDR_DIR)/childs/threads/routines/philo.h \
 	# $(HDR_DIR)/mortuary/mortuary.h \
 	# $(HDR_DIR)/philo_utils/philo_utils.h \
 	# $(HDR_DIR)/philo_utils/time.h \
@@ -64,7 +67,7 @@ OBJ = $(SRC:.c=.o)
 SRC = \
 	$(SRC_DIR)/main.c \
 	$(SRC_DIR)/time.c \
-	$(SRC_DIR)/mortician.c \
+	$(SRC_DIR)/death_noticer.c \
 	$(SRC_DIR)/parsing/parsing.c \
 	$(SRC_DIR)/parsing/parsing_utils.c \
 	$(SRC_DIR)/setup/setup.c \
@@ -73,7 +76,8 @@ SRC = \
 	$(SRC_DIR)/setup/ft_calloc.c \
 	$(SRC_DIR)/childs/childs.c \
 	$(SRC_DIR)/childs/threads/threads.c \
-	$(SRC_DIR)/childs/threads/routine/routine.c \
+	$(SRC_DIR)/childs/threads/routines/philo.c \
+	$(SRC_DIR)/childs/threads/routines/mortician.c \
 	# $(SRC_DIR)/mortuary/mortuary.c \
 	# $(SRC_DIR)/philo_utils/philo_utils.c \
 	# $(SRC_DIR)/philo_utils/time.c \

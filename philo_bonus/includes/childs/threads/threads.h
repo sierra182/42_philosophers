@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   routine.h                                          :+:      :+:    :+:   */
+/*   threads.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/06 11:14:58 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/06 15:40:10 by seblin           ###   ########.fr       */
+/*   Created: 2024/04/08 13:49:09 by seblin            #+#    #+#             */
+/*   Updated: 2024/04/08 13:57:12 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ROUTINE_H
-# define ROUTINE_H
+#ifndef THREADS_H
+# define THREADS_H
 
-# include <unistd.h>
+# include <pthread.h>
 # include "x_philo_struct.h"
+# include <stdlib.h>
 
-int	take_mic(t_data *data, t_philo *philo, char *str);
+long	get_time_since_start(t_data *data);
+void	*mortician_routine(void *ptr);
+void	*philo_routine(void *ptr);
 
 #endif

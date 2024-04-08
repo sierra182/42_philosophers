@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   setup.h                                            :+:      :+:    :+:   */
+/*   death_noticer.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/05 14:41:39 by svidot            #+#    #+#             */
-/*   Updated: 2024/04/08 14:57:20 by seblin           ###   ########.fr       */
+/*   Created: 2024/04/06 16:00:14 by seblin            #+#    #+#             */
+/*   Updated: 2024/04/06 16:35:47 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SETUP_H
-# define SETUP_H
+#ifndef DEATH_NOTICER_H
+# define DEATH_NOTICER_H
 
-# include <stdlib.h>
-# include <fcntl.h>
+# include <unistd.h>
 # include "x_philo_struct.h"
-# include "x_exit.h"
 
-void	*ft_calloc(size_t nmemb, size_t size);
-int		ft_atoi(const char *nptr);
+long	get_time_since_start(t_data *data);
+long	get_time_since_last_meal(t_philo *philo);
 
 #endif

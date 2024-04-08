@@ -6,44 +6,11 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 16:19:18 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/08 10:14:12 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/08 13:26:32 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "childs.h"
-
-int	is_end_needed(t_philo *philo)
-{
-	sem_t	*sem_end_needed;
-	int		is_end_needed;
-
-	sem_end_needed = philo->sem_end_needed;
-	sem_wait(sem_end_needed);
-	is_end_needed = philo->end_needed;
-	sem_post(sem_end_needed);
-	return (is_end_needed);
-}
-
-int	take_mic(t_data *data, t_philo *philo, char *str)
-{	
-	long	time;
-	sem_t	*sem_mic;
-	
-	sem_mic = data->sem_mic;
-	sem_wait(sem_mic);
-	if (is_end_needed(philo))
-		return (sem_post(sem_mic), 1);
-	time = get_time_since_start(data);
-	if (time < 0)
-		return (sem_post(sem_mic), 1);
-	printf("%ld ", time);
-	printf("%d ", philo->id);
-	printf("%s", str);
-	sem_post(sem_mic);
-	if (is_end_needed(philo))
-		return (1);
-	return (0);
-}
 
 static void	init_lastmeal_philos(t_data *data, t_philo *philos)
 {
