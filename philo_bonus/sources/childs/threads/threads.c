@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 21:58:56 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/08 11:37:13 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/08 11:47:27 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	*mortician_routine(void *ptr)
 			sem_post(sem_death);
 			exit(0);	
 		}
-		usleep(500);
+		//usleep(500);
 	}
 }
 void	*is_end_routine(void *ptr)
