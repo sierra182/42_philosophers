@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 13:29:06 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/08 15:31:07 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/08 16:08:29 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static int	is_actually_dead(t_data *data, t_philo *philo)
 {
 	sem_t			*sem_last_meal;
 	long			delta_last_meal;
-	struct timeval	actual_time;
 
 	sem_last_meal = philo->sem_last_meal;
 	sem_wait(sem_last_meal);

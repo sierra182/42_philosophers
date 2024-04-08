@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 21:58:56 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/08 15:43:57 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/08 16:06:58 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,5 @@ int	create_threads(t_data *data, t_philo *philo)
 	pthread_join(tid_philo, NULL);
 	pthread_join(tid_mortician, NULL);
 	pthread_join(tid_is_end, NULL);
+	return (0);
 }
