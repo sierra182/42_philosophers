@@ -6,13 +6,14 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 11:14:58 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/08 14:07:05 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/08 16:38:26 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
+# include <stdlib.h>
 # include <unistd.h>
 # include "x_philo_struct.h"
 

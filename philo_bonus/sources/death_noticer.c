@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 21:54:29 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/08 16:05:18 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/08 18:11:58 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ void	*wait_death(void *ptr)
 	return (NULL);
 }
 
-int	mortician(t_data *data)
+int	death_noticer(t_data *data)
 {
-	pthread_t	tid;
+	pthread_t tid;
 
 	if (pthread_create(&tid, NULL, wait_death, (void *) data))
 		return (1);
-	pthread_join(tid, NULL);
+	pthread_detach(tid);
 	return (0);
 }

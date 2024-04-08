@@ -23,9 +23,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="2.1787854"
-     inkscape:cx="530.57085"
-     inkscape:cy="347.67078"
+     inkscape:zoom="1.0893927"
+     inkscape:cx="627.87277"
+     inkscape:cy="421.79464"
      inkscape:window-width="1366"
      inkscape:window-height="745"
      inkscape:window-x="-8"
@@ -290,26 +290,32 @@
     <circle
        style="opacity:0.432271;fill:#666666;stroke:#5da35b;stroke-width:0.333531;stroke-linecap:round;stroke-linejoin:bevel"
        id="circle1"
-       cx="158.71494"
-       cy="125.29087"
+       cx="204.13206"
+       cy="70.6446"
        r="4.0993862" />
     <circle
        style="opacity:0.432271;fill:#666666;stroke:#5da35b;stroke-width:0.333531;stroke-linecap:round;stroke-linejoin:bevel"
        id="circle2"
-       cx="140.3013"
-       cy="132.15208"
+       cx="229.67831"
+       cy="76.777191"
        r="4.0993862" />
     <circle
        style="opacity:0.432271;fill:#666666;stroke:#5da35b;stroke-width:0.333531;stroke-linecap:round;stroke-linejoin:bevel"
        id="circle3"
-       cx="140.3013"
-       cy="142.10461"
+       cx="216.56322"
+       cy="94.744514"
        r="4.0993862" />
     <circle
        style="opacity:0.432271;fill:#666666;stroke:#5da35b;stroke-width:0.333531;stroke-linecap:round;stroke-linejoin:bevel"
        id="circle4"
-       cx="140.3013"
-       cy="152.05714"
+       cx="191.0616"
+       cy="96.439392"
+       r="4.0993862" />
+    <circle
+       style="opacity:0.432271;fill:#666666;stroke:#5da35b;stroke-width:0.333531;stroke-linecap:round;stroke-linejoin:bevel"
+       id="circle4-6"
+       cx="192.43643"
+       cy="125.44127"
        r="4.0993862" />
     <path
        sodipodi:type="star"
@@ -328,7 +334,7 @@
        d="M 131.09199,107.94972 101.48033,107.66456 92.531849,79.246201 116.16413,61.364442 140.68375,79.337908 Z"
        inkscape:transform-center-x="-0.00033646799"
        inkscape:transform-center-y="-0.65911402"
-       transform="matrix(0.24582612,-0.0025332,0.0025332,0.24582612,150.48059,58.451073)" />
+       transform="matrix(0.24582612,-0.0025332,0.0025332,0.24582612,156.67383,66.951604)" />
     <path
        sodipodi:type="star"
        style="opacity:0.432271;fill:#b5bf0d;fill-opacity:1;stroke:#031557;stroke-width:7.54858;stroke-linecap:round;stroke-linejoin:bevel;stroke-dasharray:none;stroke-opacity:1"
@@ -1030,7 +1036,7 @@
        xml:space="preserve"
        transform="matrix(0.09772282,0,0,0.09772282,103.26646,57.602216)"
        id="text22-9-6-08"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.33333px;line-height:1.25;font-family:'BankGothic Lt BT';-inkscape-font-specification:'BankGothic Lt BT';white-space:pre;shape-inside:url(#rect22-4-4-5);display:inline;stroke:#ffffff;stroke-width:1.00284;stroke-dasharray:none;stroke-opacity:1;fill:#efe3e3;fill-opacity:1"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.33333px;line-height:1.25;font-family:'BankGothic Lt BT';-inkscape-font-specification:'BankGothic Lt BT';white-space:pre;shape-inside:url(#rect22-4-4-5);display:inline;fill:#efe3e3;fill-opacity:1;stroke:#ffffff;stroke-width:1.00284;stroke-dasharray:none;stroke-opacity:1"><tspan
          x="613.30859"
          y="357.78906"
          id="tspan13">EAT</tspan></text>
@@ -1161,6 +1167,11 @@
        style="fill:none;stroke:#000000;stroke-width:0.1;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
        d="m 118.43213,84.808896 27.00252,4e-6"
        id="path28"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.1;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="m 165.82412,93.229962 12.86671,-6.798737"
+       id="path28-1"
        sodipodi:nodetypes="cc" />
     <text
        xml:space="preserve"
@@ -1336,5 +1347,9 @@
        inkscape:transform-center-x="0.08599936"
        inkscape:transform-center-y="0.0023397288"
        transform="matrix(0.10349042,-0.38139222,0.38139222,0.10349042,87.91581,128.6228)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 116.03225,92.397738 0.78934,0.68308"
+       id="path2" />
   </g>
 </svg>

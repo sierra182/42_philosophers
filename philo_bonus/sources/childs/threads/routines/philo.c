@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 10:37:50 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/08 15:29:27 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/08 18:16:02 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	update_last_meal(t_philo *philo)
 	sem_wait(sem_last_meal);
 	gettimeofday(&philo->last_meal, NULL);
 	sem_post(sem_last_meal);
-	philo->n_meal++;
+	philo->n_meal++;	
 }
 
 static int	ph_eat(t_data *data, t_philo *philo)
@@ -29,13 +29,19 @@ static int	ph_eat(t_data *data, t_philo *philo)
 
 	sem_forks = data->sem_forks;
 	sem_wait(sem_forks);
+	if (take_mic(data, philo, "has taken a fork\n"))
+		return (1);
 	sem_wait(sem_forks);
+	if (take_mic(data, philo, "has taken a fork\n"))
+		return (1);
 	if (take_mic(data, philo, "is eating\n"))
 		return (1);
 	update_last_meal(philo);
 	usleep(data->eat_time * 1000);
 	sem_post(sem_forks);
 	sem_post(sem_forks);
+	if (philo->n_meal >= data->max_meals)
+		exit(0);	
 	return (0);
 }
 
