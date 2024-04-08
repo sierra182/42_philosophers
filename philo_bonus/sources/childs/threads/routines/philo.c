@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 10:37:50 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/08 18:16:02 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/08 18:20:41 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	ph_eat(t_data *data, t_philo *philo)
 	usleep(data->eat_time * 1000);
 	sem_post(sem_forks);
 	sem_post(sem_forks);
-	if (philo->n_meal >= data->max_meals)
+	if (data->max_meals && philo->n_meal >= data->max_meals)
 		exit(0);	
 	return (0);
 }
