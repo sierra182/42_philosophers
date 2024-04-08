@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 13:29:06 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/08 16:08:29 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/08 19:47:20 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,9 @@ void	*mortician_routine(void *ptr)
 	sem_death = data->sem_death;
 	while (1)
 	{
-		if (is_actually_dead(data, philo))
+		if (is_end_needed(philo))
+			exit(0);
+		else if (is_actually_dead(data, philo))
 		{
 			take_death_mic(data, philo, "died\n");
 			sem_post(sem_death);

@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 10:37:50 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/08 18:20:41 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/08 19:50:44 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ static int	ph_eat(t_data *data, t_philo *philo)
 
 	sem_forks = data->sem_forks;
 	sem_wait(sem_forks);
-	if (take_mic(data, philo, "has taken a fork\n"))
+	if (is_end_needed(philo) || take_mic(data, philo, "has taken a fork\n"))
 		return (1);
 	sem_wait(sem_forks);
-	if (take_mic(data, philo, "has taken a fork\n"))
+	if (is_end_needed(philo) || take_mic(data, philo, "has taken a fork\n"))
 		return (1);
 	if (take_mic(data, philo, "is eating\n"))
 		return (1);
@@ -69,11 +69,11 @@ void	*philo_routine(void *ptr)
 	philo = (t_philo *)((void **) ptr)[1];
 	while (1)
 	{
-		if (ph_eat(data, philo))
+		if (is_end_needed(philo) || ph_eat(data, philo))
+			break ;			
+		if (is_end_needed(philo) || ph_sleep(data, philo))
 			break ;
-		if (ph_sleep(data, philo))
-			break ;
-		if (ph_think(data, philo))
+		if (is_end_needed(philo) || ph_think(data, philo))
 			break ;
 	}
 	return (NULL);

@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:00:44 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/08 15:01:38 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/08 19:48:49 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@
 
 long	get_time_since_last_meal(t_philo *philo);
 long	get_time_since_start(t_data *data);
+int		is_end_needed(t_philo *philo);
 
 #endif

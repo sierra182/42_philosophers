@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 11:14:58 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/08 16:38:26 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/08 19:37:17 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include "x_philo_struct.h"
 
+int	is_end_needed(t_philo *philo);
 int	take_mic(t_data *data, t_philo *philo, char *str);
 
 #endif
