@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:46:32 by svidot            #+#    #+#             */
-/*   Updated: 2024/04/07 20:59:20 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/08 11:15:42 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct s_philo
 	struct timeval	last_meal;
 	sem_t			*sem_last_meal;
 	sem_t			*sem_is_satiated;
-	sem_t			*sem_end_needed;
+	sem_t			*sem_end_needed;	
 }	t_philo;
 
 typedef struct s_exit

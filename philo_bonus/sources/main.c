@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 11:37:55 by svidot            #+#    #+#             */
-/*   Updated: 2024/04/07 20:35:22 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/08 11:33:26 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,5 @@ int	main(int argc, char *argv[])
 		return (1);
 	if (mortician(data, philos))
 		return (1);
-	if (wait_all())
 	return (0);
 }

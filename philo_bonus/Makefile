@@ -72,7 +72,8 @@ SRC = \
 	$(SRC_DIR)/exit/data_store.c \
 	$(SRC_DIR)/setup/ft_calloc.c \
 	$(SRC_DIR)/childs/childs.c \
-	$(SRC_DIR)/childs/routine/routine.c \
+	$(SRC_DIR)/childs/threads/threads.c \
+	$(SRC_DIR)/childs/threads/routine/routine.c \
 	# $(SRC_DIR)/mortuary/mortuary.c \
 	# $(SRC_DIR)/philo_utils/philo_utils.c \
 	# $(SRC_DIR)/philo_utils/time.c \

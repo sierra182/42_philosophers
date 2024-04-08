@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 16:19:18 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/07 21:58:10 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/08 10:14:12 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ int	make_childs(t_data *data, t_philo *philos)
 		if (!pid)
 		{				
 			if (create_threads(data, &philos[i]))
-				return (1);		
-			return (0);
+				return (1);	
+			exit(0);
 		}	
 	}
 	return (0);

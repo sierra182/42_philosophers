@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:41:21 by svidot            #+#    #+#             */
-/*   Updated: 2024/04/06 14:38:45 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/08 11:16:02 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int	create_data_struct(char *argv[], t_data **data)
 	(*data)->sleep_time = ft_atoi(*++argv);
 	if (*++argv)
 		(*data)->max_meals = ft_atoi(*argv);
-	sem_unlink("/sem_mic");
+	sem_unlink("/sem_mic"); 
 	(*data)->sem_mic 
 		= sem_open("/sem_mic", O_CREAT, 0666, 1);
 	if ((*data)->sem_mic == SEM_FAILED)	
@@ -66,6 +66,16 @@ static int	create_data_struct(char *argv[], t_data **data)
 	(*data)->sem_forks
 		= sem_open("/sem_forks", O_CREAT, 0666, (*data)->n_philo);
 	if ((*data)->sem_forks == SEM_FAILED)
+		return (1);
+	sem_unlink("/sem_death");
+	(*data)->sem_death
+		= sem_open("/sem_death", O_CREAT, 0666, 0);
+	if ((*data)->sem_death == SEM_FAILED)
+		return (1);
+		sem_unlink("/sem_death_notice");
+	(*data)->sem_death_notice
+		= sem_open("/sem_death_notice", O_CREAT, 0666, 0);
+	if ((*data)->sem_death_notice == SEM_FAILED)
 		return (1);
 	return (0);
 }

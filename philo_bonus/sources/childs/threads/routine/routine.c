@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 10:37:50 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/06 15:53:27 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/08 11:38:01 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,15 +88,15 @@
 static int	ph_eat(t_data *data, t_philo *philo)
 {
 	sem_t	*sem_forks;
-	
+
 	sem_forks = data->sem_forks;
-	sem_wait(sem_forks);
-	sem_wait(sem_forks);
+	// sem_wait(sem_forks);
+	// sem_wait(sem_forks);
 	if (take_mic(data, philo, "is eating\n"))
 		return (1);// sem_post * 2
 	usleep(data->eat_time * 1000);
-	sem_post(sem_forks);
-	sem_post(sem_forks);
+	// sem_post(sem_forks);
+	// sem_post(sem_forks);
 	return (0);
 }
 
@@ -115,16 +115,21 @@ static int	ph_think(t_data *data, t_philo *philo)
 	return (0);
 }
 
-int	philo_routine(t_data *data, t_philo *philo)
+void	*philo_routine(void *ptr)
 {
+	t_data	*data;
+	t_philo	*philo;
+
+	data = (t_data *) ((void **) ptr)[0];
+	philo = (t_philo *) ((void **) ptr)[1];
 	while (1)
-	{ 
+	{
 		if (ph_eat(data, philo))
-			return (1);
+			break ;
 		if (ph_sleep(data, philo))
-			return (1);
+			break ;
 		if (ph_think(data, philo))
-			return (1);
+			break ;
 	}
-	return (0);
+	return (NULL);
 }
