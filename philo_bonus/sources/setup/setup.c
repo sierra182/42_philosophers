@@ -6,11 +6,20 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:41:21 by svidot            #+#    #+#             */
-/*   Updated: 2024/04/08 11:16:02 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/08 15:59:06 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "setup.h"
+
+static int	open_semaphore(char *name, sem_t **sem, int value)
+{
+	sem_unlink(name);
+	*sem = sem_open(name, O_CREAT, 0666, value);
+	if (*sem == SEM_FAILED)
+		return (1);
+	return (0);
+}
 
 static int	init_philos(t_data *data, t_philo *philos)
 {
@@ -20,17 +29,11 @@ static int	init_philos(t_data *data, t_philo *philos)
 	while (++i < data->n_philo)
 	{
 		philos[i].id = i + 1;
-		philos[i].sem_last_meal
-			= sem_open("/sem_last_meal", O_CREAT, 0644, 1);
-		if (philos[i].sem_last_meal == SEM_FAILED)
+		if (open_semaphore("/sem_last_meal", &philos[i].sem_last_meal, 1))
 			return (1);
-		philos[i].sem_is_satiated
-			= sem_open("/sem_is_satiated", O_CREAT, 0644, 1);
-		if (philos[i].sem_is_satiated == SEM_FAILED)
+		if (open_semaphore("/sem_is_satiated", &philos[i].sem_is_satiated, 1))
 			return (1);
-		philos[i].sem_end_needed
-			= sem_open("/sem_end_needed", O_CREAT, 0644, 1);
-		if (philos[i].sem_end_needed == SEM_FAILED)
+		if (open_semaphore("/sem_end_needed", &philos[i].sem_end_needed, 1))
 			return (1);
 	}
 	return (0);
@@ -57,25 +60,13 @@ static int	create_data_struct(char *argv[], t_data **data)
 	(*data)->sleep_time = ft_atoi(*++argv);
 	if (*++argv)
 		(*data)->max_meals = ft_atoi(*argv);
-	sem_unlink("/sem_mic"); 
-	(*data)->sem_mic 
-		= sem_open("/sem_mic", O_CREAT, 0666, 1);
-	if ((*data)->sem_mic == SEM_FAILED)	
-		return (1);	
-	sem_unlink("/sem_forks");
-	(*data)->sem_forks
-		= sem_open("/sem_forks", O_CREAT, 0666, (*data)->n_philo);
-	if ((*data)->sem_forks == SEM_FAILED)
+	if (open_semaphore("/sem_mic", &(*data)->sem_mic, 1))
 		return (1);
-	sem_unlink("/sem_death");
-	(*data)->sem_death
-		= sem_open("/sem_death", O_CREAT, 0666, 0);
-	if ((*data)->sem_death == SEM_FAILED)
+	if (open_semaphore("/sem_forks", &(*data)->sem_forks, (*data)->n_philo))
 		return (1);
-		sem_unlink("/sem_death_notice");
-	(*data)->sem_death_notice
-		= sem_open("/sem_death_notice", O_CREAT, 0666, 0);
-	if ((*data)->sem_death_notice == SEM_FAILED)
+	if (open_semaphore("/sem_death", &(*data)->sem_death, 0))
+		return (1);
+	if (open_semaphore("/sem_death_notice", &(*data)->sem_death_notice, 0))
 		return (1);
 	return (0);
 }

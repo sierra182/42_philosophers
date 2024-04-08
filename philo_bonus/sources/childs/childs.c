@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 16:19:18 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/08 13:26:32 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/08 15:32:11 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	make_childs(t_data *data, t_philo *philos)
 {
 	int		i;
 	pid_t	pid;
-	
+
 	start_timer(data, philos);
 	i = -1;
 	while (++i < data->n_philo)
@@ -42,11 +42,11 @@ int	make_childs(t_data *data, t_philo *philos)
 		if (pid < 0)
 			return (1);
 		if (!pid)
-		{				
+		{
 			if (create_threads(data, &philos[i]))
-				return (1);	
+				return (1);
 			exit(0);
-		}	
+		}
 	}
 	return (0);
 }

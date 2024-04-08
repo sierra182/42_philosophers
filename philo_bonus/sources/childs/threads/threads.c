@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 21:58:56 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/08 14:51:17 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/08 15:43:57 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,27 @@ int	is_end_needed(t_philo *philo)
 
 static void	*is_end_routine(void *ptr)
 {
-	t_data	*data;
 	sem_t	*sem_death_notice;
+	sem_t	*sem_end_needed;
+	t_philo	*philo;
+	t_data	*data;
 
-	data = (t_data *) ptr;
-	sem_death_notice = data->sem_death_notice;	
+	data = (t_data *)((void **) ptr)[0];
+	philo = (t_philo *)((void **) ptr)[1];
+	sem_death_notice = data->sem_death_notice;
+	sem_end_needed = philo->sem_end_needed;
 	sem_wait(sem_death_notice);
+	sem_wait(sem_end_needed);
+	philo->end_needed = 1;
+	sem_post(sem_end_needed);
 	exit(0);
 }
 
-
 int	take_mic(t_data *data, t_philo *philo, char *str)
-{	
+{
 	long	time;
 	sem_t	*sem_mic;
-	
+
 	sem_mic = data->sem_mic;
 	sem_wait(sem_mic);
 	if (is_end_needed(philo))
@@ -63,12 +69,12 @@ int	create_threads(t_data *data, t_philo *philo)
 	pthread_t	tid_mortician;
 	pthread_t	tid_is_end;
 
-	pthread_create
-		(&tid_philo, NULL, philo_routine, (void *[]) {data, philo});	
-	pthread_create
-		(&tid_mortician, NULL, mortician_routine, (void *[]) {data, philo});
-	pthread_create
-		(&tid_is_end, NULL, is_end_routine, (void *) data);
+	pthread_create(&tid_philo, NULL,
+		philo_routine, (void *[]){data, philo});
+	pthread_create(&tid_mortician, NULL,
+		mortician_routine, (void *[]){data, philo});
+	pthread_create(&tid_is_end, NULL,
+		is_end_routine, (void *[]){data, philo});
 	pthread_join(tid_philo, NULL);
 	pthread_join(tid_mortician, NULL);
 	pthread_join(tid_is_end, NULL);
