@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 16:19:18 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/08 15:32:11 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/09 08:16:05 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ static int	start_timer(t_data *data, t_philo *philos)
 	return (0);
 }
 
+static int	is_odd(t_philo *philo)
+{
+	return (philo->id % 2);
+}
+
 int	make_childs(t_data *data, t_philo *philos)
 {
 	int		i;
@@ -43,6 +48,8 @@ int	make_childs(t_data *data, t_philo *philos)
 			return (1);
 		if (!pid)
 		{
+			if (is_odd(&philos[i]))
+				usleep(2000);
 			if (create_threads(data, &philos[i]))
 				return (1);
 			exit(0);

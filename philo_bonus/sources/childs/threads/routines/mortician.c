@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 13:29:06 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/08 19:47:20 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/08 20:04:19 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,12 @@ void	*mortician_routine(void *ptr)
 	{
 		if (is_end_needed(philo))
 			exit(0);
-		else if (is_actually_dead(data, philo))
+		else if (is_actually_dead(data, philo) && !is_end_needed(philo))
 		{
 			take_death_mic(data, philo, "died\n");
 			sem_post(sem_death);
 			exit(0);
 		}
-		usleep(500);
+		//usleep(500);
 	}
 }

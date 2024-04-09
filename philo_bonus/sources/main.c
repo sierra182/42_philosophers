@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 11:37:55 by svidot            #+#    #+#             */
-/*   Updated: 2024/04/08 19:54:30 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/08 19:58:13 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	wait_childs(void)
 {
 	while (wait(&(int){0}) > 0)
-		usleep(500);
+		;//usleep(500);
 }
 
 int	main(int argc, char *argv[])

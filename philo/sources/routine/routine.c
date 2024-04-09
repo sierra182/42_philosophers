@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 10:37:50 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/03 20:43:23 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/09 08:13:38 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ static int	is_satiated(t_philo *philo)
 	}
 	return (is_satiated);
 }
-
-int	is_odd(t_philo *philo);
 
 void	*philo_routine(void *arg)
 {
