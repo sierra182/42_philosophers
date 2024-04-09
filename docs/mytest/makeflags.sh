@@ -21,7 +21,7 @@ echo -e "\n\033[0;35m no sanitize:\033[0m" \
 && make fclean \
 && make l \
 && echo -e "\033[0;35m memory flag:\033[0m\n" \
-&& valgrind --leak-check=full --show-leak-kinds=all ./$NAME $VALUES
+&& valgrind --trace-children=yes --leak-check=full --show-leak-kinds=all ./$NAME $VALUES
 
 echo -e "\n\033[0;35m helgrind flag:\033[0m\n" \
 && valgrind --tool=helgrind ./$NAME $VALUES

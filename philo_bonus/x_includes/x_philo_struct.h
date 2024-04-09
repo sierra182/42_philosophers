@@ -6,7 +6,7 @@
 /*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:46:32 by svidot            #+#    #+#             */
-/*   Updated: 2024/04/09 10:27:28 by svidot           ###   ########.fr       */
+/*   Updated: 2024/04/09 11:06:47 by svidot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ typedef struct s_exit
 typedef enum e_exit
 {
 	STT,	
-	DAT,
 	PHI,
+	DAT,
 	END
 }	t_exit_enum;
 

@@ -6,7 +6,7 @@
 /*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 18:35:28 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/09 10:36:34 by svidot           ###   ########.fr       */
+/*   Updated: 2024/04/09 11:07:09 by svidot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	store_and_free_philos(t_exit *exit, void *philos)
 	if (exit && philos)
 		exit->philos = (t_philo *) philos;
 	else if (exit && exit->philos)
-	{
+	{	
 		i = -1;
 		while (++i < exit->data->n_philo)
 		{
@@ -56,7 +56,7 @@ void	store_and_free_philos(t_exit *exit, void *philos)
 			sem_unlink("/sem_end_needed");
 		}
 		free(exit->philos);
-		exit->philos = NULL;
+		exit->philos = NULL;	
 	}
 }
 

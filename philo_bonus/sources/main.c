@@ -6,7 +6,7 @@
 /*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 11:37:55 by svidot            #+#    #+#             */
-/*   Updated: 2024/04/09 10:46:56 by svidot           ###   ########.fr       */
+/*   Updated: 2024/04/09 11:15:02 by svidot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,5 @@ int	main(int argc, char *argv[])
 	if (death_noticer(data))
 		return (1);
 	wait_childs();	
-	;//return (flush_exit_struct(), 0);
+	return (flush_exit_struct(), 0);
 }

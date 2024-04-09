@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 10:37:50 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/08 19:50:44 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/09 14:50:48 by svidot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ static int	ph_eat(t_data *data, t_philo *philo)
 	sem_post(sem_forks);
 	sem_post(sem_forks);
 	if (data->max_meals && philo->n_meal >= data->max_meals)
+	{
+		flush_exit_struct();
 		exit(0);	
+	}
 	return (0);
 }
 
@@ -76,5 +79,6 @@ void	*philo_routine(void *ptr)
 		if (is_end_needed(philo) || ph_think(data, philo))
 			break ;
 	}
+	//flush_exit_struct();
 	return (NULL);
 }

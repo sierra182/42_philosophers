@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mortician.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 13:29:06 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/08 20:04:19 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/09 14:47:59 by svidot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,15 @@ void	*mortician_routine(void *ptr)
 	while (1)
 	{
 		if (is_end_needed(philo))
+		{
+			flush_exit_struct();
 			exit(0);
+		}
 		else if (is_actually_dead(data, philo) && !is_end_needed(philo))
 		{
 			take_death_mic(data, philo, "died\n");
 			sem_post(sem_death);
+			//flush_exit_struct();
 			exit(0);
 		}
 		//usleep(500);
