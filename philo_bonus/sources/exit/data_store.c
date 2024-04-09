@@ -6,7 +6,7 @@
 /*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 18:35:28 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/09 10:22:17 by svidot           ###   ########.fr       */
+/*   Updated: 2024/04/09 10:36:34 by svidot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,10 @@ void	store_and_free_philos(t_exit *exit, void *philos)
 		i = -1;
 		while (++i < exit->data->n_philo)
 		{
-			sem_close(&exit->philos[i].last_meal);
-			sem_unlink(&exit->philos[i].last_meal);
-			sem_close(&exit->philos[i].last_meal);
-			sem_unlink(&exit->philos[i].is);
-			sem_close(&exit->philos[i].last_meal);
-			sem_unlink(&exit->philos[i].last_meal);
-			pthread_mutex_destroy(&exit->philos[i].last_meal_mutex);
-			pthread_mutex_destroy(&exit->philos[i].is_satiated_mutex);
-			pthread_mutex_destroy(&exit->philos[i].end_needed_mutex);
+			sem_close(exit->philos[i].sem_last_meal);
+			sem_unlink("/sem_last_meal");
+			sem_close(exit->philos[i].sem_end_needed);
+			sem_unlink("/sem_end_needed");
 		}
 		free(exit->philos);
 		exit->philos = NULL;
@@ -72,13 +67,13 @@ void	store_and_free_data(t_exit *exit, void *data)
 	else if (exit && exit->data)
 	{
 		sem_close(exit->data->sem_death);
-		sem_unlink(exit->data->sem_death);
+		sem_unlink("/sem_death");
 		sem_close(exit->data->sem_death_notice);
-		sem_unlink(exit->data->sem_death_notice);
+		sem_unlink("/sem_death_notice");
 		sem_close(exit->data->sem_mic);
-		sem_unlink(exit->data->sem_mic);
+		sem_unlink("/sem_mic");
 		sem_close(exit->data->sem_forks);
-		sem_unlink(exit->data->sem_forks);		
+		sem_unlink("/sem_forks");		
 		free(exit->data);
 		exit->data = NULL;
 	}

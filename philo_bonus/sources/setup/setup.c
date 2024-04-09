@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:41:21 by svidot            #+#    #+#             */
-/*   Updated: 2024/04/08 18:32:52 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/09 10:26:47 by svidot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@ static int	init_philos(t_data *data, t_philo *philos)
 	{
 		philos[i].id = i + 1;
 		if (open_semaphore("/sem_last_meal", &philos[i].sem_last_meal, 1))
-			return (1);
-		if (open_semaphore("/sem_is_satiated", &philos[i].sem_is_satiated, 1))
-			return (1);
+			return (1);	
 		if (open_semaphore("/sem_end_needed", &philos[i].sem_end_needed, 1))
 			return (1);
 	}

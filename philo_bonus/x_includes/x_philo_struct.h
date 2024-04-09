@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   x_philo_struct.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:46:32 by svidot            #+#    #+#             */
-/*   Updated: 2024/04/08 11:15:42 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/09 10:27:28 by svidot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,9 @@ typedef struct s_philo
 {
 	int				id;
 	int				n_meal;
-	int				end_needed;
-	int				is_satiated;
 	struct timeval	last_meal;
-	sem_t			*sem_last_meal;
-	sem_t			*sem_is_satiated;
+	int				end_needed;
+	sem_t			*sem_last_meal;	
 	sem_t			*sem_end_needed;	
 }	t_philo;
 
