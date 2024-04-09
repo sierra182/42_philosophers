@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 21:54:29 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/08 18:11:58 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/09 17:04:24 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,14 @@ void	*wait_death(void *ptr)
 	sem_wait(data->sem_death);
 	while (++i < data->n_philo)
 		sem_post(data->sem_death_notice);
+	//printf("END death not\n");
 	return (NULL);
 }
 
-int	death_noticer(t_data *data)
+int	death_noticer(t_data *data, pthread_t *tid_death_not)
 {
-	pthread_t tid;
-
-	if (pthread_create(&tid, NULL, wait_death, (void *) data))
+	if (pthread_create(tid_death_not, NULL, wait_death, (void *) data))
 		return (1);
-	pthread_detach(tid);
+	//pthread_detach(tid);
 	return (0);
 }

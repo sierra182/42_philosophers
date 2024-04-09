@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mortician.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 13:29:06 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/09 14:47:59 by svidot           ###   ########.fr       */
+/*   Updated: 2024/04/09 17:05:06 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,17 @@ void	*mortician_routine(void *ptr)
 	{
 		if (is_end_needed(philo))
 		{
-			flush_exit_struct();
-			exit(0);
+			//flush_exit_struct();//!include
+			//printf("sortie de mortician car end_needed\n");
+			return (NULL);
 		}
 		else if (is_actually_dead(data, philo) && !is_end_needed(philo))
 		{
 			take_death_mic(data, philo, "died\n");
 			sem_post(sem_death);
+			return (NULL);
 			//flush_exit_struct();
-			exit(0);
+			//exit(0);
 		}
 		//usleep(500);
 	}
