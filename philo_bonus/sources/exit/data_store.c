@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_store.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 18:35:28 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/09 09:37:15 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/09 10:22:17 by svidot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,11 @@ void	store_and_free_philos(t_exit *exit, void *philos)
 		while (++i < exit->data->n_philo)
 		{
 			sem_close(&exit->philos[i].last_meal);
-			sem_unlink(exit->data->sem_death);
+			sem_unlink(&exit->philos[i].last_meal);
+			sem_close(&exit->philos[i].last_meal);
+			sem_unlink(&exit->philos[i].is);
+			sem_close(&exit->philos[i].last_meal);
+			sem_unlink(&exit->philos[i].last_meal);
 			pthread_mutex_destroy(&exit->philos[i].last_meal_mutex);
 			pthread_mutex_destroy(&exit->philos[i].is_satiated_mutex);
 			pthread_mutex_destroy(&exit->philos[i].end_needed_mutex);
