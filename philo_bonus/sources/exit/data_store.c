@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_store.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 18:35:28 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/05 15:06:44 by svidot           ###   ########.fr       */
+/*   Updated: 2024/04/09 09:37:15 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,25 +39,27 @@
 // 	}
 // }
 
-// void	store_and_free_philos(t_exit *exit, void *philos)
-// {
-// 	int	i;
+void	store_and_free_philos(t_exit *exit, void *philos)
+{
+	int	i;
 
-// 	if (exit && philos)
-// 		exit->philos = (t_philo *) philos;
-// 	else if (exit && exit->philos)
-// 	{
-// 		i = -1;
-// 		while (++i < exit->data->n_philo)
-// 		{
-// 			pthread_mutex_destroy(&exit->philos[i].last_meal_mutex);
-// 			pthread_mutex_destroy(&exit->philos[i].is_satiated_mutex);
-// 			pthread_mutex_destroy(&exit->philos[i].end_needed_mutex);
-// 		}
-// 		free(exit->philos);
-// 		exit->philos = NULL;
-// 	}
-// }
+	if (exit && philos)
+		exit->philos = (t_philo *) philos;
+	else if (exit && exit->philos)
+	{
+		i = -1;
+		while (++i < exit->data->n_philo)
+		{
+			sem_close(&exit->philos[i].last_meal);
+			sem_unlink(exit->data->sem_death);
+			pthread_mutex_destroy(&exit->philos[i].last_meal_mutex);
+			pthread_mutex_destroy(&exit->philos[i].is_satiated_mutex);
+			pthread_mutex_destroy(&exit->philos[i].end_needed_mutex);
+		}
+		free(exit->philos);
+		exit->philos = NULL;
+	}
+}
 
 void	store_and_free_data(t_exit *exit, void *data)
 {
@@ -65,8 +67,14 @@ void	store_and_free_data(t_exit *exit, void *data)
 		exit->data = data;
 	else if (exit && exit->data)
 	{
-		// pthread_mutex_destroy(&exit->data->is_ready_mutex);
-		// pthread_mutex_destroy(&exit->data->microphone_mutex);
+		sem_close(exit->data->sem_death);
+		sem_unlink(exit->data->sem_death);
+		sem_close(exit->data->sem_death_notice);
+		sem_unlink(exit->data->sem_death_notice);
+		sem_close(exit->data->sem_mic);
+		sem_unlink(exit->data->sem_mic);
+		sem_close(exit->data->sem_forks);
+		sem_unlink(exit->data->sem_forks);		
 		free(exit->data);
 		exit->data = NULL;
 	}
