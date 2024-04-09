@@ -4,7 +4,7 @@
 # 4 310 200 100 2 bloc
 # 4 800 200 200 3
 # 200 60 60 60 talk after die
-VALUES="1 800 200 200 3"
+VALUES="2 190 200 200"
 NAME=philo_bonus
 
 echo -e "\n\033[0;35m sanitize address:\033[0m" \
