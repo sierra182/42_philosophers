@@ -5,7 +5,7 @@ SRC_DIR = sources
 CC = cc
 THREAD = -pthread
 
-CFLAGS = $(X_HDRFLAGS) $(HDRFLAGS) $(THREAD) -g -Wall -Wextra -Werror
+CFLAGS = $(X_HDRFLAGS) $(HDRFLAGS) $(THREAD) -g #-Wall -Wextra -Werror
 LDFLAGS = $(THREAD)
 
 X_HDRFLAGS = \

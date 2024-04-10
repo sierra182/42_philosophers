@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   x_philo_struct.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:46:32 by svidot            #+#    #+#             */
-/*   Updated: 2024/04/09 11:06:47 by svidot           ###   ########.fr       */
+/*   Updated: 2024/04/10 14:37:07 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ typedef struct s_data
 	struct timeval	start_time;
 	sem_t			*sem_mic;
 	sem_t			*sem_forks;
-	sem_t			*sem_death;
-	sem_t			*sem_death_notice;	
+	sem_t			*sem_death;		
 }	t_data;
 
 typedef struct s_philo
@@ -38,7 +37,8 @@ typedef struct s_philo
 	struct timeval	last_meal;
 	int				end_needed;
 	sem_t			*sem_last_meal;	
-	sem_t			*sem_end_needed;	
+	sem_t			*sem_end_needed;
+	sem_t			*sem_death_notice;
 }	t_philo;
 
 typedef struct s_exit

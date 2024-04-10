@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:41:21 by svidot            #+#    #+#             */
-/*   Updated: 2024/04/10 12:09:32 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/10 16:44:14 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,12 @@ static int	init_philos(t_data *data, t_philo *philos)
 		free(name);
 		name = ft_strjoin_up("/sem_end_needed", ft_itoa(philos[i].id), 0, 1);
 		if (open_semaphore(name, &philos[i].sem_end_needed, 1))
-			return (1);
+			return (1);			
 		free(name);
+		name = ft_strjoin_up("/sem_death_notice", ft_itoa(philos[i].id), 0, 1);
+		if (open_semaphore(name, &philos[i].sem_death_notice, 0))
+			return (1);			
+		free(name);	
 	}
 	return (0);
 }
@@ -68,8 +72,6 @@ static int	create_data_struct(char *argv[], t_data **data)
 	if (open_semaphore("/sem_forks", &(*data)->sem_forks, (*data)->n_philo))
 		return (1);
 	if (open_semaphore("/sem_death", &(*data)->sem_death, 0))
-		return (1);
-	if (open_semaphore("/sem_death_notice", &(*data)->sem_death_notice, 0))
 		return (1);
 	return (0);
 }
