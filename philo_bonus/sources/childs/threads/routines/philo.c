@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 10:37:50 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/09 17:06:44 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/10 12:07:30 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	update_last_meal(t_philo *philo)
 	sem_wait(sem_last_meal);
 	gettimeofday(&philo->last_meal, NULL);
 	sem_post(sem_last_meal);
-	philo->n_meal++;	
+	philo->n_meal++;
 }
 
 static int	ph_eat(t_data *data, t_philo *philo)
@@ -41,11 +41,7 @@ static int	ph_eat(t_data *data, t_philo *philo)
 	sem_post(sem_forks);
 	sem_post(sem_forks);
 	if (data->max_meals && philo->n_meal >= data->max_meals)
-	{
-		//printf("sortie cause plus faim\n");
-	//	flush_exit_struct();
-		return(1);	
-	}
+		return (1);
 	return (0);
 }
 
@@ -74,13 +70,11 @@ void	*philo_routine(void *ptr)
 	while (1)
 	{
 		if (is_end_needed(philo) || ph_eat(data, philo))
-			break ;			
+			break ;
 		if (is_end_needed(philo) || ph_sleep(data, philo))
 			break ;
 		if (is_end_needed(philo) || ph_think(data, philo))
 			break ;
 	}
-	//printf("sortie de philo routine\n");
-	//flush_exit_struct();
 	return (NULL);
 }

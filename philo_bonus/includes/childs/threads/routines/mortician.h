@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mortician.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:00:44 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/09 14:46:08 by svidot           ###   ########.fr       */
+/*   Updated: 2024/04/10 12:00:05 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "x_philo_struct.h"
-# include "x_exit.h"
 
 long	get_time_since_last_meal(t_philo *philo);
 long	get_time_since_start(t_data *data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:41:21 by svidot            #+#    #+#             */
-/*   Updated: 2024/04/10 11:33:17 by svidot           ###   ########.fr       */
+/*   Updated: 2024/04/10 12:09:32 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,11 @@ static int	open_semaphore(char *name, sem_t **sem, int value)
 	return (0);
 }
 
-char	*ft_strjoin_up(char *s1, char *s2, int s1_free, int s2_free);
-
 static int	init_philos(t_data *data, t_philo *philos)
 {
 	int		i;
 	char	*name;
-	
+
 	i = -1;
 	while (++i < data->n_philo)
 	{

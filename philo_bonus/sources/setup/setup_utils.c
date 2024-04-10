@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   setup_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 11:32:52 by svidot            #+#    #+#             */
-/*   Updated: 2024/04/10 11:34:07 by svidot           ###   ########.fr       */
+/*   Updated: 2024/04/10 11:53:01 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strlen(const char *s);
+#include "setup_utils.h"
 
-char	*ft_strdup(const char *s)
+static char	*ft_strdup(const char *s)
 {
 	char	*s_dup;
 	size_t	s_len;

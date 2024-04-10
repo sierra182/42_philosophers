@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 21:58:56 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/10 09:03:41 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/10 12:08:43 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,10 @@ static void	*is_end_routine(void *ptr)
 	sem_death_notice = data->sem_death_notice;
 	sem_end_needed = philo->sem_end_needed;
 	sem_wait(sem_death_notice);
-	sem_wait(sem_end_needed);	
+	sem_wait(sem_end_needed);
 	philo->end_needed = 1;
 	sem_post(sem_end_needed);
-	//printf("sortie end routine\n");
 	return (NULL);
-	// flush_exit_struct();
-	// exit(0);
 }
 
 int	take_mic(t_data *data, t_philo *philo, char *str)
@@ -81,7 +78,6 @@ int	create_threads(t_data *data, t_philo *philo)
 	pthread_join(tid_philo, NULL);
 	pthread_join(tid_mortician, NULL);
 	pthread_join(tid_is_end, NULL);
-	//printf("All 3 threads\n");	
 	flush_exit_struct();
 	return (0);
 }
