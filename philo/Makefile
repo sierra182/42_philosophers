@@ -3,7 +3,7 @@ X_HDR_DIR = x_includes
 HDR_DIR = includes
 SRC_DIR = sources
 CC = cc
-THREAD =
+THREAD = -pthread
 
 CFLAGS = $(X_HDRFLAGS) $(HDRFLAGS) $(THREAD) -g -Wall -Wextra -Werror
 LDFLAGS = $(THREAD)

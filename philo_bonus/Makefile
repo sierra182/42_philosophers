@@ -3,7 +3,7 @@ X_HDR_DIR = x_includes
 HDR_DIR = includes
 SRC_DIR = sources
 CC = cc
-THREAD =
+THREAD = -pthread
 
 CFLAGS = $(X_HDRFLAGS) $(HDRFLAGS) $(THREAD) -g #-Wall -Wextra -Werror
 LDFLAGS = $(THREAD)
@@ -40,7 +40,7 @@ HDRFLAGS = \
 
 HDR = \
 	$(HDR_DIR)/main.h \
-	$(HDR_DIR)/time.h \
+	$(HDR_DIR)/ph_time.h \
 	$(HDR_DIR)/death_noticer.h \
 	$(HDR_DIR)/parsing/parsing.h \
 	$(HDR_DIR)/parsing/parsing_utils.h \
@@ -49,7 +49,7 @@ HDR = \
 	$(HDR_DIR)/exit/exit.h \
 	$(HDR_DIR)/exit/data_store.h \
 	$(HDR_DIR)/childs/childs.h \
-	$(HDR_DIR)/childs/threads/threads.h \
+	$(HDR_DIR)/childs/threads/ph_threads.h \
 	$(HDR_DIR)/childs/threads/routines/mortician.h \
 	$(HDR_DIR)/childs/threads/routines/philo.h \
 	# $(HDR_DIR)/mortuary/mortuary.h \

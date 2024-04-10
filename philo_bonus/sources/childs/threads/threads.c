@@ -6,11 +6,11 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 21:58:56 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/09 17:00:46 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/10 09:03:41 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "threads.h"
+#include "ph_threads.h"
 
 int	is_end_needed(t_philo *philo)
 {
@@ -81,8 +81,7 @@ int	create_threads(t_data *data, t_philo *philo)
 	pthread_join(tid_philo, NULL);
 	pthread_join(tid_mortician, NULL);
 	pthread_join(tid_is_end, NULL);
-	//printf("All 3 threads\n");
-	sem_post(data->sem_death);
+	//printf("All 3 threads\n");	
 	flush_exit_struct();
 	return (0);
 }

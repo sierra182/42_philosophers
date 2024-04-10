@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   time.h                                             :+:      :+:    :+:   */
+/*   ph_threads.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/05 22:04:26 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/05 22:11:54 by seblin           ###   ########.fr       */
+/*   Created: 2024/04/08 13:49:09 by seblin            #+#    #+#             */
+/*   Updated: 2024/04/10 09:04:31 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TIME_H
-# define TIME_H
+#ifndef PH_THREADS_H
+# define PH_THREADS_H
 
+# include <pthread.h>
+# include <stdlib.h>
 # include "x_philo_struct.h"
+# include "x_exit.h"
+
+long	get_time_since_start(t_data *data);
+void	*mortician_routine(void *ptr);
+void	*philo_routine(void *ptr);
 
 #endif
