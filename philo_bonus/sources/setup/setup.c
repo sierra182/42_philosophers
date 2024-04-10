@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:41:21 by svidot            #+#    #+#             */
-/*   Updated: 2024/04/09 10:26:47 by svidot           ###   ########.fr       */
+/*   Updated: 2024/04/10 10:05:37 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,76 @@ static int	open_semaphore(char *name, sem_t **sem, int value)
 		return (1);
 	return (0);
 }
+char	*ft_strjoin(char const *s1, char const *s2);//!
+char	*ft_strjoin_up(char *s1, char *s2, int s1_free, int s2_free);
+int	ft_strlen(const char *s);
+char	*ft_strdup(const char *s)
+{
+	char	*s_dup;
+	size_t	s_len;
 
-static int	init_philos(t_data *data, t_philo *philos)
+	s_len = ft_strlen(s);
+	s_dup = (char *) malloc(sizeof(char) * (s_len + 1));
+	if (!s_dup)
+		return (NULL);
+	while (*s)
+		*s_dup++ = *s++;
+	*s_dup = '\0';
+	return (s_dup - s_len);
+}
+
+static int	ft_digitlen(int n)
 {
 	int	i;
 
+	i = 1;
+	while (n > 9 && i++)
+		n /= 10;
+	return (i);
+}
+
+char	*ft_itoa(int n)
+{
+	char	*s;
+	int		is_neg;
+	int		i;
+
+	is_neg = 0;
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
+	if (n < 0 && ++is_neg)
+		n = -n;
+	i = ft_digitlen(n);
+	s = (char *) malloc(sizeof (char) * (i + is_neg + 1));
+	if (!s)
+		return (NULL);
+	s[i + is_neg] = '\0';
+	while (i-- + is_neg)
+	{
+		s[i + is_neg] = n % 10 + 48;
+		n /= 10;
+	}
+	if (is_neg)
+		*s = '-';
+	return (s);
+}
+static int	init_philos(t_data *data, t_philo *philos)
+{
+	int		i;
+	char	*name;
+	
 	i = -1;
 	while (++i < data->n_philo)
 	{
 		philos[i].id = i + 1;
-		if (open_semaphore("/sem_last_meal", &philos[i].sem_last_meal, 1))
-			return (1);	
-		if (open_semaphore("/sem_end_needed", &philos[i].sem_end_needed, 1))
+		name = ft_strjoin_up("/sem_last_meal", ft_itoa(philos[i].id), 0, 1);
+		if (open_semaphore(name, &philos[i].sem_last_meal, 1))
 			return (1);
+		free(name);
+		name = ft_strjoin_up("/sem_end_needed", ft_itoa(philos[i].id), 0, 1);
+		if (open_semaphore(name, &philos[i].sem_end_needed, 1))
+			return (1);
+		free(name);
 	}
 	return (0);
 }

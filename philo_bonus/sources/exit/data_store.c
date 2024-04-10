@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_store.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: svidot <svidot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 18:35:28 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/09 11:07:09 by svidot           ###   ########.fr       */
+/*   Updated: 2024/04/10 10:06:01 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,14 @@
 // 		exit->forks = NULL;
 // 	}
 // }
-
+char	*ft_strjoin(char const *s1, char const *s2);//!
+char	*ft_strjoin_up(char *s1, char *s2, int s1_free, int s2_free);
+char	*ft_itoa(int n);//!
 void	store_and_free_philos(t_exit *exit, void *philos)
 {
-	int	i;
-
+	int		i;
+	char	*name;
+	
 	if (exit && philos)
 		exit->philos = (t_philo *) philos;
 	else if (exit && exit->philos)
@@ -51,9 +54,13 @@ void	store_and_free_philos(t_exit *exit, void *philos)
 		while (++i < exit->data->n_philo)
 		{
 			sem_close(exit->philos[i].sem_last_meal);
-			sem_unlink("/sem_last_meal");
+			name = ft_strjoin_up("/sem_last_meal", ft_itoa(exit->philos[i].id), 0, 1);
+			sem_unlink(name);
+			free(name);
 			sem_close(exit->philos[i].sem_end_needed);
-			sem_unlink("/sem_end_needed");
+			name = ft_strjoin_up("/sem_end_needed", ft_itoa(exit->philos[i].id), 0, 1);
+			sem_unlink(name);
+			free(name);
 		}
 		free(exit->philos);
 		exit->philos = NULL;	
