@@ -6,16 +6,23 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 18:35:28 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/10 14:40:26 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/10 21:10:26 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "data_store.h"
 
+static void	close_semaphore(sem_t *sem, int id, char *name)
+{
+	sem_close(sem);
+	name = ft_strjoin_up(name, ft_itoa(id), 0, 1);
+	sem_unlink(name);
+	free(name);
+}
+
 void	store_and_free_philos(t_exit *exit, void *philos)
 {
 	int		i;
-	char	*name;
 
 	if (exit && philos)
 		exit->philos = (t_philo *) philos;
@@ -24,21 +31,12 @@ void	store_and_free_philos(t_exit *exit, void *philos)
 		i = -1;
 		while (++i < exit->data->n_philo)
 		{
-			sem_close(exit->philos[i].sem_last_meal);
-			name = ft_strjoin_up("/sem_last_meal",
-					ft_itoa(exit->philos[i].id), 0, 1);
-			sem_unlink(name);
-			free(name);
-			sem_close(exit->philos[i].sem_end_needed);
-			name = ft_strjoin_up("/sem_end_needed",
-					ft_itoa(exit->philos[i].id), 0, 1);
-			sem_unlink(name);
-			free(name);
-			sem_close(exit->philos[i].sem_death_notice);
-			name = ft_strjoin_up("/sem_death_notice",
-					ft_itoa(exit->philos[i].id), 0, 1);
-			sem_unlink(name);
-			free(name);
+			close_semaphore(&exit->philos[i].sem_last_meal,
+				&exit->philos[i].id, "/sem_last_meal");
+			close_semaphore(&exit->philos[i].sem_end_needed,
+				&exit->philos[i].id, "/sem_end_needed");
+			close_semaphore(&exit->philos[i].sem_death_notice,
+				&exit->philos[i].id, "/sem_death_notice");
 		}
 		free(exit->philos);
 		exit->philos = NULL;

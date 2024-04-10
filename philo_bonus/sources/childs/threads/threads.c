@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 21:58:56 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/10 18:19:37 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/10 21:11:58 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	is_end_needed(t_philo *philo)
 void	rise_end_needed(t_philo *philo)
 {
 	sem_t	*sem_end_needed;
-	
+
 	sem_end_needed = philo->sem_end_needed;
 	sem_wait(sem_end_needed);
 	philo->end_needed = 1;
@@ -81,11 +81,10 @@ int	create_threads(t_data *data, t_philo *philo)
 		mortician_routine, (void *[]){data, philo});
 	pthread_create(&tid_is_end, NULL,
 		is_end_routine, (void *[]){data, philo});
-	//pthread_detach(tid_is_end);
 	pthread_join(tid_philo, NULL);
 	pthread_join(tid_mortician, NULL);
 	sem_post(philo->sem_death_notice);
-	pthread_join(tid_is_end, NULL);	
+	pthread_join(tid_is_end, NULL);
 	flush_exit_struct();
 	return (0);
 }
