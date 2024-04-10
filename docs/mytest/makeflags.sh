@@ -4,7 +4,7 @@
 # 4 310 200 100 2 bloc
 # 4 800 200 200 3
 # 200 60 60 60 talk after die
-VALUES="4 1190 200 200 1"
+VALUES="4 600 200 200 1"
 NAME=philo_bonus
 # NAME=philo
 
