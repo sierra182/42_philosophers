@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 21:58:56 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/10 21:11:58 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/10 21:19:16 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,8 @@ static void	*is_end_routine(void *ptr)
 {
 	sem_t	*sem_death_notice;
 	t_philo	*philo;
-	t_data	*data;
 
-	data = (t_data *)((void **) ptr)[0];
-	philo = (t_philo *)((void **) ptr)[1];
+	philo = (t_philo *) ptr;
 	sem_death_notice = philo->sem_death_notice;
 	sem_wait(sem_death_notice);
 	rise_end_needed(philo);
@@ -80,7 +78,7 @@ int	create_threads(t_data *data, t_philo *philo)
 	pthread_create(&tid_mortician, NULL,
 		mortician_routine, (void *[]){data, philo});
 	pthread_create(&tid_is_end, NULL,
-		is_end_routine, (void *[]){data, philo});
+		is_end_routine, (void *) philo);
 	pthread_join(tid_philo, NULL);
 	pthread_join(tid_mortician, NULL);
 	sem_post(philo->sem_death_notice);

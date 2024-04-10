@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 18:35:28 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/10 21:10:26 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/10 21:16:47 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ void	store_and_free_philos(t_exit *exit, void *philos)
 		i = -1;
 		while (++i < exit->data->n_philo)
 		{
-			close_semaphore(&exit->philos[i].sem_last_meal,
-				&exit->philos[i].id, "/sem_last_meal");
-			close_semaphore(&exit->philos[i].sem_end_needed,
-				&exit->philos[i].id, "/sem_end_needed");
-			close_semaphore(&exit->philos[i].sem_death_notice,
-				&exit->philos[i].id, "/sem_death_notice");
+			close_semaphore(exit->philos[i].sem_last_meal,
+				exit->philos[i].id, "/sem_last_meal");
+			close_semaphore(exit->philos[i].sem_end_needed,
+				exit->philos[i].id, "/sem_end_needed");
+			close_semaphore(exit->philos[i].sem_death_notice,
+				exit->philos[i].id, "/sem_death_notice");
 		}
 		free(exit->philos);
 		exit->philos = NULL;
