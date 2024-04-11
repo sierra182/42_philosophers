@@ -60,8 +60,7 @@ SRC = \
 
 .PHONY: all clean fclean re intro l newline backline emoticon address
 
-#all: intro $(NAME) 
-all: $(NAME)
+all: intro $(NAME) 
 
 address:
 	@$(MAKE) -s l THREAD="-pthread -fsanitize=address"
