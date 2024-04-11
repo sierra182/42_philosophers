@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 10:37:50 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/10 16:51:18 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/11 12:41:01 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,7 @@ static int	ph_eat(t_data *data, t_philo *philo)
 	sem_post(sem_forks);
 	sem_post(sem_forks);
 	if (data->max_meals && philo->n_meal >= data->max_meals)
-	{
-		rise_end_needed(philo);
-		return (1);
-	}
+		return (rise_end_needed(philo), 1);
 	return (0);
 }
 
