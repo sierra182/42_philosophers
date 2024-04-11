@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 10:42:46 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/11 07:52:27 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/11 08:11:05 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	main(int argc, char *argv[])
 	if (!data)
 		return (1);
 	if (data->n_philo == 1)
-		return (only_one_philosopher(data), 1);
+		return (only_one_philosopher(data), 0);
 	philos = create_philos(data);
 	if (!philos)
 		return (flush_exit_struct(), 1);
