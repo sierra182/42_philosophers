@@ -58,7 +58,7 @@ SRC = \
 	$(SRC_DIR)/childs/threads/routines/philo.c \
 	$(SRC_DIR)/childs/threads/routines/mortician.c \
 
-.PHONY: all clean fclean re intro l newline backline emoticon address
+.PHONY: all clean fclean re intro l newline backline emoticon address thread 
 
 all: intro $(NAME) 
 

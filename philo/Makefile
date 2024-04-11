@@ -64,7 +64,7 @@ SRC = \
 	$(SRC_DIR)/setup/error_zone/check_argv.c \
 	$(SRC_DIR)/setup/error_zone/error_utils.c
 
-.PHONY: all clean fclean re intro l newline backline emoticon address bonus
+.PHONY: all clean fclean re intro l newline backline emoticon address thread bonus
 
 all: intro $(NAME) 
 
