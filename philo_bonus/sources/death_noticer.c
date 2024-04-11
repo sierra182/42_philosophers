@@ -6,18 +6,16 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 21:54:29 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/10 21:14:36 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/11 14:33:43 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "death_noticer.h"
 
-static void	wait_childs(t_data *data, pthread_t tid_death_not)
+static void	wait_childs(void)
 {
 	while (waitpid(-1, NULL, 0) > 0)
 		usleep(500);
-	sem_post(data->sem_death);
-	pthread_join(tid_death_not, NULL);
 }
 
 static void	*wait_death(void *ptr)
@@ -42,6 +40,8 @@ int	death_noticer(t_data *data, t_philo *philos)
 	if (pthread_create(&tid_death_not, NULL, wait_death,
 			(void *[]){data, philos}))
 		return (1);
-	wait_childs(data, tid_death_not);
+	wait_childs();
+	sem_post(data->sem_death);
+	pthread_join(tid_death_not, NULL);
 	return (0);
 }
