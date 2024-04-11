@@ -6,7 +6,7 @@
 /*   By: seblin <seblin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 10:42:46 by seblin            #+#    #+#             */
-/*   Updated: 2024/04/03 22:34:32 by seblin           ###   ########.fr       */
+/*   Updated: 2024/04/11 07:52:27 by seblin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	join_threads(t_data *data, pthread_t *tids)
 		pthread_join(tids[i++], NULL);
 }
 
-void	only_one_philosopher(t_data *data)
+static void	only_one_philosopher(t_data *data)
 {
 	printf("%d 1 died\n", data->death_time);
 	flush_exit_struct();
